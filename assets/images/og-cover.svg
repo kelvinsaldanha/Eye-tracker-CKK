@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0b1120"/>
+  <circle cx="940" cy="160" r="220" fill="#2563eb" opacity=".18"/>
+  <rect x="90" y="90" width="1020" height="450" rx="36" fill="#111827" stroke="#1e293b"/>
+  <text x="150" y="235" fill="#f8fafc" font-family="Inter, Segoe UI, Arial" font-size="64" font-weight="800">Projeto META Mouse Ocular</text>
+  <text x="150" y="315" fill="#cbd5e1" font-family="Inter, Segoe UI, Arial" font-size="34">Controle o computador com olhos e gestos faciais.</text>
+  <path d="M150 410s58-86 170-86 170 86 170 86-58 86-170 86-170-86-170-86Z" fill="#fff"/>
+  <circle cx="320" cy="410" r="54" fill="#2563eb"/>
+  <circle cx="340" cy="390" r="15" fill="#fff"/>
+</svg>

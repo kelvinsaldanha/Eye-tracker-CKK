@@ -1,0 +1,395 @@
+{
+  "branding": {
+    "primaryColor": "#2563EB",
+    "secondaryColor": "#0F172A",
+    "logo": "assets/images/logo.png"
+  },
+  "project": {
+    "name": "Eye Tracker CK²",
+    "shortName": "Eye Tracker CK²",
+    "version": "0.1.0",
+    "status": "Em desenvolvimento",
+    "tagline": "Mouse ocular acessível com webcam comum.",
+    "description": "Projeto científico e tecnológico desenvolvido para a 35ª META, com foco em permitir o controle do computador por rastreamento ocular e gestos faciais.",
+    "audience": "Pessoas com tetraplegia, ELA, mobilidade reduzida, lesões temporárias, pesquisadores, instituições de ensino, hospitais e clínicas de reabilitação.",
+    "github": "",
+    "email": "",
+    "year": "2026",
+    "siteUrl": "https://seu-usuario.github.io/eye-tracker-ck2/"
+  },
+  "institution": {
+    "name": "Centro Federal de Educação Tecnológica de Minas Gerais",
+    "shortName": "CEFET-MG",
+    "campus": "Campus Nova Gameleira, Belo Horizonte",
+    "course": "Ensino Médio Técnico em Equipamentos Biomédicos",
+    "class": "EBM-3A, 2026",
+    "department": "Departamento de Eletrônica e Biomédica - NG",
+    "event": "35ª edição da META",
+    "logo": "assets/images/cefet-logo.png"
+  },
+  "hero": {
+    "eyebrow": "Projeto oficial para a 35ª META",
+    "title": "Eye Tracker CK²: controle o computador com os olhos.",
+    "subtitle": "Uma alternativa de baixo custo para acessibilidade digital usando webcam, visão computacional e gestos faciais.",
+    "primaryCta": "Baixar software",
+    "secondaryCta": "Ver demonstrações"
+  },
+  "about": [
+    {
+      "icon": "target",
+      "title": "Problema",
+      "text": "Eye trackers comerciais costumam ter custo elevado, dificultando o acesso de pessoas e instituições que precisam de tecnologia assistiva."
+    },
+    {
+      "icon": "eye",
+      "title": "Solução",
+      "text": "O projeto usa webcam comum para detectar rosto, olhos e gestos, transformando esses sinais em comandos de mouse."
+    },
+    {
+      "icon": "heart",
+      "title": "Propósito",
+      "text": "Ampliar autonomia, inclusão digital e participação social para pessoas que não conseguem usar o computador por meios convencionais."
+    }
+  ],
+  "history": [
+    {
+      "title": "Busca por impacto social",
+      "text": "O grupo queria desenvolver para a META um projeto que unisse tecnologia, pesquisa e utilidade real para pessoas."
+    },
+    {
+      "title": "Necessidade identificada",
+      "text": "A equipe percebeu que soluções comerciais de rastreamento ocular podem ser caras, enquanto webcams comuns estão presentes em muitos computadores."
+    },
+    {
+      "title": "Inspiração técnica",
+      "text": "A proposta foi influenciada por trabalhos científicos, soluções comerciais de eye tracking e projetos como os de Shamilka Perera e Metin Amedi."
+    },
+    {
+      "title": "Desenvolvimento para a META",
+      "text": "O Eye Tracker CK² nasceu como um mouse ocular acadêmico voltado à acessibilidade, inicialmente pensado para pessoas com tetraplegia, mas útil para diferentes limitações motoras."
+    }
+  ],
+  "socialImpact": {
+    "summary": "O Eye Tracker CK² busca democratizar o acesso a tecnologias de rastreamento ocular, reduzindo dependência de equipamentos caros e ampliando possibilidades de uso com uma webcam comum.",
+    "topics": [
+      "Acessibilidade digital",
+      "Autonomia no uso do computador",
+      "Inclusão em ambientes escolares e profissionais",
+      "Baixo custo em comparação com soluções comerciais",
+      "Apoio a pesquisa em tecnologia assistiva"
+    ],
+    "audiences": [
+      "Pessoas com tetraplegia",
+      "Pessoas com ELA",
+      "Pessoas com mobilidade reduzida",
+      "Pessoas temporariamente lesionadas",
+      "Hospitais",
+      "Clínicas de reabilitação",
+      "Pesquisadores",
+      "Instituições de ensino",
+      "Centros de pesquisa",
+      "Projetos de tecnologia assistiva"
+    ]
+  },
+  "howItWorks": [
+    "Webcam captura a imagem",
+    "Face é detectada",
+    "Olhos são identificados",
+    "Gestos são reconhecidos",
+    "IA auxilia a previsão",
+    "Cursor é movimentado",
+    "Comando é executado"
+  ],
+  "features": [
+    { "name": "Movimentação do cursor", "status": "Funciona" },
+    { "name": "IA para previsão do cursor", "status": "Funciona" },
+    { "name": "Calibração", "status": "Funciona" },
+    { "name": "Clique esquerdo", "status": "Funciona em refinamento" },
+    { "name": "Clique direito", "status": "Funciona em refinamento" },
+    { "name": "Duplo clique", "status": "Funciona" },
+    { "name": "Drag", "status": "Em desenvolvimento" },
+    { "name": "Scroll", "status": "Protótipo" },
+    { "name": "Menu overlay", "status": "Em desenvolvimento" },
+    { "name": "Congelar cursor", "status": "Em desenvolvimento" },
+    { "name": "Pausar rastreamento", "status": "Em desenvolvimento" },
+    { "name": "Ctrl+C", "status": "Em desenvolvimento" },
+    { "name": "Ctrl+V", "status": "Em desenvolvimento" },
+    { "name": "Perfis de usuário", "status": "Planejado" },
+    { "name": "Estatísticas", "status": "Planejado" }
+  ],
+  "gestures": [
+    { "gesture": "Piscada do olho direito", "action": "Clique esquerdo", "status": "Funciona" },
+    { "gesture": "Piscada do olho esquerdo", "action": "Clique direito", "status": "Funciona" },
+    { "gesture": "Duas piscadas", "action": "Duplo clique", "status": "Funciona" },
+    { "gesture": "Sobrancelhas", "action": "Drag", "status": "Em desenvolvimento" },
+    { "gesture": "Boca aberta", "action": "Scroll", "status": "Em desenvolvimento" },
+    { "gesture": "Sorriso", "action": "Menu", "status": "Em desenvolvimento" },
+    { "gesture": "Sorriso + sobrancelhas", "action": "Congelar cursor", "status": "Em desenvolvimento" },
+    { "gesture": "Dois olhos fechados", "action": "Pausar", "status": "Em desenvolvimento" },
+    { "gesture": "Sobrancelhas + olho direito", "action": "Ctrl+C", "status": "Em desenvolvimento" },
+    { "gesture": "Sobrancelhas + olho esquerdo", "action": "Ctrl+V", "status": "Em desenvolvimento" }
+  ],
+  "videos": [
+    {
+      "title": "Demonstração geral",
+      "description": "Espaço para o vídeo demonstrativo do funcionamento do Eye Tracker CK².",
+      "url": ""
+    },
+    {
+      "title": "Instalação",
+      "description": "Espaço para o tutorial de download, instalação e primeiros passos.",
+      "url": ""
+    }
+  ],
+  "stats": [
+    { "label": "Pessoas testaram", "value": "7", "note": "Quantidade inicial informada pela equipe." },
+    { "label": "Horas de teste", "value": "+50", "note": "Tempo aproximado de testes e experimentos." },
+    { "label": "FPS", "value": "Em coleta", "note": "Métrica preparada para publicação posterior." },
+    { "label": "Precisão", "value": "Em análise", "note": "Sem número final publicado." },
+    { "label": "MAE", "value": "Em análise", "note": "Métrica estatística em consolidação." },
+    { "label": "RMSE", "value": "Em análise", "note": "Métrica estatística em consolidação." },
+    { "label": "R²", "value": "Em análise", "note": "Métrica estatística em consolidação." },
+    { "label": "Falsos positivos", "value": "Em desenvolvimento", "note": "Indicador previsto para próximas versões." }
+  ],
+  "timeline": [
+    {
+      "date": "2026",
+      "title": "Ideia inicial",
+      "text": "O grupo escolheu desenvolver um projeto de grande impacto social para a 35ª META."
+    },
+    {
+      "date": "2026",
+      "title": "Pesquisa e prototipagem",
+      "text": "Foram avaliadas bibliotecas, soluções comerciais e projetos semelhantes de rastreamento ocular."
+    },
+    {
+      "date": "2026",
+      "title": "Testes iniciais",
+      "text": "O software passou por testes com webcam, detecção facial, gestos e controle básico do cursor."
+    },
+    {
+      "date": "Em andamento",
+      "title": "Refinamento",
+      "text": "A equipe trabalha em precisão, falsos positivos, gestos compostos, interface e documentação."
+    }
+  ],
+  "roadmap": [
+    "Melhorar precisão do rastreamento ocular",
+    "Reduzir falsos positivos",
+    "Melhorar detecção de piscadas",
+    "Melhorar reconhecimento de sobrancelhas",
+    "Corrigir o modo Drag",
+    "Reestruturar Scroll",
+    "Aperfeiçoar gestos compostos",
+    "Criar perfis individuais",
+    "Criar banco de calibração",
+    "Melhorar a interface gráfica",
+    "Expandir o menu overlay",
+    "Coletar novas métricas",
+    "Realizar novos testes de usabilidade",
+    "Integrar futuramente com IoT",
+    "Criar teclado virtual adaptativo",
+    "Compatibilizar com outros sistemas operacionais"
+  ],
+  "technologies": [
+    { "name": "Python", "description": "Linguagem principal usada na lógica do software." },
+    { "name": "OpenCV", "description": "Processamento de imagem e leitura dos quadros da webcam." },
+    { "name": "MediaPipe", "description": "Detecção facial e identificação de pontos de referência." },
+    { "name": "NumPy", "description": "Cálculos numéricos usados em medições e previsões." },
+    { "name": "PyAutoGUI", "description": "Execução dos comandos de mouse e teclado no sistema." },
+    { "name": "Tkinter", "description": "Interface simples para configurações e uso local." }
+  ],
+  "hardware": {
+    "minimum": {
+      "os": "Windows",
+      "camera": "Webcam 720p",
+      "memoryGb": 8,
+      "cpu": "Processador equivalente a Intel Core i3 de 8ª geração ou Ryzen 3"
+    },
+    "recommended": {
+      "camera": "Webcam 1080p",
+      "memoryGb": 8,
+      "lighting": "Ambiente bem iluminado e rosto enquadrado"
+    }
+  },
+  "downloads": [
+    {
+      "name": "Eye Tracker CK² para Windows",
+      "version": "0.1.0",
+      "status": "Download indisponível",
+      "date": "Em breve",
+      "size": "A definir",
+      "compatibility": "Windows 10 ou superior",
+      "requirements": "Webcam 720p, 8 GB de RAM recomendados e processador equivalente a Intel Core i3 8ª geração ou Ryzen 3.",
+      "license": "MIT",
+      "download_url": "",
+      "releaseNotes": [
+        "Primeira versão pública em preparação.",
+        "Sistema de download pronto para receber o executável.",
+        "Inclui controle de cursor, calibração e gestos principais em refinamento."
+      ]
+    }
+  ],
+  "installation": [
+    {
+      "title": "Baixe o executável",
+      "description": "Quando a versão pública estiver disponível, clique em baixar e salve o arquivo no computador.",
+      "image": ""
+    },
+    {
+      "title": "Abra o programa",
+      "description": "Execute o arquivo baixado e aguarde a inicialização do Eye Tracker CK².",
+      "image": ""
+    },
+    {
+      "title": "Permita a webcam",
+      "description": "O software precisa da câmera para reconhecer rosto, olhos e gestos faciais.",
+      "image": ""
+    },
+    {
+      "title": "Faça a calibração",
+      "description": "Siga as instruções para ajustar o rastreamento ao seu rosto, ambiente e posição da câmera.",
+      "image": ""
+    },
+    {
+      "title": "Use os gestos",
+      "description": "Movimente o cursor com os olhos e use piscadas ou expressões para executar comandos.",
+      "image": ""
+    }
+  ],
+  "opensource": {
+    "license": "MIT",
+    "repository": "",
+    "documentation": "",
+    "issues": "",
+    "contributions": "O projeto será open source e poderá aceitar contribuições externas mediante revisão do mantenedor."
+  },
+  "faq": [
+    {
+      "question": "O Eye Tracker CK² já está disponível para download?",
+      "answer": "Ainda não. O portal já está preparado para liberar o instalador assim que a primeira versão pública for concluída."
+    },
+    {
+      "question": "Preciso de um eye tracker profissional?",
+      "answer": "Não. A proposta é funcionar com uma webcam comum, preferencialmente 720p ou 1080p, em ambiente bem iluminado."
+    },
+    {
+      "question": "O site consegue verificar se meu computador roda?",
+      "answer": "Parcialmente. Por privacidade, o navegador não informa o modelo exato do processador, mas pode estimar memória e núcleos disponíveis."
+    },
+    {
+      "question": "O projeto funciona sem internet?",
+      "answer": "A proposta do software é funcionar localmente após a instalação. O site é usado para divulgação, download e documentação."
+    },
+    {
+      "question": "Posso contribuir com o código?",
+      "answer": "Sim, quando o repositório público for liberado. As contribuições devem passar por revisão."
+    }
+  ],
+  "team": [
+    {
+      "name": "Carlos Eduardo Ferreira da Silva",
+      "role": "Desenvolvedor",
+      "secondaryRoles": ["Testes", "Documentação"],
+      "description": "Integrante responsável pelo desenvolvimento, testes e apoio à documentação do projeto.",
+      "email": "carloseduardoferreira3108@gmail.com",
+      "github": "",
+      "linkedin": "https://www.linkedin.com/in/carlos-eduardo-ferreira-9695983b9/",
+      "photo": "assets/images/team/carlos.jpg"
+    },
+    {
+      "name": "Kauan Kerlon Costa de Jesus",
+      "role": "Desenvolvedor",
+      "secondaryRoles": ["Pesquisa em IA", "Testes", "Documentação"],
+      "description": "Integrante responsável por desenvolvimento, pesquisa em inteligência artificial, testes e documentação.",
+      "email": "kauankerloncostadejesus@gmail.com",
+      "github": "",
+      "linkedin": "https://www.linkedin.com/in/kauan-kerlon-costa-de-jesus-64b0963ba/",
+      "photo": "assets/images/team/kauan.jpg"
+    },
+    {
+      "name": "Kelvin Saldanha Mateus",
+      "role": "Desenvolvimento de software e site web",
+      "secondaryRoles": ["Pesquisa bibliográfica", "IA", "Arquitetura", "Documentação", "Testes", "Integração dos módulos"],
+      "description": "Integrante responsável por desenvolvimento do software, site, arquitetura, integração dos módulos, pesquisa, IA e documentação.",
+      "email": "kelvinsaldanhaa@gmail.com",
+      "github": "https://github.com/kelvinsaldanha",
+      "linkedin": "https://www.linkedin.com/in/kelvin-saldanha-mateus/",
+      "photo": "assets/images/team/kelvin.jpg"
+    }
+  ],
+  "advisors": [
+    {
+      "name": "Professor Alexandre Rodrigues Farias",
+      "role": "Orientador",
+      "title": "Professor, doutor em Engenharia Elétrica",
+      "bio": "Professor do CEFET-MG no curso de Equipamentos Biomédicos e Engenharia Elétrica, com experiência em eletrônica, sistemas microprocessados, instrumentação biomédica, processamento de sinais e imagens médicas.",
+      "email": "alexandrefarias@cefetmg.br",
+      "area": "Instrumentação biomédica, eletrônica e processamento de sinais",
+      "projectRole": "Orientação técnica e científica, revisão metodológica, definição de testes, acompanhamento do projeto e reuniões semanais.",
+      "linkedin": "https://www.linkedin.com/in/alexandre-farias-861930b5/",
+      "photo": ""
+    },
+    {
+      "name": "Prof.ª Tálita Saemi Payossim Sono",
+      "role": "Coorientadora",
+      "title": "Professora, doutora em Engenharia Mecânica com ênfase em Bioengenharia",
+      "bio": "Professora do CEFET-MG no Departamento de Eletrônica e Biomédica, com atuação em eletrônica digital, sistemas microprocessados, bioengenharia e desenvolvimento de tecnologias assistivas.",
+      "email": "talitasono@cefetmg.br",
+      "area": "Sistemas embarcados, bioengenharia e tecnologias assistivas",
+      "projectRole": "Coorientação técnica e apoio ao desenvolvimento científico do projeto.",
+      "linkedin": "",
+      "photo": ""
+    }
+  ],
+  "references": {
+    "main": [],
+    "bibliography": [],
+    "driveFolder": ""
+  },
+  "inspirations": [
+    {
+      "name": "Shamilka Perera",
+      "description": "Projeto de interface controlada por olhos que influenciou a pesquisa e a direção técnica do Eye Tracker CK².",
+      "link": "https://shamilkaperera.github.io/?post=biometric-hci-real-time-ocular-controlled-interface"
+    },
+    {
+      "name": "Metin Amedi",
+      "description": "Projeto open source de controle de mouse pelos olhos usado como referência de estudo.",
+      "link": "https://github.com/metinmeki/Eye-Controll-Mouse/commits?author=metinmeki"
+    }
+  ],
+  "acknowledgements": [
+    { "title": "Orientadores", "text": "Agradecimento ao Prof. Alexandre Rodrigues Farias e à Prof.ª Tálita Saemi Payossim Sono pela orientação técnica, científica e metodológica." },
+    { "title": "CEFET-MG", "text": "Agradecimento ao CEFET-MG, Campus Nova Gameleira, pelo ambiente de formação e incentivo à pesquisa aplicada." },
+    { "title": "META", "text": "Agradecimento à 35ª META pelo espaço de apresentação, avaliação e divulgação do projeto." },
+    { "title": "Comunidade open source", "text": "Agradecimento às bibliotecas, projetos e pessoas que tornam soluções acessíveis possíveis." },
+    { "title": "Projetos inspiradores", "text": "Agradecimento a Shamilka Perera e Metin Amedi pelas referências públicas que inspiraram a pesquisa." }
+  ],
+  "contact": {
+    "showProjectEmail": false,
+    "projectEmail": "",
+    "github": "",
+    "linkedin": "",
+    "contacts": [
+      {
+        "label": "Carlos Eduardo Ferreira da Silva",
+        "email": "carloseduardoferreira3108@gmail.com",
+        "github": "",
+        "linkedin": "https://www.linkedin.com/in/carlos-eduardo-ferreira-9695983b9/"
+      },
+      {
+        "label": "Kauan Kerlon Costa de Jesus",
+        "email": "kauankerloncostadejesus@gmail.com",
+        "github": "",
+        "linkedin": "https://www.linkedin.com/in/kauan-kerlon-costa-de-jesus-64b0963ba/"
+      },
+      {
+        "label": "Kelvin Saldanha Mateus",
+        "email": "kelvinsaldanhaa@gmail.com",
+        "github": "https://github.com/kelvinsaldanha",
+        "linkedin": "https://www.linkedin.com/in/kelvin-saldanha-mateus/"
+      }
+    ]
+  }
+}
