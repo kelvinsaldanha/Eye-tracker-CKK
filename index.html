@@ -2,1987 +2,3616 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Eye Tracker CK² | Tecnologia Assistiva e Visão Computacional</title>
+    <title>Eye Tracker CK² | Tecnologia Assistiva</title>
 
     <meta
         name="description"
-        content="Eye Tracker CK² é um projeto de tecnologia assistiva em desenvolvimento que utiliza webcam, visão computacional e inteligência artificial para controle do computador por movimentos oculares e gestos faciais."
+        content="Eye Tracker CK² — tecnologia assistiva para controle do computador por rastreamento ocular e gestos faciais."
     >
 
-    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0b3d91">
 
-    <meta
-        name="theme-color"
-        content="#0a1628"
-    >
+    <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
 
-    <!-- =========================================================
-         OPEN GRAPH
-    ========================================================== -->
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <meta
-        property="og:title"
-        content="Eye Tracker CK² | Tecnologia Assistiva e Visão Computacional"
-    >
+        :root {
+            --primary: #0b3d91;
+            --primary-light: #1769d1;
+            --primary-dark: #06285f;
 
-    <meta
-        property="og:description"
-        content="Projeto acadêmico do CEFET-MG que combina webcam, visão computacional e IA para controle do computador por movimentos oculares."
-    >
+            --secondary: #00a6a6;
 
-    <meta
-        property="og:type"
-        content="website"
-    >
+            --bg: #f5f8fc;
+            --surface: #ffffff;
+            --surface-2: #edf3fa;
 
-    <meta
-        property="og:url"
-        content="https://kelvinsaldanha.github.io/Eye-tracker-CKK/"
-    >
+            --text: #172033;
+            --muted: #5f6b7a;
 
-    <meta
-        property="og:image"
-        content="https://kelvinsaldanha.github.io/Eye-tracker-CKK/assets/images/og-cover.svg"
-    >
+            --border: #dbe3ee;
 
-    <!-- =========================================================
-         TWITTER
-    ========================================================== -->
+            --success: #16803c;
+            --warning: #c77b00;
+            --danger: #c62828;
 
-    <meta
-        name="twitter:card"
-        content="summary_large_image"
-    >
+            --shadow:
+                0 10px 30px rgba(10, 35, 80, 0.08);
 
-    <meta
-        name="twitter:title"
-        content="Eye Tracker CK² | Tecnologia Assistiva e Visão Computacional"
-    >
+            --radius: 18px;
+        }
 
-    <meta
-        name="twitter:description"
-        content="Projeto acadêmico do CEFET-MG que combina webcam, visão computacional e IA para controle do computador por movimentos oculares."
-    >
+        html {
+            scroll-behavior: smooth;
+        }
 
-    <meta
-        name="twitter:image"
-        content="https://kelvinsaldanha.github.io/Eye-tracker-CKK/assets/images/og-cover.svg"
-    >
+        body {
+            font-family:
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
 
-    <!-- =========================================================
-         CANONICAL
-    ========================================================== -->
+            background: var(--bg);
+            color: var(--text);
 
-    <link
-        rel="canonical"
-        href="https://kelvinsaldanha.github.io/Eye-tracker-CKK/"
-    >
+            line-height: 1.6;
+        }
 
-    <!-- =========================================================
-         FAVICON
-    ========================================================== -->
+        body.dark {
+            --bg: #0d1420;
+            --surface: #151f2e;
+            --surface-2: #1b293b;
+            --text: #eef4fb;
+            --muted: #aeb9c8;
+            --border: #2c3b50;
 
-    <link
-        rel="icon"
-        type="image/svg+xml"
-        href="assets/icons/favicon.svg"
-    >
+            --shadow:
+                0 10px 30px rgba(0, 0, 0, 0.35);
+        }
 
-    <!-- =========================================================
-         CSS
-    ========================================================== -->
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    <link
-        rel="stylesheet"
-        href="assets/css/style.css"
-    >
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .section-label {
+            display: inline-block;
+
+            padding: 6px 14px;
+
+            border-radius: 999px;
+
+            background: rgba(11, 61, 145, 0.08);
+
+            color: var(--primary);
+
+            font-size: 0.78rem;
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 14px;
+        }
+
+        body.dark .section-label {
+            background: rgba(90, 150, 255, 0.12);
+            color: #78aeff;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            padding: 13px 22px;
+
+            border-radius: 10px;
+
+            border: 2px solid transparent;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+
+            box-shadow:
+                0 8px 20px rgba(11, 61, 145, .2);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-large {
+            padding: 16px 28px;
+            font-size: 1.05rem;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+
+            background: rgba(255,255,255,.92);
+
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        body.dark header {
+            background: rgba(13,20,32,.94);
+        }
+
+        .header-inner {
+            min-height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+            color: white;
+
+            font-size: 20px;
+        }
+
+        .logo sup {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            list-style: none;
+        }
+
+        nav a {
+            display: block;
+
+            padding: 8px 10px;
+
+            color: var(--muted);
+
+            font-size: .9rem;
+            font-weight: 600;
+
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            background: var(--surface-2);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-button {
+            width: 40px;
+            height: 40px;
+
+            border: 1px solid var(--border);
+            border-radius: 50%;
+
+            background: var(--surface);
+
+            cursor: pointer;
+
+            font-size: 17px;
+        }
+
+        .menu-button {
+            display: none;
+
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid var(--border);
+            border-radius: 8px;
+
+            background: var(--surface);
+
+            cursor: pointer;
+
+            font-size: 22px;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 120px 0 100px;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(23,105,209,.16),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 10% 80%,
+                    rgba(0,166,166,.10),
+                    transparent 35%
+                ),
+                var(--bg);
+        }
+
+        .hero-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.15fr)
+                minmax(350px, .85fr);
+
+            gap: 60px;
+
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+
+            padding: 7px 14px;
+
+            border-radius: 999px;
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            color: var(--primary);
+
+            font-size: .8rem;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.8rem);
+
+            line-height: .98;
+
+            margin-bottom: 20px;
+
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero h2 {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+
+            font-weight: 500;
+
+            color: var(--muted);
+
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 690px;
+
+            color: var(--muted);
+
+            font-size: 1.15rem;
+
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        .hero-visual {
+            min-height: 390px;
+
+            display: grid;
+            place-items: center;
+
+            position: relative;
+        }
+
+        .eye-card {
+            width: min(390px, 100%);
+
+            aspect-ratio: 1;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(23,105,209,.2),
+                    rgba(11,61,145,.06) 55%,
+                    transparent 70%
+                );
+
+            border: 1px solid rgba(11,61,145,.15);
+
+            display: grid;
+            place-items: center;
+
+            box-shadow:
+                0 30px 80px rgba(11,61,145,.12);
+        }
+
+        .eye {
+            width: 210px;
+            height: 120px;
+
+            background: white;
+
+            border: 5px solid var(--primary);
+
+            border-radius: 70% 10% 70% 10% / 70% 10% 70% 10%;
+
+            transform: rotate(45deg);
+
+            position: relative;
+        }
+
+        .eye::after {
+            content: "";
+
+            position: absolute;
+
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%,-50%);
+        }
+
+        .eye::before {
+            content: "";
+
+            position: absolute;
+
+            width: 25px;
+            height: 25px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%,-50%);
+
+            z-index: 2;
+        }
+
+        /* =========================================================
+           CARDS
+        ========================================================= */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            padding: 28px;
+
+            box-shadow: var(--shadow);
+
+            transition: transform .2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        /* =========================================================
+           DOWNLOAD
+        ========================================================= */
+
+        .download-section {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary-dark),
+                    var(--primary)
+                );
+
+            color: white;
+        }
+
+        .download-section .section-label {
+            color: white;
+            background: rgba(255,255,255,.12);
+        }
+
+        .download-section .section-title {
+            color: white;
+        }
+
+        .download-section .section-subtitle {
+            color: rgba(255,255,255,.78);
+        }
+
+        .download-box {
+            background: rgba(255,255,255,.08);
+
+            border: 1px solid rgba(255,255,255,.16);
+
+            border-radius: 24px;
+
+            padding: 40px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr auto;
+
+            gap: 30px;
+
+            align-items: center;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .download-info h3 {
+            font-size: 1.7rem;
+            margin-bottom: 8px;
+        }
+
+        .download-info p {
+            color: rgba(255,255,255,.75);
+        }
+
+        .download-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-top: 16px;
+        }
+
+        .download-meta span {
+            padding: 5px 10px;
+
+            background: rgba(255,255,255,.1);
+
+            border-radius: 8px;
+
+            font-size: .82rem;
+        }
+
+        /* =========================================================
+           REQUIREMENTS CHECKER
+        ========================================================= */
+
+        .requirements {
+            background: var(--surface);
+        }
+
+        .requirements-box {
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .requirements-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+
+            margin: 25px 0;
+        }
+
+        .requirement-item {
+            padding: 18px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            background: var(--surface-2);
+        }
+
+        .requirement-item strong {
+            display: block;
+
+            margin-bottom: 4px;
+        }
+
+        .requirement-item small {
+            color: var(--muted);
+        }
+
+        .check-result {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            font-weight: 700;
+        }
+
+        .check-result.success {
+            display: block;
+
+            background: rgba(22,128,60,.1);
+
+            color: var(--success);
+
+            border: 1px solid rgba(22,128,60,.2);
+        }
+
+        .check-result.warning {
+            display: block;
+
+            background: rgba(199,123,0,.1);
+
+            color: var(--warning);
+
+            border: 1px solid rgba(199,123,0,.2);
+        }
+
+        /* =========================================================
+           VIDEO
+        ========================================================= */
+
+        .video-container {
+            max-width: 950px;
+
+            margin: 0 auto;
+
+            background: #09111e;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow: var(--shadow);
+
+            aspect-ratio: 16 / 9;
+
+            display: grid;
+
+            place-items: center;
+
+            border: 1px solid var(--border);
+        }
+
+        .video-placeholder {
+            text-align: center;
+
+            color: white;
+
+            padding: 30px;
+        }
+
+        .video-placeholder-icon {
+            font-size: 4rem;
+
+            margin-bottom: 10px;
+        }
+
+        .video-placeholder h3 {
+            margin-bottom: 8px;
+        }
+
+        .video-placeholder p {
+            color: #b9c5d4;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* =========================================================
+           PASSO A PASSO
+        ========================================================= */
+
+        .steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+        }
+
+        .step {
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow: var(--shadow);
+        }
+
+        .step-image {
+            aspect-ratio: 16 / 9;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dfe8f5,
+                    #f5f8fc
+                );
+
+            display: grid;
+            place-items: center;
+
+            color: var(--muted);
+
+            font-weight: 700;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        body.dark .step-image {
+            background:
+                linear-gradient(
+                    135deg,
+                    #1c2a3c,
+                    #15202f
+                );
+        }
+
+        .step-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .step-content {
+            padding: 24px;
+        }
+
+        .step-number {
+            display: inline-grid;
+
+            place-items: center;
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+
+            color: white;
+
+            font-weight: 800;
+
+            margin-bottom: 12px;
+        }
+
+        .step h3 {
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: var(--muted);
+        }
+
+        /* =========================================================
+           FUNCIONAMENTO
+        ========================================================= */
+
+        .flow {
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+        .flow-item {
+            display: grid;
+
+            grid-template-columns: 45px 55px 1fr;
+
+            align-items: center;
+
+            gap: 15px;
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 14px;
+
+            padding: 15px 20px;
+        }
+
+        .flow-number {
+            color: var(--primary);
+
+            font-weight: 800;
+
+            font-size: 1.2rem;
+        }
+
+        .flow-icon {
+            font-size: 1.7rem;
+        }
+
+        .flow-item strong {
+            display: block;
+        }
+
+        .flow-item span {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .flow-arrow {
+            text-align: center;
+
+            color: var(--primary);
+
+            font-size: 1.5rem;
+        }
+
+        /* =========================================================
+           TEAM
+        ========================================================= */
+
+        .people {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 20px;
+        }
+
+        .person {
+            text-align: center;
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .person-photo {
+            width: 150px;
+            height: 150px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            border: 4px solid var(--surface-2);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dfe8f5,
+                    #cbd8e8
+                );
+
+            display: grid;
+            place-items: center;
+
+            color: var(--muted);
+
+            font-size: .8rem;
+
+            text-align: center;
+        }
+
+        .person-photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .person h3 {
+            margin-bottom: 5px;
+        }
+
+        .person-role {
+            color: var(--primary);
+
+            font-weight: 700;
+
+            font-size: .9rem;
+
+            margin-bottom: 8px;
+        }
+
+        .person p {
+            color: var(--muted);
+
+            font-size: .9rem;
+        }
+
+        /* =========================================================
+           ORIENTADORES
+        ========================================================= */
+
+        .advisors {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+
+            margin-top: 35px;
+        }
+
+        .advisor {
+            display: grid;
+
+            grid-template-columns: 150px 1fr;
+
+            gap: 25px;
+
+            align-items: center;
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .advisor .person-photo {
+            margin: 0;
+
+            width: 145px;
+            height: 145px;
+        }
+
+        .advisor h3 {
+            margin-bottom: 5px;
+        }
+
+        .advisor-role {
+            color: var(--primary);
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .advisor p {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        /* =========================================================
+           REFERENCES
+        ========================================================= */
+
+        .reference-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+        .reference {
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .reference-photo {
+            height: 180px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dfe8f5,
+                    #f5f8fc
+                );
+
+            border-radius: 12px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 20px;
+
+            overflow: hidden;
+
+            color: var(--muted);
+
+            font-weight: 700;
+        }
+
+        body.dark .reference-photo {
+            background:
+                linear-gradient(
+                    135deg,
+                    #1d2a3b,
+                    #151f2e
+                );
+        }
+
+        .reference-photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .reference h3 {
+            margin-bottom: 8px;
+        }
+
+        .reference p {
+            color: var(--muted);
+
+            margin-bottom: 15px;
+        }
+
+        /* =========================================================
+           TECHNOLOGIES
+        ========================================================= */
+
+        .technology-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(160px, 1fr));
+
+            gap: 15px;
+        }
+
+        .technology {
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 14px;
+
+            padding: 22px;
+
+            text-align: center;
+        }
+
+        .technology-icon {
+            font-size: 2rem;
+
+            margin-bottom: 8px;
+        }
+
+        .technology strong {
+            display: block;
+        }
+
+        .technology span {
+            color: var(--muted);
+
+            font-size: .85rem;
+        }
+
+        /* =========================================================
+           STATUS
+        ========================================================= */
+
+        .status-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 18px;
+        }
+
+        .status-card {
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            padding: 22px;
+        }
+
+        .status-card h3 {
+            margin-bottom: 12px;
+        }
+
+        .status-card ul {
+            list-style: none;
+        }
+
+        .status-card li {
+            color: var(--muted);
+
+            padding: 5px 0;
+        }
+
+        .status-card li::before {
+            content: "✓";
+
+            color: var(--success);
+
+            font-weight: 800;
+
+            margin-right: 8px;
+        }
+
+        /* =========================================================
+           CONTEXT
+        ========================================================= */
+
+        .context-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .context-item {
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            padding: 18px;
+        }
+
+        .context-item small {
+            display: block;
+
+            color: var(--muted);
+
+            margin-bottom: 4px;
+        }
+
+        .context-item strong {
+            display: block;
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            background: #071426;
+
+            color: white;
+
+            padding: 45px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr auto;
+
+            gap: 30px;
+
+            align-items: center;
+        }
+
+        footer p {
+            color: #aeb9c8;
+
+            font-size: .9rem;
+        }
+
+        .footer-links {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: #c8d4e3;
+
+            font-size: .9rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            nav {
+                display: none;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .header-actions {
+                margin-left: auto;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                min-height: 300px;
+            }
+
+            .download-box {
+                grid-template-columns: 1fr;
+            }
+
+            .advisors {
+                grid-template-columns: 1fr;
+            }
+
+            .reference-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .context-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .advisor {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+            .advisor .person-photo {
+                margin: 0 auto;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-item {
+                grid-template-columns:
+                    35px 40px 1fr;
+
+                padding: 14px;
+            }
+
+            .download-box {
+                padding: 25px;
+            }
+        }
+
+        /* =========================================================
+           MOBILE MENU
+        ========================================================= */
+
+        .mobile-nav {
+            display: none;
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            top: 70px;
+
+            background: var(--surface);
+
+            border-bottom: 1px solid var(--border);
+
+            padding: 20px;
+        }
+
+        .mobile-nav.open {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid var(--border);
+
+            color: var(--muted);
+
+            font-weight: 600;
+        }
+    </style>
 </head>
-
 
 <body>
 
-    <!-- =========================================================
-         ACESSIBILIDADE
-    ========================================================== -->
+<!-- =============================================================
+     HEADER
+============================================================= -->
 
-    <a
-        class="skip-link"
-        href="#main"
-    >
-        Pular para o conteúdo principal
-    </a>
+<header>
 
+    <div class="container header-inner">
 
-    <!-- =========================================================
-         HEADER
-    ========================================================== -->
+        <a href="#inicio" class="logo">
 
-    <header
-        class="header"
-        role="banner"
-        aria-label="Cabeçalho do site"
-    >
+            <span class="logo-icon">◉</span>
 
-        <div class="container header__inner">
+            <span>
+                Eye Tracker <sup>CK²</sup>
+            </span>
 
-            <a
-                href="#"
-                class="header__logo"
-                aria-label="Eye Tracker CK² - Página inicial"
-            >
+        </a>
 
-                <span
-                    class="header__logo-icon"
-                    aria-hidden="true"
-                >
-                    ◉
-                </span>
+        <nav>
 
-                <span class="header__logo-text">
-                    Eye Tracker
-                    <span class="header__logo-sup">
-                        CK²
-                    </span>
-                </span>
+            <ul>
 
-            </a>
+                <li><a href="#projeto">Projeto</a></li>
+                <li><a href="#funcionamento">Funcionamento</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#instalacao">Instalação</a></li>
+                <li><a href="#equipe">Equipe</a></li>
+                <li><a href="#referencias">Referências</a></li>
 
+            </ul>
 
-            <!-- MENU MOBILE -->
+        </nav>
+
+        <div class="header-actions">
 
             <button
-                class="header__toggle"
-                id="navToggle"
-                type="button"
-                aria-expanded="false"
-                aria-controls="mainNav"
-                aria-label="Abrir menu de navegação"
+                class="theme-button"
+                id="themeButton"
+                aria-label="Alternar tema"
             >
+                🌙
+            </button>
 
-                <span class="header__toggle-bar"></span>
-                <span class="header__toggle-bar"></span>
-                <span class="header__toggle-bar"></span>
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Abrir menu"
+            >
+                ☰
+            </button>
 
+        </div>
+
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+
+        <a href="#projeto">Projeto</a>
+        <a href="#funcionamento">Funcionamento</a>
+        <a href="#download">Download</a>
+        <a href="#instalacao">Instalação</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#referencias">Referências</a>
+
+    </div>
+
+</header>
+
+
+<main id="inicio">
+
+
+<!-- =============================================================
+     HERO
+============================================================= -->
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div>
+
+            <div class="hero-badge">
+                35ª META · CEFET-MG
+            </div>
+
+            <h1>
+                Eye Tracker <span>CK²</span>
+            </h1>
+
+            <h2>
+                Controle o computador com os olhos.
+            </h2>
+
+            <p>
+                Uma tecnologia assistiva que utiliza webcam,
+                visão computacional, inteligência artificial e
+                reconhecimento de gestos faciais para transformar
+                movimentos oculares em comandos no computador.
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    href="#download"
+                    class="btn btn-primary btn-large"
+                >
+                    ⬇ Baixar o programa
+                </a>
+
+                <a
+                    href="#funcionamento"
+                    class="btn btn-secondary btn-large"
+                >
+                    Como funciona
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="eye-card">
+
+                <div class="eye"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     PROJETO
+============================================================= -->
+
+<section
+    id="projeto"
+    class="section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                O projeto
+            </span>
+
+            <h2 class="section-title">
+                Tecnologia assistiva para uma interação mais acessível.
+            </h2>
+
+            <p class="section-subtitle">
+                O Eye Tracker CK² busca oferecer uma alternativa
+                de baixo custo para controle do computador utilizando
+                equipamentos comuns, como uma webcam.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <article class="card">
+
+                <div class="card-icon">
+                    ⚠️
+                </div>
+
+                <h3>
+                    O problema
+                </h3>
+
+                <p>
+                    Eye trackers comerciais podem apresentar
+                    custo elevado, dificultando o acesso a tecnologias
+                    assistivas.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="card-icon">
+                    👁️
+                </div>
+
+                <h3>
+                    Nossa proposta
+                </h3>
+
+                <p>
+                    Utilizar webcam, visão computacional,
+                    inteligência artificial e gestos faciais
+                    para controlar o computador.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="card-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Objetivo
+                </h3>
+
+                <p>
+                    Ampliar as possibilidades de interação com
+                    computadores para pessoas com limitações motoras.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     FUNCIONAMENTO
+============================================================= -->
+
+<section
+    id="funcionamento"
+    class="section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Funcionamento
+            </span>
+
+            <h2 class="section-title">
+                Como o Eye Tracker CK² funciona?
+            </h2>
+
+            <p class="section-subtitle">
+                O sistema transforma imagens capturadas pela webcam
+                em informações utilizadas para controlar o computador.
+            </p>
+
+        </div>
+
+
+        <div class="flow">
+
+
+            <div class="flow-item">
+
+                <strong class="flow-number">01</strong>
+
+                <span class="flow-icon">📷</span>
+
+                <div>
+
+                    <strong>
+                        Webcam
+                    </strong>
+
+                    <span>
+                        Captura da imagem em tempo real.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                ↓
+            </div>
+
+
+            <div class="flow-item">
+
+                <strong class="flow-number">02</strong>
+
+                <span class="flow-icon">🖼️</span>
+
+                <div>
+
+                    <strong>
+                        Processamento da imagem
+                    </strong>
+
+                    <span>
+                        Os quadros da webcam são processados.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                ↓
+            </div>
+
+
+            <div class="flow-item">
+
+                <strong class="flow-number">03</strong>
+
+                <span class="flow-icon">👤</span>
+
+                <div>
+
+                    <strong>
+                        Detecção facial
+                    </strong>
+
+                    <span>
+                        O rosto do usuário é localizado.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                ↓
+            </div>
+
+
+            <div class="flow-item">
+
+                <strong class="flow-number">04</strong>
+
+                <span class="flow-icon">👁️</span>
+
+                <div>
+
+                    <strong>
+                        Rastreamento ocular
+                    </strong>
+
+                    <span>
+                        Pontos de referência dos olhos são identificados.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                ↓
+            </div>
+
+
+            <div class="flow-item">
+
+                <strong class="flow-number">05</strong>
+
+                <span class="flow-icon">😊</span>
+
+                <div>
+
+                    <strong>
+                        Reconhecimento de gestos
+                    </strong>
+
+                    <span>
+                        Piscadas e movimentos faciais são interpretados.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                ↓
+            </div>
+
+
+            <div class="flow-item">
+
+                <strong class="flow-number">06</strong>
+
+                <span class="flow-icon">⚙️</span>
+
+                <div>
+
+                    <strong>
+                        Processamento
+                    </strong>
+
+                    <span>
+                        O sistema calcula a intenção do usuário.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                ↓
+            </div>
+
+
+            <div class="flow-item">
+
+                <strong class="flow-number">07</strong>
+
+                <span class="flow-icon">🖱️</span>
+
+                <div>
+
+                    <strong>
+                        Movimento do cursor
+                    </strong>
+
+                    <span>
+                        O cursor acompanha a direção do olhar.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                ↓
+            </div>
+
+
+            <div class="flow-item">
+
+                <strong class="flow-number">08</strong>
+
+                <span class="flow-icon">✅</span>
+
+                <div>
+
+                    <strong>
+                        Comando executado
+                    </strong>
+
+                    <span>
+                        A ação correspondente é realizada no computador.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     DOWNLOAD
+============================================================= -->
+
+<section
+    id="download"
+    class="section download-section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Download
+            </span>
+
+            <h2 class="section-title">
+                Baixe o Eye Tracker CK²
+            </h2>
+
+            <p class="section-subtitle">
+                Baixe a versão executável do programa para Windows
+                e comece a utilizar o sistema.
+            </p>
+
+        </div>
+
+
+        <div class="download-box">
+
+            <div class="download-info">
+
+                <h3>
+                    Eye Tracker CK² — Windows
+                </h3>
+
+                <p>
+                    Arquivo executável (.exe) para instalação
+                    do programa no computador.
+                </p>
+
+                <div class="download-meta">
+
+                    <span>
+                        Windows 10/11
+                    </span>
+
+                    <span>
+                        .EXE
+                    </span>
+
+                    <span>
+                        Versão 1.0.0
+                    </span>
+
+                    <span>
+                        CEFET-MG
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!--
+                IMPORTANTE:
+                Depois coloque o seu arquivo .exe dentro de uma pasta,
+                por exemplo:
+
+                downloads/eye-tracker-ck2.exe
+
+                e mantenha o href abaixo.
+            -->
+
+            <a
+                href="downloads/eye-tracker-ck2.exe"
+                class="btn btn-success btn-large"
+                download
+            >
+                ⬇ Baixar .EXE
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     REQUISITOS MÍNIMOS
+============================================================= -->
+
+<section
+    id="requisitos"
+    class="section requirements"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Requisitos mínimos
+            </span>
+
+            <h2 class="section-title">
+                Seu computador consegue rodar o programa?
+            </h2>
+
+            <p class="section-subtitle">
+                Faça uma verificação aproximada das características
+                do seu computador diretamente pelo navegador.
+            </p>
+
+        </div>
+
+
+        <div class="requirements-box">
+
+            <div class="requirements-grid">
+
+                <div class="requirement-item">
+
+                    <strong>
+                        Sistema operacional
+                    </strong>
+
+                    <small>
+                        Windows 10 ou Windows 11
+                    </small>
+
+                </div>
+
+
+                <div class="requirement-item">
+
+                    <strong>
+                        Memória RAM
+                    </strong>
+
+                    <small>
+                        8 GB recomendados
+                    </small>
+
+                </div>
+
+
+                <div class="requirement-item">
+
+                    <strong>
+                        Processador
+                    </strong>
+
+                    <small>
+                        Intel Core i3 8ª geração ou Ryzen 3
+                    </small>
+
+                </div>
+
+
+                <div class="requirement-item">
+
+                    <strong>
+                        Webcam
+                    </strong>
+
+                    <small>
+                        Webcam 720p ou superior
+                    </small>
+
+                </div>
+
+
+                <div class="requirement-item">
+
+                    <strong>
+                        Arquitetura
+                    </strong>
+
+                    <small>
+                        Windows 64 bits recomendado
+                    </small>
+
+                </div>
+
+
+                <div class="requirement-item">
+
+                    <strong>
+                        Espaço em disco
+                    </strong>
+
+                    <small>
+                        Pelo menos 1 GB disponível
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                id="checkComputer"
+            >
+                🖥️ Verificar meu computador
             </button>
 
 
-            <!-- NAVEGAÇÃO -->
+            <div
+                id="checkResult"
+                class="check-result"
+            ></div>
 
-            <nav
-                class="header__nav"
-                id="mainNav"
-                role="navigation"
-                aria-label="Navegação principal"
-            >
+        </div>
 
-                <ul class="header__nav-list">
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     VIDEO
+============================================================= -->
+
+<section
+    id="video"
+    class="section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Demonstração
+            </span>
+
+            <h2 class="section-title">
+                Veja o programa funcionando
+            </h2>
+
+            <p class="section-subtitle">
+                Nesta seção será apresentado um vídeo demonstrando
+                o funcionamento do Eye Tracker CK².
+            </p>
+
+        </div>
+
+
+        <div
+            class="video-container"
+            id="videoContainer"
+        >
+
+            <!--
+                QUANDO TIVER O VÍDEO:
+
+                Substitua este bloco pelo iframe do YouTube.
+
+                Exemplo:
+
+                <iframe
+                    src="https://www.youtube.com/embed/SEU_ID"
+                    title="Demonstração do Eye Tracker CK²"
+                    allowfullscreen>
+                </iframe>
+            -->
+
+            <div class="video-placeholder">
+
+                <div class="video-placeholder-icon">
+                    ▶️
+                </div>
+
+                <h3>
+                    Vídeo de demonstração
+                </h3>
+
+                <p>
+                    O vídeo do programa funcionando será adicionado aqui.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     PASSO A PASSO
+============================================================= -->
+
+<section
+    id="instalacao"
+    class="section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Instalação e utilização
+            </span>
+
+            <h2 class="section-title">
+                Como instalar e começar a usar
+            </h2>
+
+            <p class="section-subtitle">
+                Siga o passo a passo abaixo para instalar e configurar
+                o Eye Tracker CK².
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+
+            <!-- PASSO 1 -->
+
+            <article class="step">
+
+                <div class="step-image">
+
+                    <!--
+                        COLOQUE A IMAGEM DO PASSO 1 AQUI.
+
+                        Exemplo:
+
+                        <img
+                            src="assets/images/tutorial/01-download.png"
+                            alt="Página de download do Eye Tracker CK²">
+                    -->
+
+                    📷 IMAGEM DO PASSO 1
+
+                </div>
+
+                <div class="step-content">
+
+                    <span class="step-number">
+                        1
+                    </span>
+
+                    <h3>
+                        Baixe o programa
+                    </h3>
+
+                    <p>
+                        Clique no botão de download e salve
+                        o arquivo .exe no seu computador.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- PASSO 2 -->
+
+            <article class="step">
+
+                <div class="step-image">
+
+                    📷 IMAGEM DO PASSO 2
+
+                </div>
+
+                <div class="step-content">
+
+                    <span class="step-number">
+                        2
+                    </span>
+
+                    <h3>
+                        Execute o instalador
+                    </h3>
+
+                    <p>
+                        Abra o arquivo .exe baixado e siga
+                        as instruções apresentadas pelo instalador.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- PASSO 3 -->
+
+            <article class="step">
+
+                <div class="step-image">
+
+                    📷 IMAGEM DO PASSO 3
+
+                </div>
+
+                <div class="step-content">
+
+                    <span class="step-number">
+                        3
+                    </span>
+
+                    <h3>
+                        Permita o acesso à webcam
+                    </h3>
+
+                    <p>
+                        Certifique-se de que o programa possui
+                        acesso à webcam utilizada.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- PASSO 4 -->
+
+            <article class="step">
+
+                <div class="step-image">
+
+                    📷 IMAGEM DO PASSO 4
+
+                </div>
+
+                <div class="step-content">
+
+                    <span class="step-number">
+                        4
+                    </span>
+
+                    <h3>
+                        Posicione-se corretamente
+                    </h3>
+
+                    <p>
+                        Sente-se em uma posição confortável e mantenha
+                        seu rosto visível para a webcam.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- PASSO 5 -->
+
+            <article class="step">
+
+                <div class="step-image">
+
+                    📷 IMAGEM DO PASSO 5
+
+                </div>
+
+                <div class="step-content">
+
+                    <span class="step-number">
+                        5
+                    </span>
+
+                    <h3>
+                        Faça a calibração
+                    </h3>
+
+                    <p>
+                        Execute o processo de calibração para
+                        adaptar o rastreamento ao usuário.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- PASSO 6 -->
+
+            <article class="step">
+
+                <div class="step-image">
+
+                    📷 IMAGEM DO PASSO 6
+
+                </div>
+
+                <div class="step-content">
+
+                    <span class="step-number">
+                        6
+                    </span>
+
+                    <h3>
+                        Comece a utilizar
+                    </h3>
+
+                    <p>
+                        Após a calibração, movimente os olhos
+                        para controlar o cursor e utilize os gestos
+                        configurados pelo sistema.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     TECNOLOGIAS
+============================================================= -->
+
+<section
+    id="tecnologia"
+    class="section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Tecnologia
+            </span>
+
+            <h2 class="section-title">
+                Tecnologias utilizadas
+            </h2>
+
+            <p class="section-subtitle">
+                O projeto utiliza ferramentas de programação,
+                visão computacional e automação.
+            </p>
+
+        </div>
+
+
+        <div class="technology-grid">
+
+
+            <div class="technology">
+
+                <div class="technology-icon">
+                    🐍
+                </div>
+
+                <strong>
+                    Python
+                </strong>
+
+                <span>
+                    Linguagem principal
+                </span>
+
+            </div>
+
+
+            <div class="technology">
+
+                <div class="technology-icon">
+                    📷
+                </div>
+
+                <strong>
+                    OpenCV
+                </strong>
+
+                <span>
+                    Processamento de imagem
+                </span>
+
+            </div>
+
+
+            <div class="technology">
+
+                <div class="technology-icon">
+                    👤
+                </div>
+
+                <strong>
+                    MediaPipe
+                </strong>
+
+                <span>
+                    Detecção facial
+                </span>
+
+            </div>
+
+
+            <div class="technology">
+
+                <div class="technology-icon">
+                    🔢
+                </div>
+
+                <strong>
+                    NumPy
+                </strong>
+
+                <span>
+                    Cálculos numéricos
+                </span>
+
+            </div>
+
+
+            <div class="technology">
+
+                <div class="technology-icon">
+                    🖱️
+                </div>
+
+                <strong>
+                    PyAutoGUI
+                </strong>
+
+                <span>
+                    Controle do computador
+                </span>
+
+            </div>
+
+
+            <div class="technology">
+
+                <div class="technology-icon">
+                    🖥️
+                </div>
+
+                <strong>
+                    Tkinter
+                </strong>
+
+                <span>
+                    Interface gráfica
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     FUNCIONALIDADES
+============================================================= -->
+
+<section
+    id="funcionalidades"
+    class="section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Funcionalidades
+            </span>
+
+            <h2 class="section-title">
+                Estado atual do projeto
+            </h2>
+
+        </div>
+
+
+        <div class="status-grid">
+
+
+            <div class="status-card">
+
+                <h3>
+                    🟢 Funcionando
+                </h3>
+
+                <ul>
 
                     <li>
-                        <a
-                            href="#projeto"
-                            class="header__nav-link"
-                        >
-                            Projeto
-                        </a>
+                        Movimentação do cursor
                     </li>
 
                     <li>
-                        <a
-                            href="#funcionamento"
-                            class="header__nav-link"
-                        >
-                            Como funciona
-                        </a>
+                        IA para previsão do cursor
                     </li>
 
                     <li>
-                        <a
-                            href="#tecnologia"
-                            class="header__nav-link"
-                        >
-                            Tecnologia
-                        </a>
+                        Calibração
                     </li>
 
                     <li>
-                        <a
-                            href="#resultados"
-                            class="header__nav-link"
-                        >
-                            Resultados
-                        </a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="#equipe"
-                            class="header__nav-link"
-                        >
-                            Equipe
-                        </a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="#referencias"
-                            class="header__nav-link"
-                        >
-                            Referências
-                        </a>
+                        Duplo clique
                     </li>
 
                 </ul>
 
-
-                <div class="header__nav-actions">
-
-                    <button
-                        class="header__theme-toggle"
-                        id="themeToggle"
-                        type="button"
-                        aria-label="Alternar tema claro/escuro"
-                    >
-
-                        <span
-                            class="header__theme-icon"
-                            aria-hidden="true"
-                        >
-                            ☀️
-                        </span>
-
-                    </button>
+            </div>
 
 
-                    <a
-                        href="#acompanhar"
-                        class="btn btn--primary btn--small"
-                    >
-                        Acompanhar projeto
-                    </a>
+            <div class="status-card">
 
-                </div>
+                <h3>
+                    🟡 Em desenvolvimento
+                </h3>
 
-            </nav>
+                <ul>
 
-        </div>
+                    <li>
+                        Clique esquerdo
+                    </li>
 
-    </header>
+                    <li>
+                        Clique direito
+                    </li>
 
+                    <li>
+                        Drag
+                    </li>
 
-    <!-- =========================================================
-         MAIN
-    ========================================================== -->
+                    <li>
+                        Scroll
+                    </li>
 
-    <main
-        id="main"
-        role="main"
-    >
+                    <li>
+                        Menu overlay
+                    </li>
 
+                    <li>
+                        Pausar rastreamento
+                    </li>
 
-        <!-- =====================================================
-             HERO
-        ====================================================== -->
-
-        <section
-            class="hero"
-            aria-labelledby="hero-title"
-        >
-
-            <div
-                class="hero__bg"
-                aria-hidden="true"
-            >
-
-                <canvas
-                    id="heroCanvas"
-                    class="hero__canvas"
-                ></canvas>
+                </ul>
 
             </div>
 
 
-            <div class="container hero__inner">
+            <div class="status-card">
 
-                <div class="hero__badge">
+                <h3>
+                    🔵 Planejado
+                </h3>
 
-                    <span class="hero__badge-text">
-                        35ª META · CEFET-MG
-                    </span>
+                <ul>
 
+                    <li>
+                        Perfis de usuário
+                    </li>
+
+                    <li>
+                        Estatísticas
+                    </li>
+
+                    <li>
+                        Melhorias de personalização
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     GESTOS
+============================================================= -->
+
+<section
+    id="gestos"
+    class="section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Gestos
+            </span>
+
+            <h2 class="section-title">
+                Reconhecimento de gestos faciais
+            </h2>
+
+        </div>
+
+
+        <div class="cards">
+
+
+            <article class="card">
+
+                <div class="card-icon">
+                    😉
                 </div>
 
+                <h3>
+                    Piscada do olho direito
+                </h3>
 
-                <h1
-                    id="hero-title"
-                    class="hero__title"
-                >
-
-                    <span class="hero__title-main">
-
-                        Eye Tracker
-
-                        <span class="hero__title-sup">
-                            CK²
-                        </span>
-
-                    </span>
-
-
-                    <span class="hero__title-sub">
-                        Controle o computador com os olhos.
-                    </span>
-
-                </h1>
-
-
-                <p class="hero__desc">
-
-                    Uma tecnologia assistiva em desenvolvimento que combina
-                    webcam, visão computacional, inteligência artificial e
-                    reconhecimento de gestos faciais para transformar
-                    movimentos oculares em comandos no computador.
-
+                <p>
+                    Clique esquerdo.
                 </p>
 
+            </article>
 
-                <div class="hero__actions">
 
-                    <a
-                        href="#projeto"
-                        class="btn btn--primary"
+            <article class="card">
+
+                <div class="card-icon">
+                    😉
+                </div>
+
+                <h3>
+                    Piscada do olho esquerdo
+                </h3>
+
+                <p>
+                    Clique direito.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="card-icon">
+                    👀
+                </div>
+
+                <h3>
+                    Duas piscadas
+                </h3>
+
+                <p>
+                    Duplo clique.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="card-icon">
+                    🤨
+                </div>
+
+                <h3>
+                    Sobrancelhas
+                </h3>
+
+                <p>
+                    Drag — em desenvolvimento.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="card-icon">
+                    😮
+                </div>
+
+                <h3>
+                    Boca aberta
+                </h3>
+
+                <p>
+                    Scroll — em desenvolvimento.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="card-icon">
+                    😄
+                </div>
+
+                <h3>
+                    Sorriso
+                </h3>
+
+                <p>
+                    Menu — em desenvolvimento.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     EQUIPE
+============================================================= -->
+
+<section
+    id="equipe"
+    class="section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Equipe
+            </span>
+
+            <h2 class="section-title">
+                Quem desenvolve o projeto
+            </h2>
+
+            <p class="section-subtitle">
+                Estudantes do CEFET-MG envolvidos no desenvolvimento
+                do Eye Tracker CK².
+            </p>
+
+        </div>
+
+
+        <div class="people">
+
+
+            <!-- KELVIN -->
+
+            <article class="person">
+
+                <div class="person-photo">
+
+                    <img
+                        src="assets/images/team/kelvin.jpg"
+                        alt="Foto de Kelvin Saldanha Mateus"
+                        onerror="this.style.display='none'; this.parentElement.innerHTML='FOTO<br>KELVIN';"
                     >
-                        Conhecer o projeto
-                    </a>
-
-                    <a
-                        href="#funcionamento"
-                        class="btn btn--secondary"
-                    >
-                        Ver como funciona
-                    </a>
 
                 </div>
 
+                <h3>
+                    Kelvin Saldanha Mateus
+                </h3>
 
-                <div
-                    class="hero__indicators"
-                    aria-hidden="true"
-                >
+                <div class="person-role">
+                    Desenvolvedor de software e site
+                </div>
 
-                    <span class="hero__indicator hero__indicator--eye">
-                        ◉
-                    </span>
+                <p>
+                    IA · Arquitetura · Documentação · Testes · Integração
+                </p>
 
-                    <span class="hero__indicator hero__indicator--line"></span>
+            </article>
 
-                    <span class="hero__indicator hero__indicator--cursor">
-                        ↘
-                    </span>
+
+            <!-- CARLOS -->
+
+            <article class="person">
+
+                <div class="person-photo">
+
+                    <img
+                        src="assets/images/team/carlos.jpg"
+                        alt="Foto de Carlos Eduardo Ferreira da Silva"
+                        onerror="this.style.display='none'; this.parentElement.innerHTML='FOTO<br>CARLOS';"
+                    >
 
                 </div>
 
-            </div>
+                <h3>
+                    Carlos Eduardo Ferreira da Silva
+                </h3>
 
-        </section>
+                <div class="person-role">
+                    Desenvolvedor
+                </div>
+
+                <p>
+                    Testes · Documentação
+                </p>
+
+            </article>
+
+
+            <!-- KAUAN -->
+
+            <article class="person">
+
+                <div class="person-photo">
+
+                    <img
+                        src="assets/images/team/kauan.jpg"
+                        alt="Foto de Kauan Kerlon Costa de Jesus"
+                        onerror="this.style.display='none'; this.parentElement.innerHTML='FOTO<br>KAUAN';"
+                    >
+
+                </div>
+
+                <h3>
+                    Kauan Kerlon Costa de Jesus
+                </h3>
+
+                <div class="person-role">
+                    Desenvolvedor
+                </div>
+
+                <p>
+                    Pesquisa em IA · Testes · Documentação
+                </p>
+
+            </article>
+
+        </div>
 
 
         <!-- =====================================================
-             PROJETO
+             ORIENTADORES
         ====================================================== -->
 
-        <section
-            id="projeto"
-            class="section projeto"
-            aria-labelledby="projeto-title"
-        >
+        <div class="section-header" style="margin-top:70px; margin-bottom:30px;">
 
-            <div class="container">
+            <span class="section-label">
+                Orientação acadêmica
+            </span>
 
-                <div class="section__header">
+            <h2 class="section-title">
+                Orientador e coorientadora
+            </h2>
 
-                    <span class="section__label">
-                        O projeto
-                    </span>
+        </div>
 
-                    <h2
-                        id="projeto-title"
-                        class="section__title"
+
+        <div class="advisors">
+
+
+            <!-- ALEXANDRE -->
+
+            <article class="advisor">
+
+                <div class="person-photo">
+
+                    <!--
+                        COLOQUE A FOTO DO ALEXANDRE EM:
+
+                        assets/images/team/alexandre.jpg
+                    -->
+
+                    <img
+                        src="assets/images/team/alexandre.jpg"
+                        alt="Foto do Professor Alexandre Rodrigues Farias"
+                        onerror="this.style.display='none'; this.parentElement.innerHTML='FOTO<br>ALEXANDRE';"
                     >
-                        Tecnologia assistiva desenvolvida para um problema real.
-                    </h2>
-
-                    <p class="section__sub">
-
-                        O Eye Tracker CK² investiga uma alternativa de baixo
-                        custo para o controle de computadores por meio de
-                        rastreamento ocular e gestos faciais.
-
-                    </p>
 
                 </div>
 
+                <div>
 
-                <div class="projeto__grid">
+                    <h3>
+                        Prof. Alexandre Rodrigues Farias
+                    </h3>
 
-                    <article class="projeto__card">
-
-                        <div
-                            class="projeto__card-icon"
-                            aria-hidden="true"
-                        >
-                            ⚠
-                        </div>
-
-                        <h3 class="projeto__card-title">
-                            O problema
-                        </h3>
-
-                        <p class="projeto__card-text">
-
-                            <span class="projeto__card-highlight">
-                                Eye trackers comerciais
-                            </span>
-
-                            podem apresentar custo elevado, dificultando
-                            o acesso a tecnologias assistivas para pessoas
-                            com limitações motoras.
-
-                        </p>
-
-                    </article>
-
-
-                    <article class="projeto__card projeto__card--highlight">
-
-                        <div
-                            class="projeto__card-icon"
-                            aria-hidden="true"
-                        >
-                            ◉
-                        </div>
-
-                        <h3 class="projeto__card-title">
-                            A proposta
-                        </h3>
-
-                        <p class="projeto__card-text">
-
-                            Desenvolver uma alternativa utilizando
-
-                            <span class="projeto__card-highlight">
-                                webcam comum
-                            </span>
-
-                            , visão computacional e gestos faciais,
-                            tornando a interação mais acessível.
-
-                        </p>
-
-                    </article>
-
-
-                    <article class="projeto__card">
-
-                        <div
-                            class="projeto__card-icon"
-                            aria-hidden="true"
-                        >
-                            🎯
-                        </div>
-
-                        <h3 class="projeto__card-title">
-                            O objetivo
-                        </h3>
-
-                        <p class="projeto__card-text">
-
-                            Ampliar possibilidades de interação com
-                            computadores para pessoas com
-
-                            <span class="projeto__card-highlight">
-                                limitações motoras
-                            </span>
-
-                            , por meio de uma solução em desenvolvimento.
-
-                        </p>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             FUNCIONAMENTO
-        ====================================================== -->
-
-        <section
-            id="funcionamento"
-            class="section funcionamento"
-            aria-labelledby="funcionamento-title"
-        >
-
-            <div class="container">
-
-                <div class="section__header">
-
-                    <span class="section__label">
-                        Funcionamento
-                    </span>
-
-                    <h2
-                        id="funcionamento-title"
-                        class="section__title"
-                    >
-                        Como o Eye Tracker CK² funciona?
-                    </h2>
-
-                    <p class="section__sub">
-
-                        O fluxo de processamento transforma imagens da
-                        webcam em comandos de controle do computador.
-
-                    </p>
-
-                </div>
-
-
-                <div
-                    class="funcionamento__flow"
-                    role="list"
-                >
-
-                    <div
-                        class="funcionamento__step"
-                        role="listitem"
-                    >
-
-                        <span class="funcionamento__step-num">
-                            1
-                        </span>
-
-                        <div class="funcionamento__step-content">
-
-                            <span
-                                class="funcionamento__step-icon"
-                                aria-hidden="true"
-                            >
-                                📷
-                            </span>
-
-                            <span class="funcionamento__step-label">
-                                Webcam
-                            </span>
-
-                            <span class="funcionamento__step-desc">
-                                Captura da imagem em tempo real
-                            </span>
-
-                        </div>
-
+                    <div class="advisor-role">
+                        Orientador
                     </div>
-
-
-                    <div
-                        class="funcionamento__arrow"
-                        aria-hidden="true"
-                    >
-                        ↓
-                    </div>
-
-
-                    <div
-                        class="funcionamento__step"
-                        role="listitem"
-                    >
-
-                        <span class="funcionamento__step-num">
-                            2
-                        </span>
-
-                        <div class="funcionamento__step-content">
-
-                            <span
-                                class="funcionamento__step-icon"
-                                aria-hidden="true"
-                            >
-                                🖼
-                            </span>
-
-                            <span class="funcionamento__step-label">
-                                Captura da imagem
-                            </span>
-
-                            <span class="funcionamento__step-desc">
-                                Quadros da webcam são lidos e processados
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="funcionamento__arrow"
-                        aria-hidden="true"
-                    >
-                        ↓
-                    </div>
-
-
-                    <div
-                        class="funcionamento__step"
-                        role="listitem"
-                    >
-
-                        <span class="funcionamento__step-num">
-                            3
-                        </span>
-
-                        <div class="funcionamento__step-content">
-
-                            <span
-                                class="funcionamento__step-icon"
-                                aria-hidden="true"
-                            >
-                                👤
-                            </span>
-
-                            <span class="funcionamento__step-label">
-                                Detecção facial
-                            </span>
-
-                            <span class="funcionamento__step-desc">
-                                Identificação do rosto na imagem
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="funcionamento__arrow"
-                        aria-hidden="true"
-                    >
-                        ↓
-                    </div>
-
-
-                    <div
-                        class="funcionamento__step"
-                        role="listitem"
-                    >
-
-                        <span class="funcionamento__step-num">
-                            4
-                        </span>
-
-                        <div class="funcionamento__step-content">
-
-                            <span
-                                class="funcionamento__step-icon"
-                                aria-hidden="true"
-                            >
-                                👁
-                            </span>
-
-                            <span class="funcionamento__step-label">
-                                Rastreamento dos olhos
-                            </span>
-
-                            <span class="funcionamento__step-desc">
-                                Pontos de referência oculares são localizados
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="funcionamento__arrow"
-                        aria-hidden="true"
-                    >
-                        ↓
-                    </div>
-
-
-                    <div
-                        class="funcionamento__step"
-                        role="listitem"
-                    >
-
-                        <span class="funcionamento__step-num">
-                            5
-                        </span>
-
-                        <div class="funcionamento__step-content">
-
-                            <span
-                                class="funcionamento__step-icon"
-                                aria-hidden="true"
-                            >
-                                😊
-                            </span>
-
-                            <span class="funcionamento__step-label">
-                                Reconhecimento de gestos
-                            </span>
-
-                            <span class="funcionamento__step-desc">
-                                Piscadas, sobrancelhas, boca e expressões
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="funcionamento__arrow"
-                        aria-hidden="true"
-                    >
-                        ↓
-                    </div>
-
-
-                    <div
-                        class="funcionamento__step"
-                        role="listitem"
-                    >
-
-                        <span class="funcionamento__step-num">
-                            6
-                        </span>
-
-                        <div class="funcionamento__step-content">
-
-                            <span
-                                class="funcionamento__step-icon"
-                                aria-hidden="true"
-                            >
-                                ⚙
-                            </span>
-
-                            <span class="funcionamento__step-label">
-                                Processamento
-                            </span>
-
-                            <span class="funcionamento__step-desc">
-                                Cálculo da posição do olhar e intenção
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="funcionamento__arrow"
-                        aria-hidden="true"
-                    >
-                        ↓
-                    </div>
-
-
-                    <div
-                        class="funcionamento__step"
-                        role="listitem"
-                    >
-
-                        <span class="funcionamento__step-num">
-                            7
-                        </span>
-
-                        <div class="funcionamento__step-content">
-
-                            <span
-                                class="funcionamento__step-icon"
-                                aria-hidden="true"
-                            >
-                                🖱
-                            </span>
-
-                            <span class="funcionamento__step-label">
-                                Movimento do cursor
-                            </span>
-
-                            <span class="funcionamento__step-desc">
-                                Cursor é movido conforme o olhar
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="funcionamento__arrow"
-                        aria-hidden="true"
-                    >
-                        ↓
-                    </div>
-
-
-                    <div
-                        class="funcionamento__step funcionamento__step--final"
-                        role="listitem"
-                    >
-
-                        <span class="funcionamento__step-num">
-                            8
-                        </span>
-
-                        <div class="funcionamento__step-content">
-
-                            <span
-                                class="funcionamento__step-icon"
-                                aria-hidden="true"
-                            >
-                                ✅
-                            </span>
-
-                            <span class="funcionamento__step-label">
-                                Comando
-                            </span>
-
-                            <span class="funcionamento__step-desc">
-                                Ação executada no computador
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             TECNOLOGIA
-        ====================================================== -->
-
-        <section
-            id="tecnologia"
-            class="section tecnologia"
-            aria-labelledby="tecnologia-title"
-        >
-
-            <div class="container">
-
-                <div class="section__header">
-
-                    <span class="section__label">
-                        Tecnologias
-                    </span>
-
-                    <h2
-                        id="tecnologia-title"
-                        class="section__title"
-                    >
-                        Ferramentas e bibliotecas utilizadas
-                    </h2>
-
-                    <p class="section__sub">
-
-                        O projeto é construído sobre um conjunto de
-                        tecnologias open source para visão computacional,
-                        processamento de imagem e automação.
-
-                    </p>
-
-                </div>
-
-
-                <div
-                    class="tecnologia__grid"
-                    id="tecnologiaGrid"
-                ></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             FUNCIONALIDADES
-        ====================================================== -->
-
-        <section
-            id="funcionalidades"
-            class="section funcionalidades"
-            aria-labelledby="funcionalidades-title"
-        >
-
-            <div class="container">
-
-                <div class="section__header">
-
-                    <span class="section__label">
-                        Funcionalidades
-                    </span>
-
-                    <h2
-                        id="funcionalidades-title"
-                        class="section__title"
-                    >
-                        O que já funciona e o que está em desenvolvimento
-                    </h2>
-
-                    <p class="section__sub">
-
-                        O Eye Tracker CK² está em evolução. Abaixo,
-                        o estado atual de cada funcionalidade.
-
-                    </p>
-
-                </div>
-
-
-                <div
-                    class="funcionalidades__groups"
-                    id="funcionalidadesGroups"
-                ></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             GESTOS
-        ====================================================== -->
-
-        <section
-            id="gestos"
-            class="section gestos"
-            aria-labelledby="gestos-title"
-        >
-
-            <div class="container">
-
-                <div class="section__header">
-
-                    <span class="section__label">
-                        Gestos
-                    </span>
-
-                    <h2
-                        id="gestos-title"
-                        class="section__title"
-                    >
-                        Reconhecimento de gestos faciais
-                    </h2>
-
-                    <p class="section__sub">
-
-                        Cada gesto é mapeado para uma ação no computador.
-                        O status indica o estágio de desenvolvimento.
-
-                    </p>
-
-                </div>
-
-
-                <div class="gestos__table-wrapper">
-
-                    <table
-                        class="gestos__table"
-                        aria-label="Tabela de gestos faciais e ações correspondentes"
-                    >
-
-                        <thead>
-
-                            <tr>
-
-                                <th scope="col">
-                                    Gesto
-                                </th>
-
-                                <th scope="col">
-                                    Ação
-                                </th>
-
-                                <th scope="col">
-                                    Status
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody id="gestosTableBody"></tbody>
-
-                    </table>
-
-                </div>
-
-
-                <div
-                    class="gestos__cards"
-                    id="gestosCards"
-                    aria-hidden="true"
-                ></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             RESULTADOS
-        ====================================================== -->
-
-        <section
-            id="resultados"
-            class="section resultados"
-            aria-labelledby="resultados-title"
-        >
-
-            <div class="container">
-
-                <div class="section__header">
-
-                    <span class="section__label">
-                        Resultados
-                    </span>
-
-                    <h2
-                        id="resultados-title"
-                        class="section__title"
-                    >
-                        Estado atual e métricas preliminares
-                    </h2>
-
-                    <p class="section__sub">
-
-                        Dados coletados durante os testes iniciais.
-                        As métricas em análise ainda estão sendo validadas.
-
-                    </p>
-
-                </div>
-
-
-                <div class="resultados__grid">
-
-                    <div class="resultados__card">
-
-                        <span class="resultados__card-number">
-                            7
-                        </span>
-
-                        <span class="resultados__card-label">
-                            Pessoas testaram
-                        </span>
-
-                        <span class="resultados__card-note">
-                            Testes iniciais com usuários
-                        </span>
-
-                    </div>
-
-
-                    <div class="resultados__card">
-
-                        <span class="resultados__card-number">
-                            +50
-                        </span>
-
-                        <span class="resultados__card-label">
-                            Horas de testes
-                        </span>
-
-                        <span class="resultados__card-note">
-                            Acumuladas em desenvolvimento
-                        </span>
-
-                    </div>
-
-
-                    <div class="resultados__card resultados__card--pending">
-
-                        <span class="resultados__card-number">
-                            —
-                        </span>
-
-                        <span class="resultados__card-label">
-                            Precisão
-                        </span>
-
-                        <span class="resultados__card-note">
-                            Em análise
-                        </span>
-
-                    </div>
-
-
-                    <div class="resultados__card resultados__card--pending">
-
-                        <span class="resultados__card-number">
-                            —
-                        </span>
-
-                        <span class="resultados__card-label">
-                            MAE / RMSE / R²
-                        </span>
-
-                        <span class="resultados__card-note">
-                            Em análise
-                        </span>
-
-                    </div>
-
-
-                    <div class="resultados__card resultados__card--pending">
-
-                        <span class="resultados__card-number">
-                            —
-                        </span>
-
-                        <span class="resultados__card-label">
-                            Falsos positivos
-                        </span>
-
-                        <span class="resultados__card-note">
-                            Em desenvolvimento
-                        </span>
-
-                    </div>
-
-
-                    <div class="resultados__card">
-
-                        <span class="resultados__card-number">
-                            0.1.0
-                        </span>
-
-                        <span class="resultados__card-label">
-                            Versão atual
-                        </span>
-
-                        <span class="resultados__card-note">
-                            Em desenvolvimento
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="resultados__note">
 
                     <p>
-
-                        <strong>
-                            Dados preliminares de desenvolvimento.
-                        </strong>
-
-                        As métricas de precisão, MAE, RMSE, R² e
-                        falsos positivos estão em fase de coleta
-                        e análise. Os números apresentados são
-                        referentes aos testes iniciais realizados
-                        pela equipe.
-
+                        Doutor em Engenharia Elétrica ·
+                        Instrumentação biomédica ·
+                        Eletrônica · Processamento de sinais.
                     </p>
 
                 </div>
 
-            </div>
-
-        </section>
+            </article>
 
 
-        <!-- =====================================================
-             ROADMAP
-        ====================================================== -->
+            <!-- TALITA -->
 
-        <section
-            id="roadmap"
-            class="section roadmap"
-            aria-labelledby="roadmap-title"
-        >
+            <article class="advisor">
 
-            <div class="container">
+                <div class="person-photo">
 
-                <div class="section__header">
+                    <!--
+                        COLOQUE A FOTO DA TALITA EM:
 
-                    <span class="section__label">
-                        Roadmap
-                    </span>
+                        assets/images/team/talita.jpg
+                    -->
 
-                    <h2
-                        id="roadmap-title"
-                        class="section__title"
+                    <img
+                        src="assets/images/team/talita.jpg"
+                        alt="Foto da Professora Tálita Saemi Payossim Sono"
+                        onerror="this.style.display='none'; this.parentElement.innerHTML='FOTO<br>TALITA';"
                     >
-                        Próximos passos do desenvolvimento
-                    </h2>
 
-                    <p class="section__sub">
+                </div>
 
-                        O projeto continua em evolução. As áreas
-                        abaixo estão sendo trabalhadas prioritariamente.
+                <div>
 
+                    <h3>
+                        Prof.ª Tálita Saemi Payossim Sono
+                    </h3>
+
+                    <div class="advisor-role">
+                        Coorientadora
+                    </div>
+
+                    <p>
+                        Doutora em Engenharia Mecânica
+                        (Bioengenharia) · Sistemas embarcados ·
+                        Tecnologias assistivas.
                     </p>
 
                 </div>
 
+            </article>
 
-                <div
-                    class="roadmap__grid"
-                    id="roadmapGrid"
-                ></div>
+        </div>
 
-            </div>
+    </div>
 
-        </section>
+</section>
 
 
-        <!-- =====================================================
-             EQUIPE
-        ====================================================== -->
+<!-- =============================================================
+     REFERÊNCIAS / METIN / SHAMILKA
+============================================================= -->
 
-        <section
-            id="equipe"
-            class="section equipe"
-            aria-labelledby="equipe-title"
-        >
+<section
+    id="referencias"
+    class="section"
+>
 
-            <div class="container">
+    <div class="container">
 
-                <div class="section__header">
+        <div class="section-header">
 
-                    <span class="section__label">
-                        Equipe
-                    </span>
+            <span class="section-label">
+                Referências
+            </span>
 
-                    <h2
-                        id="equipe-title"
-                        class="section__title"
+            <h2 class="section-title">
+                Trabalhos que inspiraram o projeto
+            </h2>
+
+            <p class="section-subtitle">
+                Pesquisadores e projetos utilizados como referência
+                durante o desenvolvimento do Eye Tracker CK².
+            </p>
+
+        </div>
+
+
+        <div class="reference-grid">
+
+
+            <!-- METIN AMEDI -->
+
+            <article class="reference">
+
+                <div class="reference-photo">
+
+                    <!--
+                        COLOQUE A FOTO DO METIN EM:
+
+                        assets/images/team/metin-amedi.jpg
+                    -->
+
+                    <img
+                        src="assets/images/team/metin-amedi.jpg"
+                        alt="Foto de Metin Amedi"
+                        onerror="this.style.display='none'; this.parentElement.innerHTML='FOTO<br>METIN AMEDI';"
                     >
-                        Quem está desenvolvendo o projeto
-                    </h2>
-
-                    <p class="section__sub">
-
-                        O Eye Tracker CK² é desenvolvido por uma equipe
-                        de três estudantes do CEFET-MG, com orientação
-                        acadêmica.
-
-                    </p>
 
                 </div>
 
-
-                <div
-                    class="equipe__grid"
-                    id="equipeGrid"
-                ></div>
-
-
-                <div
-                    class="equipe__orientadores"
-                    id="orientadoresContainer"
-                ></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             CONTEXTO ACADÊMICO
-        ====================================================== -->
-
-        <section
-            id="contexto"
-            class="section contexto"
-            aria-labelledby="contexto-title"
-        >
-
-            <div class="container">
-
-                <div class="section__header">
-
-                    <span class="section__label">
-                        Contexto acadêmico
-                    </span>
-
-                    <h2
-                        id="contexto-title"
-                        class="section__title"
-                    >
-                        Desenvolvido no CEFET-MG
-                    </h2>
-
-                </div>
-
-
-                <div class="contexto__content">
-
-                    <div class="contexto__item">
-
-                        <span class="contexto__item-label">
-                            Instituição
-                        </span>
-
-                        <span class="contexto__item-value">
-                            CEFET-MG — Centro Federal de Educação
-                            Tecnológica de Minas Gerais
-                        </span>
-
-                    </div>
-
-
-                    <div class="contexto__item">
-
-                        <span class="contexto__item-label">
-                            Campus
-                        </span>
-
-                        <span class="contexto__item-value">
-                            Nova Gameleira, Belo Horizonte
-                        </span>
-
-                    </div>
-
-
-                    <div class="contexto__item">
-
-                        <span class="contexto__item-label">
-                            Curso
-                        </span>
-
-                        <span class="contexto__item-value">
-                            Ensino Médio Técnico em Equipamentos Biomédicos
-                        </span>
-
-                    </div>
-
-
-                    <div class="contexto__item">
-
-                        <span class="contexto__item-label">
-                            Turma
-                        </span>
-
-                        <span class="contexto__item-value">
-                            EBM-3A, 2026
-                        </span>
-
-                    </div>
-
-
-                    <div class="contexto__item">
-
-                        <span class="contexto__item-label">
-                            Departamento
-                        </span>
-
-                        <span class="contexto__item-value">
-                            Departamento de Eletrônica e Biomédica — NG
-                        </span>
-
-                    </div>
-
-
-                    <div class="contexto__item">
-
-                        <span class="contexto__item-label">
-                            Evento
-                        </span>
-
-                        <span class="contexto__item-value">
-                            35ª META
-                        </span>
-
-                    </div>
-
-
-                    <div class="contexto__item">
-
-                        <span class="contexto__item-label">
-                            Status
-                        </span>
-
-                        <span class="contexto__item-value">
-                            Em desenvolvimento
-                        </span>
-
-                    </div>
-
-
-                    <div class="contexto__item">
-
-                        <span class="contexto__item-label">
-                            Licença
-                        </span>
-
-                        <span class="contexto__item-value">
-                            MIT
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             REFERÊNCIAS
-        ====================================================== -->
-
-        <section
-            id="referencias"
-            class="section referencias"
-            aria-labelledby="referencias-title"
-        >
-
-            <div class="container">
-
-                <div class="section__header">
-
-                    <span class="section__label">
-                        Referências
-                    </span>
-
-                    <h2
-                        id="referencias-title"
-                        class="section__title"
-                    >
-                        Inspirações e trabalhos relacionados
-                    </h2>
-
-                    <p class="section__sub">
-
-                        Projetos e pesquisas que influenciaram
-                        o desenvolvimento do Eye Tracker CK².
-
-                    </p>
-
-                </div>
-
-
-                <div
-                    class="referencias__list"
-                    id="referenciasList"
-                ></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             ACOMPANHE
-        ====================================================== -->
-
-        <section
-            id="acompanhar"
-            class="section acompanhar"
-            aria-labelledby="acompanhar-title"
-        >
-
-            <div class="container">
-
-                <div class="acompanhar__inner">
-
-
-                    <div class="acompanhar__content">
-
-                        <span class="section__label">
-                            Acompanhe o projeto
-                        </span>
-
-                        <h2
-                            id="acompanhar-title"
-                            class="section__title"
-                        >
-                            Quer acompanhar o desenvolvimento?
-                        </h2>
-
-                        <p class="acompanhar__desc">
-
-                            Entre em contato com a equipe ou acompanhe
-                            os próximos passos do Eye Tracker CK².
-                            O projeto será disponibilizado publicamente
-                            após conclusão e revisão da equipe.
-
-                        </p>
-
-
-                        <div class="acompanhar__status">
-
-                            <span class="acompanhar__status-badge">
-                                Em desenvolvimento
-                            </span>
-
-                            <span class="acompanhar__status-text">
-                                Versão 0.1.0 · Primeira versão pública em preparação
-                            </span>
-
-                        </div>
-
-
-                        <div class="acompanhar__links">
-
-                            <a
-                                href="mailto:kelvinsaldanhaa@gmail.com"
-                                class="btn btn--primary"
-                            >
-                                Enviar e-mail
-                            </a>
-
-                            <a
-                                href="https://github.com/kelvinsaldanha"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="btn btn--secondary"
-                            >
-                                GitHub
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="acompanhar__info">
-
-                        <h3 class="acompanhar__info-title">
-                            Requisitos previstos
-                        </h3>
-
-
-                        <ul class="acompanhar__info-list">
-
-                            <li>
-                                <span class="acompanhar__info-dot"></span>
-                                Windows 10 ou superior
-                            </li>
-
-                            <li>
-                                <span class="acompanhar__info-dot"></span>
-                                Webcam 720p
-                            </li>
-
-                            <li>
-                                <span class="acompanhar__info-dot"></span>
-                                8 GB de RAM recomendados
-                            </li>
-
-                            <li>
-                                <span class="acompanhar__info-dot"></span>
-                                Intel Core i3 8ª geração ou Ryzen 3
-                            </li>
-
-                            <li>
-                                <span class="acompanhar__info-dot"></span>
-                                Licença MIT
-                            </li>
-
-                        </ul>
-
-
-                        <p class="acompanhar__info-note">
-
-                            <strong>
-                                Download ainda não disponível.
-                            </strong>
-
-                            A primeira versão pública está em preparação.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
-
-    <footer
-        class="footer"
-        role="contentinfo"
-    >
-
-        <div class="container">
-
-            <div class="footer__inner">
-
-
-                <div class="footer__brand">
-
-                    <span class="footer__brand-name">
-
-                        Eye Tracker
-
-                        <span class="footer__brand-sup">
-                            CK²
-                        </span>
-
-                    </span>
-
-
-                    <span class="footer__brand-meta">
-                        35ª META · CEFET-MG · 2026
-                    </span>
-
-
-                    <span class="footer__brand-desc">
-                        Projeto acadêmico de tecnologia assistiva.
-                    </span>
-
-                </div>
-
-
-                <nav
-                    class="footer__nav"
-                    aria-label="Navegação do rodapé"
+                <h3>
+                    Metin Amedi
+                </h3>
+
+                <p>
+                    Projeto open source relacionado ao controle
+                    do mouse pelos olhos, utilizado como referência
+                    de estudo para o Eye Tracker CK².
+                </p>
+
+                <a
+                    href="https://github.com/metinmeki/Eye-Controll-Mouse"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-secondary"
                 >
+                    Ver referência ↗
+                </a>
 
-                    <a href="#projeto">
-                        Projeto
-                    </a>
-
-                    <a href="#equipe">
-                        Equipe
-                    </a>
-
-                    <a href="#referencias">
-                        Referências
-                    </a>
-
-                    <a href="#acompanhar">
-                        Contato
-                    </a>
-
-                </nav>
+            </article>
 
 
-                <div class="footer__copy">
+            <!-- SHAMILKA PERERA -->
 
-                    <span>
-                        &copy;
-                        <span id="footerYear">2026</span>
-                        Eye Tracker CK².
-                        Todos os direitos reservados.
-                    </span>
+            <article class="reference">
+
+                <div class="reference-photo">
+
+                    <!--
+                        COLOQUE A FOTO DA SHAMILKA EM:
+
+                        assets/images/team/shamilka-perera.jpg
+                    -->
+
+                    <img
+                        src="assets/images/team/shamilka-perera.jpg"
+                        alt="Foto de Shamilka Perera"
+                        onerror="this.style.display='none'; this.parentElement.innerHTML='FOTO<br>SHAMILKA PERERA';"
+                    >
 
                 </div>
+
+                <h3>
+                    Shamilka Perera
+                </h3>
+
+                <p>
+                    Projeto de interface controlada pelos olhos,
+                    utilizado como referência para a pesquisa e
+                    desenvolvimento da interface do sistema.
+                </p>
+
+                <a
+                    href="https://shamilkaperera.github.io/?post=biometric-hci-real-time-ocular-controlled-interface"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-secondary"
+                >
+                    Ver referência ↗
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     CONTEXTO ACADÊMICO
+============================================================= -->
+
+<section
+    id="contexto"
+    class="section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Contexto acadêmico
+            </span>
+
+            <h2 class="section-title">
+                Desenvolvido no CEFET-MG
+            </h2>
+
+        </div>
+
+
+        <div class="context-grid">
+
+
+            <div class="context-item">
+
+                <small>
+                    Instituição
+                </small>
+
+                <strong>
+                    CEFET-MG — Centro Federal de Educação Tecnológica de Minas Gerais
+                </strong>
+
+            </div>
+
+
+            <div class="context-item">
+
+                <small>
+                    Campus
+                </small>
+
+                <strong>
+                    Nova Gameleira — Belo Horizonte
+                </strong>
+
+            </div>
+
+
+            <div class="context-item">
+
+                <small>
+                    Curso
+                </small>
+
+                <strong>
+                    Ensino Médio Técnico em Equipamentos Biomédicos
+                </strong>
+
+            </div>
+
+
+            <div class="context-item">
+
+                <small>
+                    Turma
+                </small>
+
+                <strong>
+                    EBM-3A · 2026
+                </strong>
+
+            </div>
+
+
+            <div class="context-item">
+
+                <small>
+                    Departamento
+                </small>
+
+                <strong>
+                    Departamento de Eletrônica e Biomédica — NG
+                </strong>
+
+            </div>
+
+
+            <div class="context-item">
+
+                <small>
+                    Evento
+                </small>
+
+                <strong>
+                    35ª META
+                </strong>
+
+            </div>
+
+
+            <div class="context-item">
+
+                <small>
+                    Status
+                </small>
+
+                <strong>
+                    Em desenvolvimento
+                </strong>
+
+            </div>
+
+
+            <div class="context-item">
+
+                <small>
+                    Licença
+                </small>
+
+                <strong>
+                    MIT
+                </strong>
 
             </div>
 
         </div>
 
-    </footer>
+    </div>
+
+</section>
 
 
-    <!-- =========================================================
-         DADOS DO SITE
-         
-         IMPORTANTE:
-         O main.js atual procura #siteData e lê seu textContent.
-         Por isso o JSON precisa estar EMBUTIDO aqui.
-    ========================================================== -->
+</main>
 
-    <script
-        type="application/json"
-        id="siteData"
-    >
-{
-    "tecnologias": [
-        {
-            "nome": "Python",
-            "icon": "🐍",
-            "descricao": "Linguagem principal"
-        },
-        {
-            "nome": "OpenCV",
-            "icon": "📷",
-            "descricao": "Processamento de imagem"
-        },
-        {
-            "nome": "MediaPipe",
-            "icon": "👤",
-            "descricao": "Detecção facial e pontos"
-        },
-        {
-            "nome": "NumPy",
-            "icon": "🔢",
-            "descricao": "Cálculos numéricos"
-        },
-        {
-            "nome": "PyAutoGUI",
-            "icon": "🖱",
-            "descricao": "Controle de mouse e teclado"
-        },
-        {
-            "nome": "Tkinter",
-            "icon": "🖥",
-            "descricao": "Interface local"
+
+<!-- =============================================================
+     FOOTER
+============================================================= -->
+
+<footer>
+
+    <div class="container footer-grid">
+
+        <div>
+
+            <h3>
+                Eye Tracker CK²
+            </h3>
+
+            <p>
+                35ª META · CEFET-MG · 2026
+            </p>
+
+            <p>
+                Projeto acadêmico de tecnologia assistiva.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="#inicio">
+                Início
+            </a>
+
+            <a href="#download">
+                Download
+            </a>
+
+            <a href="#instalacao">
+                Instalação
+            </a>
+
+            <a href="#equipe">
+                Equipe
+            </a>
+
+            <a href="#referencias">
+                Referências
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =============================================================
+     JAVASCRIPT
+============================================================= -->
+
+<script>
+
+    /* =========================================================
+       TEMA
+    ========================================================= */
+
+    const themeButton =
+        document.getElementById("themeButton");
+
+    themeButton.addEventListener("click", () => {
+
+        document.body.classList.toggle("dark");
+
+        if (document.body.classList.contains("dark")) {
+
+            themeButton.textContent = "☀️";
+
+            localStorage.setItem(
+                "eyeTrackerTheme",
+                "dark"
+            );
+
+        } else {
+
+            themeButton.textContent = "🌙";
+
+            localStorage.setItem(
+                "eyeTrackerTheme",
+                "light"
+            );
+
         }
-    ],
 
-    "funcionalidades": [
-        {
-            "titulo": "Funcionando",
-            "tipo": "funcionando",
-            "itens": [
-                "Movimentação do cursor",
-                "IA para previsão do cursor",
-                "Calibração",
-                "Duplo clique"
-            ]
-        },
-        {
-            "titulo": "Em refinamento / desenvolvimento",
-            "tipo": "refinamento",
-            "itens": [
-                "Clique esquerdo",
-                "Clique direito",
-                "Drag",
-                "Scroll",
-                "Menu overlay",
-                "Congelar cursor",
-                "Pausar rastreamento",
-                "Ctrl+C",
-                "Ctrl+V"
-            ]
-        },
-        {
-            "titulo": "Planejado",
-            "tipo": "planejado",
-            "itens": [
-                "Perfis de usuário",
-                "Estatísticas"
-            ]
+    });
+
+
+    if (
+        localStorage.getItem("eyeTrackerTheme")
+        === "dark"
+    ) {
+
+        document.body.classList.add("dark");
+
+        themeButton.textContent = "☀️";
+
+    }
+
+
+    /* =========================================================
+       MENU MOBILE
+    ========================================================= */
+
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const mobileNav =
+        document.getElementById("mobileNav");
+
+
+    menuButton.addEventListener("click", () => {
+
+        mobileNav.classList.toggle("open");
+
+    });
+
+
+    document
+        .querySelectorAll(".mobile-nav a")
+        .forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                mobileNav.classList.remove("open");
+
+            });
+
+        });
+
+
+    /* =========================================================
+       VERIFICADOR DE COMPUTADOR
+    ========================================================= */
+
+    const checkButton =
+        document.getElementById("checkComputer");
+
+    const checkResult =
+        document.getElementById("checkResult");
+
+
+    checkButton.addEventListener("click", () => {
+
+        checkResult.className = "check-result";
+
+        let warnings = [];
+
+        /*
+            O navegador não consegue identificar com precisão
+            o modelo exato do processador ou a quantidade real
+            de RAM em todos os navegadores.
+
+            Portanto esta é uma verificação aproximada.
+        */
+
+        const memory =
+            navigator.deviceMemory || null;
+
+        const cores =
+            navigator.hardwareConcurrency || null;
+
+        const userAgent =
+            navigator.userAgent.toLowerCase();
+
+
+        /* Verificação do sistema */
+
+        const isWindows =
+            userAgent.includes("windows");
+
+
+        if (!isWindows) {
+
+            warnings.push(
+                "O sistema operacional detectado não é Windows."
+            );
+
         }
-    ],
 
-    "gestos": [
-        {
-            "gesto": "Piscada do olho direito",
-            "acao": "Clique esquerdo",
-            "status": "Funciona"
-        },
-        {
-            "gesto": "Piscada do olho esquerdo",
-            "acao": "Clique direito",
-            "status": "Funciona"
-        },
-        {
-            "gesto": "Duas piscadas",
-            "acao": "Duplo clique",
-            "status": "Funciona"
-        },
-        {
-            "gesto": "Sobrancelhas",
-            "acao": "Drag",
-            "status": "Em desenvolvimento"
-        },
-        {
-            "gesto": "Boca aberta",
-            "acao": "Scroll",
-            "status": "Em desenvolvimento"
-        },
-        {
-            "gesto": "Sorriso",
-            "acao": "Menu",
-            "status": "Em desenvolvimento"
-        },
-        {
-            "gesto": "Sorriso + sobrancelhas",
-            "acao": "Congelar cursor",
-            "status": "Em desenvolvimento"
-        },
-        {
-            "gesto": "Dois olhos fechados",
-            "acao": "Pausar",
-            "status": "Em desenvolvimento"
-        },
-        {
-            "gesto": "Sobrancelhas + olho direito",
-            "acao": "Ctrl+C",
-            "status": "Em desenvolvimento"
-        },
-        {
-            "gesto": "Sobrancelhas + olho esquerdo",
-            "acao": "Ctrl+V",
-            "status": "Em desenvolvimento"
+
+        /* Verificação de RAM */
+
+        if (
+            memory !== null &&
+            memory < 8
+        ) {
+
+            warnings.push(
+                "O navegador indicou menos de 8 GB de RAM."
+            );
+
         }
-    ],
 
-    "roadmap": [
-        {
-            "categoria": "Precisão",
-            "itens": [
-                "Melhorar rastreamento ocular",
-                "Reduzir falsos positivos",
-                "Melhorar detecção de piscadas"
-            ]
-        },
-        {
-            "categoria": "Interação",
-            "itens": [
-                "Corrigir Drag",
-                "Reestruturar Scroll",
-                "Aperfeiçoar gestos compostos"
-            ]
-        },
-        {
-            "categoria": "Personalização",
-            "itens": [
-                "Perfis individuais",
-                "Banco de calibração"
-            ]
-        },
-        {
-            "categoria": "Interface",
-            "itens": [
-                "Melhorar interface gráfica",
-                "Expandir menu overlay"
-            ]
-        },
-        {
-            "categoria": "Pesquisa",
-            "itens": [
-                "Coletar novas métricas",
-                "Realizar novos testes de usabilidade"
-            ]
-        },
-        {
-            "categoria": "Futuro",
-            "itens": [
-                "Integração com IoT",
-                "Teclado virtual adaptativo",
-                "Compatibilidade com outros SO"
-            ]
+
+        /* Verificação de processadores */
+
+        if (
+            cores !== null &&
+            cores < 4
+        ) {
+
+            warnings.push(
+                "O computador informa menos de 4 núcleos lógicos."
+            );
+
         }
-    ],
 
-    "equipe": [
-        {
-            "nome": "Carlos Eduardo Ferreira da Silva",
-            "funcao": "Desenvolvedor",
-            "descricao": "Testes · Documentação",
-            "foto": "assets/images/team/carlos.jpg",
-            "links": [
-                {
-                    "label": "E-mail",
-                    "url": "mailto:carloseduardoferreira3108@gmail.com"
-                },
-                {
-                    "label": "LinkedIn",
-                    "url": "https://www.linkedin.com/in/carlos-eduardo-ferreira-9695983b9/"
-                }
-            ]
-        },
-        {
-            "nome": "Kauan Kerlon Costa de Jesus",
-            "funcao": "Desenvolvedor",
-            "descricao": "Pesquisa em IA · Testes · Documentação",
-            "foto": "assets/images/team/kauan.jpg",
-            "links": [
-                {
-                    "label": "E-mail",
-                    "url": "mailto:kauankerloncostadejesus@gmail.com"
-                },
-                {
-                    "label": "LinkedIn",
-                    "url": "https://www.linkedin.com/in/kauan-kerlon-costa-de-jesus-64b0963ba/"
-                }
-            ]
-        },
-        {
-            "nome": "Kelvin Saldanha Mateus",
-            "funcao": "Desenvolvedor de software e site web",
-            "descricao": "Pesquisa bibliográfica · IA · Arquitetura · Documentação · Testes · Integração",
-            "foto": "assets/images/team/kelvin.jpg",
-            "links": [
-                {
-                    "label": "E-mail",
-                    "url": "mailto:kelvinsaldanhaa@gmail.com"
-                },
-                {
-                    "label": "GitHub",
-                    "url": "https://github.com/kelvinsaldanha"
-                },
-                {
-                    "label": "LinkedIn",
-                    "url": "https://www.linkedin.com/in/kelvin-saldanha-mateus/"
-                }
-            ]
+
+        /* Resultado */
+
+        if (warnings.length === 0) {
+
+            checkResult.classList.add("success");
+
+            checkResult.innerHTML = `
+                ✅ <strong>Seu computador parece atender aos requisitos básicos.</strong>
+                <br>
+                <small>
+                    A verificação é aproximada. Para uma confirmação completa,
+                    recomendamos instalar e testar o programa.
+                </small>
+            `;
+
+        } else {
+
+            checkResult.classList.add("warning");
+
+            checkResult.innerHTML = `
+                ⚠️ <strong>Foram encontradas possíveis limitações:</strong>
+                <ul style="margin-top:10px; padding-left:20px;">
+                    ${warnings
+                        .map(item => `<li>${item}</li>`)
+                        .join("")}
+                </ul>
+
+                <small>
+                    Isso não significa necessariamente que o programa
+                    não funcionará. O navegador possui limitações para
+                    detectar o hardware exato do computador.
+                </small>
+            `;
+
         }
-    ],
 
-    "orientadores": [
-        {
-            "nome": "Prof. Alexandre Rodrigues Farias",
-            "papel": "Orientador",
-            "descricao": "Doutor em Engenharia Elétrica · Instrumentação biomédica · Eletrônica · Processamento de sinais",
-            "email": "alexandrefarias@cefetmg.br",
-            "linkedin": "https://www.linkedin.com/in/alexandre-farias-861930b5/"
-        },
-        {
-            "nome": "Prof.ª Tálita Saemi Payossim Sono",
-            "papel": "Coorientadora",
-            "descricao": "Doutora em Engenharia Mecânica (Bioengenharia) · Sistemas embarcados · Tecnologias assistivas",
-            "email": "talitasono@cefetmg.br",
-            "linkedin": ""
-        }
-    ],
-
-    "referencias": [
-        {
-            "titulo": "Shamilka Perera",
-            "descricao": "Projeto de interface controlada por olhos que influenciou a pesquisa e a direção técnica.",
-            "url": "https://shamilkaperera.github.io/?post=biometric-hci-real-time-ocular-controlled-interface"
-        },
-        {
-            "titulo": "Metin Amedi",
-            "descricao": "Projeto open source de controle de mouse pelos olhos utilizado como referência de estudo.",
-            "url": "https://github.com/metinmeki/Eye-Controll-Mouse/commits?author=metinmeki"
-        }
-    ]
-}
-    </script>
+    });
 
 
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================== -->
+    /* =========================================================
+       ANO DO FOOTER
+    ========================================================= */
 
-    <script
-        src="assets/js/main.js"
-        defer
-    ></script>
+    /*
+        Mantido separado para facilitar futuras alterações.
+    */
+
+</script>
 
 </body>
 </html>
