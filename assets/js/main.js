@@ -1,316 +1,457 @@
-const dataUrl = "data/site-data.json";
-const qs = (selector, root = document) => root.querySelector(selector);
-const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
-const escapeHtml = (value = "") => String(value).replace(/[&<>"']/g, (char) => ({
-  "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
-}[char]));
+(function() {
+    'use strict';
 
-const list = (items = "") => Array.isArray(items) ? items : [items].filter(Boolean);
-const statusClass = (status = "") => {
-  const normalized = status.toLowerCase();
-  if (normalized.includes("funciona")) return "status-ok";
-  if (normalized.includes("planejado")) return "status-plan";
-  if (normalized.includes("protótipo")) return "status-proto";
-  return "status-dev";
-};
+    // ============================================================
+    // 1. CARREGAR DADOS DO JSON (site-data.json)
+    // ============================================================
+    let data = null;
+    const dataScript = document.getElementById('siteData');
+    if (dataScript) {
+        try {
+            data = JSON.parse(dataScript.textContent);
+        } catch (_) {
+            console.warn('Erro ao parsear site-data.json');
+        }
+    }
+    if (!data) {
+        // Fallback mínimo para não quebrar a página
+        data = {
+            tecnologias: [],
+            funcionalidades: [],
+            gestos: [],
+            roadmap: [],
+            equipe: [],
+            orientadores: [],
+            referencias: []
+        };
+    }
 
-function sectionShell(id, eyebrow, title, text) {
-  const root = qs(`#${id}`);
-  root.innerHTML = `<div class="container"><div class="section-head"><div class="eyebrow">${escapeHtml(eyebrow)}</div><h2>${escapeHtml(title)}</h2>${text ? `<p>${escapeHtml(text)}</p>` : ""}</div><div data-section-body></div></div>`;
-  return qs("[data-section-body]", root);
-}
+    // ============================================================
+    // 2. UTILITÁRIOS
+    // ============================================================
+    function createElement(tag, cls, content) {
+        const el = document.createElement(tag);
+        if (cls) el.className = cls;
+        if (content !== undefined) {
+            if (typeof content === 'string') el.innerHTML = content;
+            else if (Array.isArray(content)) el.append(...content);
+            else el.appendChild(content);
+        }
+        return el;
+    }
 
-function cardGrid(items, columns, renderer) {
-  return `<div class="grid grid-${columns}">${(items || []).map(renderer).join("")}</div>`;
-}
+    function renderContainer(containerId, items, renderFn) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        if (!items || items.length === 0) {
+            container.innerHTML = '<p class="text-muted">Nenhum dado disponível.</p>';
+            return;
+        }
+        items.forEach(item => {
+            container.appendChild(renderFn(item));
+        });
+    }
 
-function linkButton(url, label, kind = "btn-secondary") {
-  if (!url) return "";
-  return `<a class="btn ${kind}" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`;
-}
+    // ============================================================
+    // 3. RENDERIZAÇÃO: TECNOLOGIAS
+    // ============================================================
+    function renderTecnologia(item) {
+        const div = document.createElement('div');
+        div.className = 'tecnologia__item';
+        div.innerHTML = `
+            <span class="tecnologia__item-icon">${item.icon || '🔧'}</span>
+            <span class="tecnologia__item-name">${item.nome}</span>
+            <span class="tecnologia__item-desc">${item.descricao || ''}</span>
+        `;
+        return div;
+    }
 
-function downloadButton(download, label = "BAIXAR AGORA") {
-  if (!download?.download_url) return `<span class="btn btn-primary btn-disabled" aria-disabled="true">${escapeHtml(label)}</span>`;
-  return `<a class="btn btn-primary" href="${escapeHtml(download.download_url)}" download>${escapeHtml(label)}</a>`;
-}
+    // ============================================================
+    // 4. RENDERIZAÇÃO: FUNCIONALIDADES
+    // ============================================================
+    function renderFuncionalidades(groups) {
+        const container = document.getElementById('funcionalidadesGroups');
+        if (!container) return;
+        container.innerHTML = '';
+        if (!groups || groups.length === 0) return;
 
-function avatar(person) {
-  if (person.photo) {
-    return `<img class="profile-photo" src="${escapeHtml(person.photo)}" alt="Foto de ${escapeHtml(person.name)}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'team-photo',textContent:'${escapeHtml((person.name || "?").slice(0, 1))}'}))">`;
-  }
-  return `<div class="team-photo" aria-hidden="true">${escapeHtml((person.name || "?").slice(0, 1))}</div>`;
-}
+        groups.forEach(group => {
+            const div = document.createElement('div');
+            div.className = 'funcionalidades__group';
+            const statusMap = {
+                'funcionando': 'ok',
+                'refinamento': 'wip',
+                'planejado': 'planned'
+            };
+            const statusLabel = {
+                'funcionando': '✓ Funciona',
+                'refinamento': '🔄 Em desenvolvimento',
+                'planejado': '📋 Planejado'
+            };
+            let listHtml = '<ul class="funcionalidades__group-list">';
+            group.itens.forEach(item => {
+                const statusClass = statusMap[group.tipo] || 'planned';
+                listHtml += `
+                    <li>
+                        <span>${item}</span>
+                        <span class="funcionalidades__status funcionalidades__status--${statusClass}">${statusLabel[group.tipo] || group.tipo}</span>
+                    </li>
+                `;
+            });
+            listHtml += '</ul>';
+            div.innerHTML = `
+                <div class="funcionalidades__group-title">${group.titulo}</div>
+                ${listHtml}
+            `;
+            container.appendChild(div);
+        });
+    }
 
-function mockupSvg() {
-  return `
-    <svg viewBox="0 0 560 430" role="img" aria-label="Ilustração de webcam rastreando olhos e cursor">
-      <rect x="54" y="48" width="452" height="292" rx="28" fill="var(--surface)" stroke="var(--line)" />
-      <rect x="84" y="78" width="392" height="220" rx="18" fill="var(--card)" stroke="var(--line)" />
-      <circle cx="280" cy="116" r="22" fill="var(--secondary)" />
-      <circle cx="288" cy="108" r="6" fill="#fff" />
-      <path d="M156 214s40-54 124-54 124 54 124 54-40 54-124 54-124-54-124-54Z" fill="var(--bg)" stroke="var(--line)" stroke-width="3" />
-      <circle cx="280" cy="214" r="34" fill="#2563eb" />
-      <circle cx="292" cy="200" r="9" fill="#fff" />
-      <path d="M378 278l52 76 14-34 36-5-78-48-8 42-16-31Z" fill="#0f172a" />
-      <path d="M146 128c36-30 82-45 134-45s98 15 134 45M142 300c42 26 88 39 138 39s96-13 138-39" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" stroke-dasharray="10 14" />
-      <rect x="218" y="340" width="124" height="28" rx="14" fill="var(--line)" />
-      <rect x="184" y="368" width="192" height="26" rx="13" fill="#2563eb" opacity=".22" />
-    </svg>`;
-}
+    // ============================================================
+    // 5. RENDERIZAÇÃO: GESTOS (tabela + cards)
+    // ============================================================
+    function renderGestos(gestos) {
+        const tbody = document.getElementById('gestosTableBody');
+        const cardsContainer = document.getElementById('gestosCards');
+        if (!tbody || !cardsContainer) return;
+        tbody.innerHTML = '';
+        cardsContainer.innerHTML = '';
 
-function renderHero(data) {
-  const mainDownload = data.downloads?.[0] || {};
-  qs("#inicio").innerHTML = `
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <div class="eyebrow">${escapeHtml(data.hero.eyebrow)}</div>
-        <h1>${escapeHtml(data.hero.title)}</h1>
-        <p>${escapeHtml(data.hero.subtitle)}</p>
-        <p>${escapeHtml(data.project.description)}</p>
-        <div class="hero-actions">
-          ${downloadButton(mainDownload, data.hero.primaryCta)}
-          <a class="btn btn-secondary" href="#demonstracao">${escapeHtml(data.hero.secondaryCta)}</a>
-        </div>
-      </div>
-      <div class="mockup">${mockupSvg()}</div>
-    </div>`;
-}
+        if (!gestos || gestos.length === 0) return;
 
-function renderAbout(data) {
-  const body = sectionShell("sobre", "Sobre o projeto", "Tecnologia assistiva com propósito", "Uma visão rápida do problema, solução e impacto do Eye Tracker CK².");
-  body.innerHTML = cardGrid(data.about, 3, (item) => `<article class="card"><div class="icon-pill">•</div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`);
-}
+        gestos.forEach(g => {
+            // Tabela
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${g.gesto}</td>
+                <td>${g.acao}</td>
+                <td>${g.status}</td>
+            `;
+            tbody.appendChild(tr);
 
-function renderInstitution(data) {
-  const i = data.institution;
-  const body = sectionShell("instituicao", "Instituição", "Desenvolvido no CEFET-MG", "Contexto acadêmico do projeto e da apresentação na META.");
-  body.innerHTML = `<article class="card institution-card"><h3>${escapeHtml(i.name)}</h3><div class="info-list">
-    <span>${escapeHtml(i.event)}</span><span>${escapeHtml(i.campus)}</span><span>${escapeHtml(i.course)}</span><span>${escapeHtml(i.class)}</span><span>${escapeHtml(i.department)}</span>
-  </div></article>`;
-}
+            // Cards (mobile)
+            const card = document.createElement('div');
+            card.className = 'gestos__card';
+            card.innerHTML = `
+                <span class="gestos__card-gesto">${g.gesto}</span>
+                <span class="gestos__card-acao">${g.acao}</span>
+                <span class="gestos__card-status">${g.status}</span>
+            `;
+            cardsContainer.appendChild(card);
+        });
+    }
 
-function renderHistory(data) {
-  const body = sectionShell("historia", "História", "Como surgiu o Eye Tracker CK²", "A origem do projeto contada em etapas curtas.");
-  body.innerHTML = `<div class="timeline">${data.history.map((item) => `<article class="timeline-item"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`).join("")}</div>`;
-}
+    // ============================================================
+    // 6. RENDERIZAÇÃO: ROADMAP
+    // ============================================================
+    function renderRoadmap(items) {
+        const container = document.getElementById('roadmapGrid');
+        if (!container) return;
+        container.innerHTML = '';
+        if (!items || items.length === 0) return;
 
-function renderImpact(data) {
-  const body = sectionShell("impacto", "Impacto social", "Acessibilidade com baixo custo", data.socialImpact.summary);
-  body.innerHTML = `
-    ${cardGrid(data.socialImpact.topics, 5, (topic) => `<article class="card compact-card"><h3>${escapeHtml(topic)}</h3></article>`)}
-    <div class="tag-cloud" aria-label="Público-alvo">${data.socialImpact.audiences.map((item) => `<span class="badge">${escapeHtml(item)}</span>`).join("")}</div>`;
-}
+        items.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'roadmap__item';
+            let listHtml = '<ul class="roadmap__item-list">';
+            (item.itens || []).forEach(i => {
+                listHtml += `<li>${i}</li>`;
+            });
+            listHtml += '</ul>';
+            div.innerHTML = `
+                <span class="roadmap__item-category">${item.categoria}</span>
+                ${listHtml}
+            `;
+            container.appendChild(div);
+        });
+    }
 
-function renderHowItWorks(data) {
-  const body = sectionShell("funcionamento", "Como funciona", "Do rosto ao comando", "Fluxo simples para entender o caminho entre a webcam e a ação no computador.");
-  body.innerHTML = `<div class="workflow workflow-wide">${data.howItWorks.map((step, index) => `<article class="card flow-step"><div class="step-chip">${index + 1}</div><h3>${escapeHtml(step)}</h3></article>`).join("")}</div>`;
-}
+    // ============================================================
+    // 7. RENDERIZAÇÃO: EQUIPE
+    // ============================================================
+    function renderEquipe(membros) {
+        const container = document.getElementById('equipeGrid');
+        if (!container) return;
+        container.innerHTML = '';
+        if (!membros || membros.length === 0) return;
 
-function renderFeatures(data) {
-  const body = sectionShell("funcionalidades", "Funcionalidades", "O que o software faz e o que vem depois", "Cada recurso tem um status claro para não prometer o que ainda está em desenvolvimento.");
-  body.innerHTML = cardGrid(data.features, 3, (feature) => `<article class="card feature-card"><h3>${escapeHtml(feature.name)}</h3><span class="badge ${statusClass(feature.status)}">${escapeHtml(feature.status)}</span></article>`);
-}
+        membros.forEach(m => {
+            const div = document.createElement('div');
+            div.className = 'equipe__member';
+            // Fallback para foto
+            const imgSrc = m.foto || 'assets/images/team/placeholder.jpg';
+            const linksHtml = (m.links || []).map(l => {
+                return `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label}</a>`;
+            }).join(' ');
+            div.innerHTML = `
+                <img src="${imgSrc}" alt="Foto de ${m.nome}" class="equipe__member-photo" loading="lazy" decoding="async" />
+                <div class="equipe__member-name">${m.nome}</div>
+                <div class="equipe__member-role">${m.funcao || ''}</div>
+                <div class="equipe__member-desc">${m.descricao || ''}</div>
+                <div class="equipe__member-links">${linksHtml}</div>
+            `;
+            container.appendChild(div);
+        });
+    }
 
-function renderGestures(data) {
-  const body = sectionShell("gestos", "Gestos", "Comandos por expressões faciais", "Mapa dos gestos previstos e suas ações correspondentes.");
-  body.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Gesto</th><th>Ação</th><th>Status</th></tr></thead><tbody>${data.gestures.map((g) => `<tr><td>${escapeHtml(g.gesture)}</td><td>${escapeHtml(g.action)}</td><td><span class="badge ${statusClass(g.status)}">${escapeHtml(g.status)}</span></td></tr>`).join("")}</tbody></table></div>`;
-}
+    function renderOrientadores(orientadores) {
+        const container = document.getElementById('orientadoresContainer');
+        if (!container) return;
+        container.innerHTML = '';
+        if (!orientadores || orientadores.length === 0) return;
 
-function renderVideos(data) {
-  const body = sectionShell("demonstracao", "Demonstrações", "Vídeos do projeto", "Espaço pronto para vídeo geral e tutorial de instalação.");
-  body.innerHTML = cardGrid(data.videos, 2, (video) => `<article class="card video-card"><h3>${escapeHtml(video.title)}</h3><p>${escapeHtml(video.description)}</p>${video.url ? `<iframe title="${escapeHtml(video.title)}" src="${escapeHtml(video.url)}" loading="lazy" allowfullscreen></iframe>` : `<div class="media-placeholder small-placeholder"><div><strong>Vídeo em breve</strong><p>Adicione o link no JSON.</p></div></div>`}</article>`);
-}
+        orientadores.forEach(o => {
+            const div = document.createElement('div');
+            div.className = 'equipe__orientador';
+            div.innerHTML = `
+                <div class="equipe__orientador-name">${o.nome}</div>
+                <div class="equipe__orientador-role">${o.papel || ''}</div>
+                <div class="equipe__orientador-desc">${o.descricao || ''}</div>
+                <div class="equipe__member-links">
+                    ${o.email ? `<a href="mailto:${o.email}">${o.email}</a>` : ''}
+                    ${o.linkedin ? `<a href="${o.linkedin}" target="_blank" rel="noopener noreferrer">LinkedIn</a>` : ''}
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
 
-function renderStats(data) {
-  const body = sectionShell("resultados", "Métricas", "Resultados sem números inventados", "Os campos ficam preparados para dados reais de FPS, precisão, MAE, RMSE, R² e validação.");
-  body.innerHTML = cardGrid(data.stats, 4, (stat) => `<article class="card"><div class="stat-value">${escapeHtml(stat.value)}</div><h3>${escapeHtml(stat.label)}</h3><p>${escapeHtml(stat.note)}</p></article>`);
-}
+    // ============================================================
+    // 8. RENDERIZAÇÃO: REFERÊNCIAS
+    // ============================================================
+    function renderReferencias(lista) {
+        const container = document.getElementById('referenciasList');
+        if (!container) return;
+        container.innerHTML = '';
+        if (!lista || lista.length === 0) return;
 
-function renderTimeline(data) {
-  const body = sectionShell("desenvolvimento", "Desenvolvimento", "Linha do tempo", "A timeline conta a história do projeto. O roadmap mostra o futuro.");
-  body.innerHTML = `<div class="timeline">${data.timeline.map((item) => `<article class="timeline-item"><span class="badge">${escapeHtml(item.date)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`).join("")}</div>`;
-}
+        lista.forEach(ref => {
+            const div = document.createElement('div');
+            div.className = 'referencias__item';
+            div.innerHTML = `
+                <div class="referencias__item-title">${ref.titulo || 'Referência'}</div>
+                <div class="referencias__item-desc">${ref.descricao || ''}</div>
+                ${ref.url ? `<a href="${ref.url}" target="_blank" rel="noopener noreferrer" class="referencias__item-link">${ref.url}</a>` : ''}
+            `;
+            container.appendChild(div);
+        });
+    }
 
-function renderRoadmap(data) {
-  const body = sectionShell("roadmap", "Roadmap", "Próximos passos", "Melhorias planejadas para precisão, experiência de uso, testes e novas integrações.");
-  body.innerHTML = cardGrid(data.roadmap, 4, (item) => `<article class="card compact-card"><h3>${escapeHtml(item)}</h3></article>`);
-}
+    // ============================================================
+    // 9. INICIALIZAÇÃO DOS RENDERIZADORES
+    // ============================================================
+    function initRender() {
+        // Tecnologias
+        if (data.tecnologias) {
+            renderContainer('tecnologiaGrid', data.tecnologias, renderTecnologia);
+        }
 
-function renderTechnologies(data) {
-  const body = sectionShell("tecnologias", "Tecnologias", "Base técnica", "Descrição curta para evitar poluir visualmente a página.");
-  body.innerHTML = cardGrid(data.technologies, 3, (tech) => `<article class="card"><div class="icon-pill">{ }</div><h3>${escapeHtml(tech.name)}</h3><p>${escapeHtml(tech.description)}</p></article>`);
-}
+        // Funcionalidades (agrupadas)
+        if (data.funcionalidades) {
+            renderFuncionalidades(data.funcionalidades);
+        }
 
-function renderDownloads(data) {
-  const body = sectionShell("downloads", "Download oficial", "Baixe a versão mais recente", "Preparado para múltiplas versões e histórico de releases.");
-  body.innerHTML = `
-    <div class="hardware-check card">
-      <div><h3>Será que roda no meu computador?</h3><p>O navegador consegue estimar memória e núcleos, mas não informa o modelo exato do processador.</p></div>
-      <button class="btn btn-secondary" type="button" data-hardware-check>Verificar este computador</button>
-      <p class="hardware-result" data-hardware-result></p>
-    </div>
-    ${data.downloads.map((d) => `<article class="card download-card">
-      <div>
-        <h3>${escapeHtml(d.name)}</h3>
-        <div class="download-meta">
-          <span class="badge">Versão ${escapeHtml(d.version)}</span><span class="badge">${escapeHtml(d.status)}</span><span class="badge">${escapeHtml(d.date)}</span><span class="badge">${escapeHtml(d.size)}</span><span class="badge">${escapeHtml(d.license)}</span>
-        </div>
-        <p><strong>Compatibilidade:</strong> ${escapeHtml(d.compatibility)}</p>
-        <p><strong>Requisitos:</strong> ${escapeHtml(d.requirements)}</p>
-        <ul class="release-notes">${d.releaseNotes.map((note) => `<li>${escapeHtml(note)}</li>`).join("")}</ul>
-      </div>
-      <div>${downloadButton(d)}</div>
-    </article>`).join("")}`;
-}
+        // Gestos
+        if (data.gestos) {
+            renderGestos(data.gestos);
+        }
 
-function renderInstallation(data) {
-  const body = sectionShell("instalacao", "Instalação e uso", "Primeiros passos", "Área preparada para prints e tutorial em vídeo.");
-  const tutorial = data.videos?.find((video) => video.title.toLowerCase().includes("instala"));
-  body.innerHTML = `
-    ${tutorial?.url ? `<div class="media-placeholder"><iframe title="Tutorial de instalação" src="${escapeHtml(tutorial.url)}" loading="lazy" allowfullscreen></iframe></div>` : `<div class="media-placeholder"><div><h3>Tutorial em vídeo em breve</h3><p>Adicione o link do YouTube no JSON quando estiver pronto.</p></div></div>`}
-    <div class="grid steps">${data.installation.map((step) => `<article class="card step"><span class="step-number" aria-hidden="true"></span><div><h3>${escapeHtml(step.title)}</h3><p>${escapeHtml(step.description)}</p></div><div class="thumb" role="img" aria-label="Espaço para print do passo"></div></article>`).join("")}</div>`;
-}
+        // Roadmap
+        if (data.roadmap) {
+            renderRoadmap(data.roadmap);
+        }
 
-function renderOpenSource(data) {
-  const o = data.opensource;
-  const body = sectionShell("opensource", "Open source", "Código-fonte e colaboração", "O projeto será público após a conclusão e revisão da equipe.");
-  body.innerHTML = `<article class="card open-card"><h3>Licença ${escapeHtml(o.license)}</h3><p>${escapeHtml(o.contributions)}</p><div class="cta-row">${linkButton(o.repository, "Repositório GitHub") || `<span class="btn btn-secondary btn-disabled">GitHub em breve</span>`}${linkButton(o.documentation, "Documentação") || `<span class="btn btn-secondary btn-disabled">Documentação em breve</span>`}${linkButton(o.issues, "Issues") || `<span class="btn btn-secondary btn-disabled">Issues em breve</span>`}</div></article>`;
-}
+        // Equipe
+        if (data.equipe) {
+            renderEquipe(data.equipe);
+        }
 
-function renderBibliography(data) {
-  const refs = data.references || { main: [], bibliography: [] };
-  const body = sectionShell("referencias", "Referências", "Materiais de pesquisa", "Estrutura pronta para referências principais e bibliografia completa, sem poluir a página.");
-  const renderRef = (ref) => `<li><strong>${escapeHtml(ref.title)}</strong>${ref.author ? `, ${escapeHtml(ref.author)}` : ""}${ref.year ? ` (${escapeHtml(ref.year)})` : ""}${ref.link ? ` - <a href="${escapeHtml(ref.link)}" target="_blank" rel="noopener">abrir</a>` : ""}</li>`;
-  body.innerHTML = `<div class="grid grid-2">
-    <details class="card faq-item" open><summary>Referências principais</summary><ul>${refs.main.length ? refs.main.map(renderRef).join("") : "<li>Adicionar referências principais no JSON.</li>"}</ul></details>
-    <details class="card faq-item"><summary>Bibliografia e materiais consultados</summary><ul>${refs.bibliography.length ? refs.bibliography.map(renderRef).join("") : "<li>Adicionar bibliografia ou link de pasta compartilhada quando definido.</li>"}</ul>${refs.driveFolder ? linkButton(refs.driveFolder, "Abrir pasta de materiais") : ""}</details>
-  </div>`;
-}
+        // Orientadores
+        if (data.orientadores) {
+            renderOrientadores(data.orientadores);
+        }
 
-function renderInspirations(data) {
-  const body = sectionShell("inspiracoes", "Projetos inspiradores", "Referências que ajudaram a direção do projeto", "");
-  body.innerHTML = cardGrid(data.inspirations, 2, (item) => `<article class="card"><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.description)}</p>${linkButton(item.link, "Abrir projeto")}</article>`);
-}
+        // Referências
+        if (data.referencias) {
+            renderReferencias(data.referencias);
+        }
+    }
 
-function renderFaq(data) {
-  const body = sectionShell("faq", "FAQ", "Dúvidas frequentes", "Respostas rápidas sobre download, requisitos, uso e contribuição.");
-  body.innerHTML = `<div class="grid">${data.faq.map((item) => `<details class="card faq-item"><summary>${escapeHtml(item.question)}</summary><p>${escapeHtml(item.answer)}</p></details>`).join("")}</div>`;
-}
+    // ============================================================
+    // 10. MENU MOBILE
+    // ============================================================
+    function initMobileMenu() {
+        const toggle = document.getElementById('navToggle');
+        const nav = document.getElementById('mainNav');
+        if (!toggle || !nav) return;
 
-function renderTeam(data) {
-  const body = sectionShell("equipe", "Equipe", "Integrantes", "Cartões no estilo perfil profissional, com contatos vindos do JSON.");
-  body.innerHTML = cardGrid(data.team, 3, (member) => `<article class="card profile-card">${avatar(member)}<h3>${escapeHtml(member.name)}</h3><span class="badge">${escapeHtml(member.role)}</span><p>${escapeHtml(member.description)}</p><div class="tag-cloud">${list(member.secondaryRoles).map((role) => `<span class="badge">${escapeHtml(role)}</span>`).join("")}</div><div class="profile-links">${linkButton(`mailto:${member.email}`, "E-mail")}${linkButton(member.github, "GitHub")}${linkButton(member.linkedin, "LinkedIn")}</div></article>`);
-}
+        function toggleMenu(expanded) {
+            const isOpen = expanded !== undefined ? expanded : nav.getAttribute('aria-expanded') === 'false';
+            nav.setAttribute('aria-expanded', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen);
+            toggle.setAttribute('aria-label', isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+        }
 
-function renderAdvisors(data) {
-  const body = sectionShell("orientadores", "Orientadores", "Acompanhamento acadêmico", "Perfis acadêmicos com papel no projeto e área de atuação.");
-  body.innerHTML = cardGrid(data.advisors, 2, (advisor) => `<article class="card profile-card">${avatar(advisor)}<h3>${escapeHtml(advisor.name)}</h3><span class="badge">${escapeHtml(advisor.role)}</span><p><strong>${escapeHtml(advisor.title)}</strong></p><p>${escapeHtml(advisor.bio)}</p><p><strong>Área:</strong> ${escapeHtml(advisor.area)}</p><p><strong>Papel no projeto:</strong> ${escapeHtml(advisor.projectRole)}</p><div class="profile-links">${linkButton(`mailto:${advisor.email}`, "E-mail institucional")}${linkButton(advisor.linkedin, "LinkedIn")}</div></article>`);
-}
+        toggle.addEventListener('click', () => toggleMenu());
 
-function renderAcknowledgements(data) {
-  const body = sectionShell("agradecimentos", "Agradecimentos", "Apoios e reconhecimento", "");
-  body.innerHTML = cardGrid(data.acknowledgements, 3, (item) => `<article class="card"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`);
-}
+        // Fechar ao clicar em link
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 820) {
+                    toggleMenu(false);
+                }
+            });
+        });
 
-function renderContact(data) {
-  const body = sectionShell("contato", "Contato", "Fale com os integrantes", "Sem formulário falso: apenas canais reais disponíveis.");
-  body.innerHTML = cardGrid(data.contact.contacts, 3, (contact) => `<article class="card"><h3>${escapeHtml(contact.label)}</h3><div class="profile-links">${linkButton(`mailto:${contact.email}`, "E-mail")}${linkButton(contact.github, "GitHub")}${linkButton(contact.linkedin, "LinkedIn")}</div></article>`);
-}
+        // Fechar com Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.getAttribute('aria-expanded') === 'true') {
+                toggleMenu(false);
+                toggle.focus();
+            }
+        });
 
-function renderFooter(data) {
-  qs("[data-footer]").innerHTML = `<div class="container footer-grid"><div><strong>${escapeHtml(data.project.name)}</strong><br>Versão ${escapeHtml(data.project.version)} · ${escapeHtml(data.institution.shortName)} · © ${escapeHtml(data.project.year)}</div><div><a href="#downloads">Download</a> · <a href="#opensource">Open source</a> · <a href="#contato">Contato</a></div></div>`;
-}
+        // Fechar ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 820) {
+                const isClickInside = nav.contains(e.target) || toggle.contains(e.target);
+                if (!isClickInside && nav.getAttribute('aria-expanded') === 'true') {
+                    toggleMenu(false);
+                }
+            }
+        });
+    }
 
-function renderStructuredData(data) {
-  qs("#structured-data").textContent = JSON.stringify({
-    "@context": "https://schema.org",
-    "@graph": [
-      { "@type": "Organization", "name": data.institution.name, "url": data.project.siteUrl },
-      { "@type": "Project", "name": data.project.name, "description": data.project.description, "url": data.project.siteUrl },
-      { "@type": "SoftwareApplication", "name": data.project.shortName, "applicationCategory": "AccessibilityApplication", "operatingSystem": "Windows", "softwareVersion": data.project.version, "license": data.opensource.license, "description": data.project.description }
-    ]
-  });
-}
+    // ============================================================
+    // 11. DARK MODE
+    // ============================================================
+    function initDarkMode() {
+        const toggle = document.getElementById('themeToggle');
+        if (!toggle) return;
+        const icon = toggle.querySelector('.header__theme-icon');
 
-function initHardwareCheck(data) {
-  const button = qs("[data-hardware-check]");
-  const result = qs("[data-hardware-result]");
-  if (!button || !result) return;
-  button.addEventListener("click", () => {
-    const memory = navigator.deviceMemory;
-    const cores = navigator.hardwareConcurrency;
-    const memoryOk = memory ? memory >= data.hardware.minimum.memoryGb : null;
-    const coresOk = cores ? cores >= 4 : null;
-    const verdict = memoryOk === false || coresOk === false ? "Pode rodar com limitações." : "Seu computador parece compatível com os requisitos iniciais.";
-    result.textContent = `${verdict} Memória detectada: ${memory ? `${memory} GB` : "não informada pelo navegador"}. Núcleos detectados: ${cores || "não informado"}.`;
-  });
-}
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
 
-function render(data) {
-  document.title = `${data.project.name} | Portal oficial`;
-  qs("[data-project-name]").textContent = data.project.shortName;
-  renderHero(data);
-  renderAbout(data);
-  renderInstitution(data);
-  renderHistory(data);
-  renderImpact(data);
-  renderHowItWorks(data);
-  renderFeatures(data);
-  renderGestures(data);
-  renderVideos(data);
-  renderStats(data);
-  renderTimeline(data);
-  renderRoadmap(data);
-  renderTechnologies(data);
-  renderDownloads(data);
-  renderInstallation(data);
-  renderOpenSource(data);
-  renderBibliography(data);
-  renderInspirations(data);
-  renderFaq(data);
-  renderTeam(data);
-  renderAdvisors(data);
-  renderAcknowledgements(data);
-  renderContact(data);
-  renderFooter(data);
-  renderStructuredData(data);
-  initHardwareCheck(data);
-}
+        // Preferência do sistema
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const stored = localStorage.getItem('theme');
+        if (stored) {
+            setTheme(stored);
+        } else {
+            setTheme(prefersDark ? 'dark' : 'light');
+        }
 
-function initTheme() {
-  const stored = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  document.documentElement.dataset.theme = stored || (prefersDark ? "dark" : "light");
-  qs("[data-theme-toggle]").addEventListener("click", () => {
-    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem("theme", next);
-  });
-}
+        toggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+    }
 
-function initNav() {
-  const toggle = qs("[data-nav-toggle]");
-  const links = qs("[data-nav-links]");
-  toggle.addEventListener("click", () => {
-    const open = links.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", String(open));
-  });
-  qsa(".nav-links a").forEach((link) => link.addEventListener("click", () => {
-    links.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
-  }));
-}
+    // ============================================================
+    // 12. ANO AUTOMÁTICO NO FOOTER
+    // ============================================================
+    function setFooterYear() {
+        const el = document.getElementById('footerYear');
+        if (el) el.textContent = new Date().getFullYear();
+    }
 
-async function boot() {
-  initTheme();
-  initNav();
-  try {
-    const response = await fetch(dataUrl);
-    if (!response.ok) throw new Error("Não foi possível carregar data/site-data.json");
-    render(await response.json());
-  } catch (error) {
-    qs("main").innerHTML = `<section class="section"><div class="container"><h1>Erro ao carregar o site</h1><p>${escapeHtml(error.message)}</p></div></section>`;
-  }
-}
+    // ============================================================
+    // 13. HERO CANVAS (efeito visual sutil)
+    // ============================================================
+    function initHeroCanvas() {
+        const canvas = document.getElementById('heroCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let w = canvas.parentElement.clientWidth;
+        let h = canvas.parentElement.clientHeight;
 
-boot();
+        function resize() {
+            w = canvas.parentElement.clientWidth;
+            h = canvas.parentElement.clientHeight;
+            canvas.width = w;
+            canvas.height = h;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Pontos flutuantes
+        const points = [];
+        const count = 40;
+        for (let i = 0; i < count; i++) {
+            points.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                r: 1.5 + Math.random() * 2.5,
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#1a4b8c';
+            ctx.globalAlpha = 0.4;
+
+            points.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0 || p.x > w) p.vx *= -1;
+                if (p.y < 0 || p.y > h) p.vy *= -1;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Linhas entre pontos próximos
+            ctx.globalAlpha = 0.1;
+            ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#1a4b8c';
+            ctx.lineWidth = 0.8;
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    const dx = points[i].x - points[j].x;
+                    const dy = points[i].y - points[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(points[i].x, points[i].y);
+                        ctx.lineTo(points[j].x, points[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            ctx.globalAlpha = 1;
+            requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ============================================================
+    // 14. INIT
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+        initRender();
+        initMobileMenu();
+        initDarkMode();
+        setFooterYear();
+        initHeroCanvas();
+
+        // Smooth scroll para links internos (fallback)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    });
+
+})();
