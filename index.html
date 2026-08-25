@@ -1,526 +1,1988 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Eye Tracker CK² | Tecnologia Assistiva e Visão Computacional</title>
-    <meta name="description" content="Eye Tracker CK² é um projeto de tecnologia assistiva em desenvolvimento que utiliza webcam, visão computacional e inteligência artificial para controle do computador por movimentos oculares e gestos faciais." />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0a1628" />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Eye Tracker CK² | Tecnologia Assistiva e Visão Computacional" />
-    <meta property="og:description" content="Projeto acadêmico do CEFET-MG que combina webcam, visão computacional e IA para controle do computador por movimentos oculares." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://kelvinsaldanha.github.io/eye-tracker-ck2/" />
-    <meta property="og:image" content="https://kelvinsaldanha.github.io/eye-tracker-ck2/assets/images/project/og-image.jpg" />
+    <meta
+        name="description"
+        content="Eye Tracker CK² é um projeto de tecnologia assistiva em desenvolvimento que utiliza webcam, visão computacional e inteligência artificial para controle do computador por movimentos oculares e gestos faciais."
+    >
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Eye Tracker CK² | Tecnologia Assistiva e Visão Computacional" />
-    <meta name="twitter:description" content="Projeto acadêmico do CEFET-MG que combina webcam, visão computacional e IA para controle do computador por movimentos oculares." />
-    <meta name="twitter:image" content="https://kelvinsaldanha.github.io/eye-tracker-ck2/assets/images/project/og-image.jpg" />
+    <meta name="robots" content="index, follow">
 
-    <link rel="canonical" href="https://kelvinsaldanha.github.io/eye-tracker-ck2/" />
+    <meta
+        name="theme-color"
+        content="#0a1628"
+    >
 
-    <!-- Favicon -->
-    <link rel="icon" href="assets/images/logo/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="assets/images/logo/apple-touch-icon.png" />
+    <!-- =========================================================
+         OPEN GRAPH
+    ========================================================== -->
 
-    <link rel="stylesheet" href="style.css" />
+    <meta
+        property="og:title"
+        content="Eye Tracker CK² | Tecnologia Assistiva e Visão Computacional"
+    >
+
+    <meta
+        property="og:description"
+        content="Projeto acadêmico do CEFET-MG que combina webcam, visão computacional e IA para controle do computador por movimentos oculares."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:url"
+        content="https://kelvinsaldanha.github.io/Eye-tracker-CKK/"
+    >
+
+    <meta
+        property="og:image"
+        content="https://kelvinsaldanha.github.io/Eye-tracker-CKK/assets/images/og-cover.svg"
+    >
+
+    <!-- =========================================================
+         TWITTER
+    ========================================================== -->
+
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Eye Tracker CK² | Tecnologia Assistiva e Visão Computacional"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Projeto acadêmico do CEFET-MG que combina webcam, visão computacional e IA para controle do computador por movimentos oculares."
+    >
+
+    <meta
+        name="twitter:image"
+        content="https://kelvinsaldanha.github.io/Eye-tracker-CKK/assets/images/og-cover.svg"
+    >
+
+    <!-- =========================================================
+         CANONICAL
+    ========================================================== -->
+
+    <link
+        rel="canonical"
+        href="https://kelvinsaldanha.github.io/Eye-tracker-CKK/"
+    >
+
+    <!-- =========================================================
+         FAVICON
+    ========================================================== -->
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="assets/icons/favicon.svg"
+    >
+
+    <!-- =========================================================
+         CSS
+    ========================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
 </head>
+
+
 <body>
 
-    <!-- SKIP LINK -->
-    <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
+    <!-- =========================================================
+         ACESSIBILIDADE
+    ========================================================== -->
 
-    <!-- ===== HEADER ===== -->
-    <header class="header" role="banner" aria-label="Cabeçalho do site">
+    <a
+        class="skip-link"
+        href="#main"
+    >
+        Pular para o conteúdo principal
+    </a>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header
+        class="header"
+        role="banner"
+        aria-label="Cabeçalho do site"
+    >
+
         <div class="container header__inner">
-            <a href="#" class="header__logo" aria-label="Eye Tracker CK² - Página inicial">
-                <span class="header__logo-icon">◉</span>
-                <span class="header__logo-text">Eye Tracker <span class="header__logo-sup">CK²</span></span>
+
+            <a
+                href="#"
+                class="header__logo"
+                aria-label="Eye Tracker CK² - Página inicial"
+            >
+
+                <span
+                    class="header__logo-icon"
+                    aria-hidden="true"
+                >
+                    ◉
+                </span>
+
+                <span class="header__logo-text">
+                    Eye Tracker
+                    <span class="header__logo-sup">
+                        CK²
+                    </span>
+                </span>
+
             </a>
 
-            <button class="header__toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menu de navegação">
+
+            <!-- MENU MOBILE -->
+
+            <button
+                class="header__toggle"
+                id="navToggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="mainNav"
+                aria-label="Abrir menu de navegação"
+            >
+
                 <span class="header__toggle-bar"></span>
                 <span class="header__toggle-bar"></span>
                 <span class="header__toggle-bar"></span>
+
             </button>
 
-            <nav class="header__nav" id="mainNav" role="navigation" aria-label="Navegação principal">
+
+            <!-- NAVEGAÇÃO -->
+
+            <nav
+                class="header__nav"
+                id="mainNav"
+                role="navigation"
+                aria-label="Navegação principal"
+            >
+
                 <ul class="header__nav-list">
-                    <li><a href="#projeto" class="header__nav-link">Projeto</a></li>
-                    <li><a href="#funcionamento" class="header__nav-link">Como funciona</a></li>
-                    <li><a href="#tecnologia" class="header__nav-link">Tecnologia</a></li>
-                    <li><a href="#resultados" class="header__nav-link">Resultados</a></li>
-                    <li><a href="#equipe" class="header__nav-link">Equipe</a></li>
-                    <li><a href="#referencias" class="header__nav-link">Referências</a></li>
+
+                    <li>
+                        <a
+                            href="#projeto"
+                            class="header__nav-link"
+                        >
+                            Projeto
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="#funcionamento"
+                            class="header__nav-link"
+                        >
+                            Como funciona
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="#tecnologia"
+                            class="header__nav-link"
+                        >
+                            Tecnologia
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="#resultados"
+                            class="header__nav-link"
+                        >
+                            Resultados
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="#equipe"
+                            class="header__nav-link"
+                        >
+                            Equipe
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="#referencias"
+                            class="header__nav-link"
+                        >
+                            Referências
+                        </a>
+                    </li>
+
                 </ul>
+
+
                 <div class="header__nav-actions">
-                    <button class="header__theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro">
-                        <span class="header__theme-icon">☀️</span>
+
+                    <button
+                        class="header__theme-toggle"
+                        id="themeToggle"
+                        type="button"
+                        aria-label="Alternar tema claro/escuro"
+                    >
+
+                        <span
+                            class="header__theme-icon"
+                            aria-hidden="true"
+                        >
+                            ☀️
+                        </span>
+
                     </button>
-                    <a href="#acompanhar" class="btn btn--primary btn--small">Acompanhar projeto</a>
+
+
+                    <a
+                        href="#acompanhar"
+                        class="btn btn--primary btn--small"
+                    >
+                        Acompanhar projeto
+                    </a>
+
                 </div>
+
             </nav>
+
         </div>
+
     </header>
 
-    <!-- ===== MAIN ===== -->
-    <main id="main" role="main">
 
-        <!-- ===== HERO ===== -->
-        <section class="hero" aria-labelledby="hero-title">
-            <div class="hero__bg" aria-hidden="true">
-                <canvas id="heroCanvas" class="hero__canvas"></canvas>
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main
+        id="main"
+        role="main"
+    >
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section
+            class="hero"
+            aria-labelledby="hero-title"
+        >
+
+            <div
+                class="hero__bg"
+                aria-hidden="true"
+            >
+
+                <canvas
+                    id="heroCanvas"
+                    class="hero__canvas"
+                ></canvas>
+
             </div>
+
+
             <div class="container hero__inner">
+
                 <div class="hero__badge">
-                    <span class="hero__badge-text">35ª META · CEFET-MG</span>
+
+                    <span class="hero__badge-text">
+                        35ª META · CEFET-MG
+                    </span>
+
                 </div>
-                <h1 id="hero-title" class="hero__title">
-                    <span class="hero__title-main">Eye Tracker <span class="hero__title-sup">CK²</span></span>
-                    <span class="hero__title-sub">Controle o computador com os olhos.</span>
+
+
+                <h1
+                    id="hero-title"
+                    class="hero__title"
+                >
+
+                    <span class="hero__title-main">
+
+                        Eye Tracker
+
+                        <span class="hero__title-sup">
+                            CK²
+                        </span>
+
+                    </span>
+
+
+                    <span class="hero__title-sub">
+                        Controle o computador com os olhos.
+                    </span>
+
                 </h1>
+
+
                 <p class="hero__desc">
-                    Uma tecnologia assistiva em desenvolvimento que combina webcam, visão computacional,
-                    inteligência artificial e reconhecimento de gestos faciais para transformar movimentos
-                    oculares em comandos no computador.
+
+                    Uma tecnologia assistiva em desenvolvimento que combina
+                    webcam, visão computacional, inteligência artificial e
+                    reconhecimento de gestos faciais para transformar
+                    movimentos oculares em comandos no computador.
+
                 </p>
+
+
                 <div class="hero__actions">
-                    <a href="#projeto" class="btn btn--primary">Conhecer o projeto</a>
-                    <a href="#funcionamento" class="btn btn--secondary">Ver como funciona</a>
+
+                    <a
+                        href="#projeto"
+                        class="btn btn--primary"
+                    >
+                        Conhecer o projeto
+                    </a>
+
+                    <a
+                        href="#funcionamento"
+                        class="btn btn--secondary"
+                    >
+                        Ver como funciona
+                    </a>
+
                 </div>
-                <div class="hero__indicators" aria-hidden="true">
-                    <span class="hero__indicator hero__indicator--eye">◉</span>
+
+
+                <div
+                    class="hero__indicators"
+                    aria-hidden="true"
+                >
+
+                    <span class="hero__indicator hero__indicator--eye">
+                        ◉
+                    </span>
+
                     <span class="hero__indicator hero__indicator--line"></span>
-                    <span class="hero__indicator hero__indicator--cursor">↘</span>
+
+                    <span class="hero__indicator hero__indicator--cursor">
+                        ↘
+                    </span>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- ===== O PROJETO ===== -->
-        <section id="projeto" class="section projeto" aria-labelledby="projeto-title">
+
+        <!-- =====================================================
+             PROJETO
+        ====================================================== -->
+
+        <section
+            id="projeto"
+            class="section projeto"
+            aria-labelledby="projeto-title"
+        >
+
             <div class="container">
+
                 <div class="section__header">
-                    <span class="section__label">O projeto</span>
-                    <h2 id="projeto-title" class="section__title">Tecnologia assistiva desenvolvida para um problema real.</h2>
+
+                    <span class="section__label">
+                        O projeto
+                    </span>
+
+                    <h2
+                        id="projeto-title"
+                        class="section__title"
+                    >
+                        Tecnologia assistiva desenvolvida para um problema real.
+                    </h2>
+
                     <p class="section__sub">
-                        O Eye Tracker CK² investiga uma alternativa de baixo custo para o controle de computadores
-                        por meio de rastreamento ocular e gestos faciais.
+
+                        O Eye Tracker CK² investiga uma alternativa de baixo
+                        custo para o controle de computadores por meio de
+                        rastreamento ocular e gestos faciais.
+
                     </p>
+
                 </div>
+
 
                 <div class="projeto__grid">
+
                     <article class="projeto__card">
-                        <div class="projeto__card-icon" aria-hidden="true">⚠</div>
-                        <h3 class="projeto__card-title">O problema</h3>
+
+                        <div
+                            class="projeto__card-icon"
+                            aria-hidden="true"
+                        >
+                            ⚠
+                        </div>
+
+                        <h3 class="projeto__card-title">
+                            O problema
+                        </h3>
+
                         <p class="projeto__card-text">
-                            <span class="projeto__card-highlight">Eye trackers comerciais</span> podem apresentar
-                            custo elevado, dificultando o acesso a tecnologias assistivas para pessoas com
-                            limitações motoras.
+
+                            <span class="projeto__card-highlight">
+                                Eye trackers comerciais
+                            </span>
+
+                            podem apresentar custo elevado, dificultando
+                            o acesso a tecnologias assistivas para pessoas
+                            com limitações motoras.
+
                         </p>
+
                     </article>
+
+
                     <article class="projeto__card projeto__card--highlight">
-                        <div class="projeto__card-icon" aria-hidden="true">◉</div>
-                        <h3 class="projeto__card-title">A proposta</h3>
+
+                        <div
+                            class="projeto__card-icon"
+                            aria-hidden="true"
+                        >
+                            ◉
+                        </div>
+
+                        <h3 class="projeto__card-title">
+                            A proposta
+                        </h3>
+
                         <p class="projeto__card-text">
-                            Desenvolver uma alternativa utilizando <span class="projeto__card-highlight">webcam comum</span>,
-                            visão computacional e gestos faciais, tornando a interação mais acessível.
+
+                            Desenvolver uma alternativa utilizando
+
+                            <span class="projeto__card-highlight">
+                                webcam comum
+                            </span>
+
+                            , visão computacional e gestos faciais,
+                            tornando a interação mais acessível.
+
                         </p>
+
                     </article>
+
+
                     <article class="projeto__card">
-                        <div class="projeto__card-icon" aria-hidden="true">🎯</div>
-                        <h3 class="projeto__card-title">O objetivo</h3>
+
+                        <div
+                            class="projeto__card-icon"
+                            aria-hidden="true"
+                        >
+                            🎯
+                        </div>
+
+                        <h3 class="projeto__card-title">
+                            O objetivo
+                        </h3>
+
                         <p class="projeto__card-text">
-                            Ampliar possibilidades de interação com computadores para pessoas com
-                            <span class="projeto__card-highlight">limitações motoras</span>, por meio de uma
-                            solução em desenvolvimento.
+
+                            Ampliar possibilidades de interação com
+                            computadores para pessoas com
+
+                            <span class="projeto__card-highlight">
+                                limitações motoras
+                            </span>
+
+                            , por meio de uma solução em desenvolvimento.
+
                         </p>
+
                     </article>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- ===== COMO FUNCIONA ===== -->
-        <section id="funcionamento" class="section funcionamento" aria-labelledby="funcionamento-title">
+
+        <!-- =====================================================
+             FUNCIONAMENTO
+        ====================================================== -->
+
+        <section
+            id="funcionamento"
+            class="section funcionamento"
+            aria-labelledby="funcionamento-title"
+        >
+
             <div class="container">
+
                 <div class="section__header">
-                    <span class="section__label">Funcionamento</span>
-                    <h2 id="funcionamento-title" class="section__title">Como o Eye Tracker CK² funciona?</h2>
+
+                    <span class="section__label">
+                        Funcionamento
+                    </span>
+
+                    <h2
+                        id="funcionamento-title"
+                        class="section__title"
+                    >
+                        Como o Eye Tracker CK² funciona?
+                    </h2>
+
                     <p class="section__sub">
-                        O fluxo de processamento transforma imagens da webcam em comandos de controle do computador.
+
+                        O fluxo de processamento transforma imagens da
+                        webcam em comandos de controle do computador.
+
                     </p>
+
                 </div>
 
-                <div class="funcionamento__flow" role="list">
-                    <div class="funcionamento__step" role="listitem">
-                        <span class="funcionamento__step-num" aria-hidden="true">1</span>
-                        <div class="funcionamento__step-content">
-                            <span class="funcionamento__step-icon" aria-hidden="true">📷</span>
-                            <span class="funcionamento__step-label">Webcam</span>
-                            <span class="funcionamento__step-desc">Captura da imagem em tempo real</span>
-                        </div>
-                    </div>
-                    <div class="funcionamento__arrow" aria-hidden="true">↓</div>
 
-                    <div class="funcionamento__step" role="listitem">
-                        <span class="funcionamento__step-num" aria-hidden="true">2</span>
-                        <div class="funcionamento__step-content">
-                            <span class="funcionamento__step-icon" aria-hidden="true">🖼</span>
-                            <span class="funcionamento__step-label">Captura da imagem</span>
-                            <span class="funcionamento__step-desc">Quadros da webcam são lidos e processados</span>
-                        </div>
-                    </div>
-                    <div class="funcionamento__arrow" aria-hidden="true">↓</div>
+                <div
+                    class="funcionamento__flow"
+                    role="list"
+                >
 
-                    <div class="funcionamento__step" role="listitem">
-                        <span class="funcionamento__step-num" aria-hidden="true">3</span>
-                        <div class="funcionamento__step-content">
-                            <span class="funcionamento__step-icon" aria-hidden="true">👤</span>
-                            <span class="funcionamento__step-label">Detecção facial</span>
-                            <span class="funcionamento__step-desc">Identificação do rosto na imagem</span>
-                        </div>
-                    </div>
-                    <div class="funcionamento__arrow" aria-hidden="true">↓</div>
+                    <div
+                        class="funcionamento__step"
+                        role="listitem"
+                    >
 
-                    <div class="funcionamento__step" role="listitem">
-                        <span class="funcionamento__step-num" aria-hidden="true">4</span>
-                        <div class="funcionamento__step-content">
-                            <span class="funcionamento__step-icon" aria-hidden="true">👁</span>
-                            <span class="funcionamento__step-label">Rastreamento dos olhos</span>
-                            <span class="funcionamento__step-desc">Pontos de referência oculares são localizados</span>
-                        </div>
-                    </div>
-                    <div class="funcionamento__arrow" aria-hidden="true">↓</div>
+                        <span class="funcionamento__step-num">
+                            1
+                        </span>
 
-                    <div class="funcionamento__step" role="listitem">
-                        <span class="funcionamento__step-num" aria-hidden="true">5</span>
                         <div class="funcionamento__step-content">
-                            <span class="funcionamento__step-icon" aria-hidden="true">😊</span>
-                            <span class="funcionamento__step-label">Reconhecimento de gestos</span>
-                            <span class="funcionamento__step-desc">Piscadas, sobrancelhas, boca e expressões</span>
-                        </div>
-                    </div>
-                    <div class="funcionamento__arrow" aria-hidden="true">↓</div>
 
-                    <div class="funcionamento__step" role="listitem">
-                        <span class="funcionamento__step-num" aria-hidden="true">6</span>
-                        <div class="funcionamento__step-content">
-                            <span class="funcionamento__step-icon" aria-hidden="true">⚙</span>
-                            <span class="funcionamento__step-label">Processamento</span>
-                            <span class="funcionamento__step-desc">Cálculo da posição do olhar e intenção</span>
-                        </div>
-                    </div>
-                    <div class="funcionamento__arrow" aria-hidden="true">↓</div>
+                            <span
+                                class="funcionamento__step-icon"
+                                aria-hidden="true"
+                            >
+                                📷
+                            </span>
 
-                    <div class="funcionamento__step" role="listitem">
-                        <span class="funcionamento__step-num" aria-hidden="true">7</span>
-                        <div class="funcionamento__step-content">
-                            <span class="funcionamento__step-icon" aria-hidden="true">🖱</span>
-                            <span class="funcionamento__step-label">Movimento do cursor</span>
-                            <span class="funcionamento__step-desc">Cursor é movido conforme o olhar</span>
-                        </div>
-                    </div>
-                    <div class="funcionamento__arrow" aria-hidden="true">↓</div>
+                            <span class="funcionamento__step-label">
+                                Webcam
+                            </span>
 
-                    <div class="funcionamento__step funcionamento__step--final" role="listitem">
-                        <span class="funcionamento__step-num" aria-hidden="true">8</span>
-                        <div class="funcionamento__step-content">
-                            <span class="funcionamento__step-icon" aria-hidden="true">✅</span>
-                            <span class="funcionamento__step-label">Comando</span>
-                            <span class="funcionamento__step-desc">Ação executada no computador</span>
+                            <span class="funcionamento__step-desc">
+                                Captura da imagem em tempo real
+                            </span>
+
                         </div>
+
                     </div>
+
+
+                    <div
+                        class="funcionamento__arrow"
+                        aria-hidden="true"
+                    >
+                        ↓
+                    </div>
+
+
+                    <div
+                        class="funcionamento__step"
+                        role="listitem"
+                    >
+
+                        <span class="funcionamento__step-num">
+                            2
+                        </span>
+
+                        <div class="funcionamento__step-content">
+
+                            <span
+                                class="funcionamento__step-icon"
+                                aria-hidden="true"
+                            >
+                                🖼
+                            </span>
+
+                            <span class="funcionamento__step-label">
+                                Captura da imagem
+                            </span>
+
+                            <span class="funcionamento__step-desc">
+                                Quadros da webcam são lidos e processados
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="funcionamento__arrow"
+                        aria-hidden="true"
+                    >
+                        ↓
+                    </div>
+
+
+                    <div
+                        class="funcionamento__step"
+                        role="listitem"
+                    >
+
+                        <span class="funcionamento__step-num">
+                            3
+                        </span>
+
+                        <div class="funcionamento__step-content">
+
+                            <span
+                                class="funcionamento__step-icon"
+                                aria-hidden="true"
+                            >
+                                👤
+                            </span>
+
+                            <span class="funcionamento__step-label">
+                                Detecção facial
+                            </span>
+
+                            <span class="funcionamento__step-desc">
+                                Identificação do rosto na imagem
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="funcionamento__arrow"
+                        aria-hidden="true"
+                    >
+                        ↓
+                    </div>
+
+
+                    <div
+                        class="funcionamento__step"
+                        role="listitem"
+                    >
+
+                        <span class="funcionamento__step-num">
+                            4
+                        </span>
+
+                        <div class="funcionamento__step-content">
+
+                            <span
+                                class="funcionamento__step-icon"
+                                aria-hidden="true"
+                            >
+                                👁
+                            </span>
+
+                            <span class="funcionamento__step-label">
+                                Rastreamento dos olhos
+                            </span>
+
+                            <span class="funcionamento__step-desc">
+                                Pontos de referência oculares são localizados
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="funcionamento__arrow"
+                        aria-hidden="true"
+                    >
+                        ↓
+                    </div>
+
+
+                    <div
+                        class="funcionamento__step"
+                        role="listitem"
+                    >
+
+                        <span class="funcionamento__step-num">
+                            5
+                        </span>
+
+                        <div class="funcionamento__step-content">
+
+                            <span
+                                class="funcionamento__step-icon"
+                                aria-hidden="true"
+                            >
+                                😊
+                            </span>
+
+                            <span class="funcionamento__step-label">
+                                Reconhecimento de gestos
+                            </span>
+
+                            <span class="funcionamento__step-desc">
+                                Piscadas, sobrancelhas, boca e expressões
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="funcionamento__arrow"
+                        aria-hidden="true"
+                    >
+                        ↓
+                    </div>
+
+
+                    <div
+                        class="funcionamento__step"
+                        role="listitem"
+                    >
+
+                        <span class="funcionamento__step-num">
+                            6
+                        </span>
+
+                        <div class="funcionamento__step-content">
+
+                            <span
+                                class="funcionamento__step-icon"
+                                aria-hidden="true"
+                            >
+                                ⚙
+                            </span>
+
+                            <span class="funcionamento__step-label">
+                                Processamento
+                            </span>
+
+                            <span class="funcionamento__step-desc">
+                                Cálculo da posição do olhar e intenção
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="funcionamento__arrow"
+                        aria-hidden="true"
+                    >
+                        ↓
+                    </div>
+
+
+                    <div
+                        class="funcionamento__step"
+                        role="listitem"
+                    >
+
+                        <span class="funcionamento__step-num">
+                            7
+                        </span>
+
+                        <div class="funcionamento__step-content">
+
+                            <span
+                                class="funcionamento__step-icon"
+                                aria-hidden="true"
+                            >
+                                🖱
+                            </span>
+
+                            <span class="funcionamento__step-label">
+                                Movimento do cursor
+                            </span>
+
+                            <span class="funcionamento__step-desc">
+                                Cursor é movido conforme o olhar
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="funcionamento__arrow"
+                        aria-hidden="true"
+                    >
+                        ↓
+                    </div>
+
+
+                    <div
+                        class="funcionamento__step funcionamento__step--final"
+                        role="listitem"
+                    >
+
+                        <span class="funcionamento__step-num">
+                            8
+                        </span>
+
+                        <div class="funcionamento__step-content">
+
+                            <span
+                                class="funcionamento__step-icon"
+                                aria-hidden="true"
+                            >
+                                ✅
+                            </span>
+
+                            <span class="funcionamento__step-label">
+                                Comando
+                            </span>
+
+                            <span class="funcionamento__step-desc">
+                                Ação executada no computador
+                            </span>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- ===== TECNOLOGIA ===== -->
-        <section id="tecnologia" class="section tecnologia" aria-labelledby="tecnologia-title">
+
+        <!-- =====================================================
+             TECNOLOGIA
+        ====================================================== -->
+
+        <section
+            id="tecnologia"
+            class="section tecnologia"
+            aria-labelledby="tecnologia-title"
+        >
+
             <div class="container">
+
                 <div class="section__header">
-                    <span class="section__label">Tecnologias</span>
-                    <h2 id="tecnologia-title" class="section__title">Ferramentas e bibliotecas utilizadas</h2>
+
+                    <span class="section__label">
+                        Tecnologias
+                    </span>
+
+                    <h2
+                        id="tecnologia-title"
+                        class="section__title"
+                    >
+                        Ferramentas e bibliotecas utilizadas
+                    </h2>
+
                     <p class="section__sub">
-                        O projeto é construído sobre um conjunto de tecnologias open source para visão computacional,
+
+                        O projeto é construído sobre um conjunto de
+                        tecnologias open source para visão computacional,
                         processamento de imagem e automação.
+
                     </p>
+
                 </div>
 
-                <div class="tecnologia__grid" id="tecnologiaGrid">
-                    <!-- Renderizado via JS a partir do JSON -->
-                </div>
+
+                <div
+                    class="tecnologia__grid"
+                    id="tecnologiaGrid"
+                ></div>
+
             </div>
+
         </section>
 
-        <!-- ===== FUNCIONALIDADES ===== -->
-        <section id="funcionalidades" class="section funcionalidades" aria-labelledby="funcionalidades-title">
+
+        <!-- =====================================================
+             FUNCIONALIDADES
+        ====================================================== -->
+
+        <section
+            id="funcionalidades"
+            class="section funcionalidades"
+            aria-labelledby="funcionalidades-title"
+        >
+
             <div class="container">
+
                 <div class="section__header">
-                    <span class="section__label">Funcionalidades</span>
-                    <h2 id="funcionalidades-title" class="section__title">O que já funciona e o que está em desenvolvimento</h2>
+
+                    <span class="section__label">
+                        Funcionalidades
+                    </span>
+
+                    <h2
+                        id="funcionalidades-title"
+                        class="section__title"
+                    >
+                        O que já funciona e o que está em desenvolvimento
+                    </h2>
+
                     <p class="section__sub">
-                        O Eye Tracker CK² está em evolução. Abaixo, o estado atual de cada funcionalidade.
+
+                        O Eye Tracker CK² está em evolução. Abaixo,
+                        o estado atual de cada funcionalidade.
+
                     </p>
+
                 </div>
 
-                <div class="funcionalidades__groups" id="funcionalidadesGroups">
-                    <!-- Renderizado via JS a partir do JSON -->
-                </div>
+
+                <div
+                    class="funcionalidades__groups"
+                    id="funcionalidadesGroups"
+                ></div>
+
             </div>
+
         </section>
 
-        <!-- ===== GESTOS ===== -->
-        <section id="gestos" class="section gestos" aria-labelledby="gestos-title">
+
+        <!-- =====================================================
+             GESTOS
+        ====================================================== -->
+
+        <section
+            id="gestos"
+            class="section gestos"
+            aria-labelledby="gestos-title"
+        >
+
             <div class="container">
+
                 <div class="section__header">
-                    <span class="section__label">Gestos</span>
-                    <h2 id="gestos-title" class="section__title">Reconhecimento de gestos faciais</h2>
+
+                    <span class="section__label">
+                        Gestos
+                    </span>
+
+                    <h2
+                        id="gestos-title"
+                        class="section__title"
+                    >
+                        Reconhecimento de gestos faciais
+                    </h2>
+
                     <p class="section__sub">
-                        Cada gesto é mapeado para uma ação no computador. O status indica o estágio de desenvolvimento.
+
+                        Cada gesto é mapeado para uma ação no computador.
+                        O status indica o estágio de desenvolvimento.
+
                     </p>
+
                 </div>
+
 
                 <div class="gestos__table-wrapper">
-                    <table class="gestos__table" aria-label="Tabela de gestos faciais e ações correspondentes">
+
+                    <table
+                        class="gestos__table"
+                        aria-label="Tabela de gestos faciais e ações correspondentes"
+                    >
+
                         <thead>
+
                             <tr>
-                                <th scope="col">Gesto</th>
-                                <th scope="col">Ação</th>
-                                <th scope="col">Status</th>
+
+                                <th scope="col">
+                                    Gesto
+                                </th>
+
+                                <th scope="col">
+                                    Ação
+                                </th>
+
+                                <th scope="col">
+                                    Status
+                                </th>
+
                             </tr>
+
                         </thead>
-                        <tbody id="gestosTableBody">
-                            <!-- Renderizado via JS a partir do JSON -->
-                        </tbody>
+
+
+                        <tbody id="gestosTableBody"></tbody>
+
                     </table>
+
                 </div>
 
-                <!-- Versão mobile em cards (hidden on desktop) -->
-                <div class="gestos__cards" id="gestosCards" aria-hidden="true">
-                    <!-- Renderizado via JS a partir do JSON -->
-                </div>
+
+                <div
+                    class="gestos__cards"
+                    id="gestosCards"
+                    aria-hidden="true"
+                ></div>
+
             </div>
+
         </section>
 
-        <!-- ===== RESULTADOS ===== -->
-        <section id="resultados" class="section resultados" aria-labelledby="resultados-title">
+
+        <!-- =====================================================
+             RESULTADOS
+        ====================================================== -->
+
+        <section
+            id="resultados"
+            class="section resultados"
+            aria-labelledby="resultados-title"
+        >
+
             <div class="container">
+
                 <div class="section__header">
-                    <span class="section__label">Resultados</span>
-                    <h2 id="resultados-title" class="section__title">Estado atual e métricas preliminares</h2>
+
+                    <span class="section__label">
+                        Resultados
+                    </span>
+
+                    <h2
+                        id="resultados-title"
+                        class="section__title"
+                    >
+                        Estado atual e métricas preliminares
+                    </h2>
+
                     <p class="section__sub">
-                        Dados coletados durante os testes iniciais. As métricas em análise ainda estão sendo validadas.
+
+                        Dados coletados durante os testes iniciais.
+                        As métricas em análise ainda estão sendo validadas.
+
                     </p>
+
                 </div>
+
 
                 <div class="resultados__grid">
+
                     <div class="resultados__card">
-                        <span class="resultados__card-number">7</span>
-                        <span class="resultados__card-label">Pessoas testaram</span>
-                        <span class="resultados__card-note">Testes iniciais com usuários</span>
+
+                        <span class="resultados__card-number">
+                            7
+                        </span>
+
+                        <span class="resultados__card-label">
+                            Pessoas testaram
+                        </span>
+
+                        <span class="resultados__card-note">
+                            Testes iniciais com usuários
+                        </span>
+
                     </div>
+
+
                     <div class="resultados__card">
-                        <span class="resultados__card-number">+50</span>
-                        <span class="resultados__card-label">Horas de testes</span>
-                        <span class="resultados__card-note">Acumuladas em desenvolvimento</span>
+
+                        <span class="resultados__card-number">
+                            +50
+                        </span>
+
+                        <span class="resultados__card-label">
+                            Horas de testes
+                        </span>
+
+                        <span class="resultados__card-note">
+                            Acumuladas em desenvolvimento
+                        </span>
+
                     </div>
+
+
                     <div class="resultados__card resultados__card--pending">
-                        <span class="resultados__card-number">—</span>
-                        <span class="resultados__card-label">Precisão</span>
-                        <span class="resultados__card-note">Em análise</span>
+
+                        <span class="resultados__card-number">
+                            —
+                        </span>
+
+                        <span class="resultados__card-label">
+                            Precisão
+                        </span>
+
+                        <span class="resultados__card-note">
+                            Em análise
+                        </span>
+
                     </div>
+
+
                     <div class="resultados__card resultados__card--pending">
-                        <span class="resultados__card-number">—</span>
-                        <span class="resultados__card-label">MAE / RMSE / R²</span>
-                        <span class="resultados__card-note">Em análise</span>
+
+                        <span class="resultados__card-number">
+                            —
+                        </span>
+
+                        <span class="resultados__card-label">
+                            MAE / RMSE / R²
+                        </span>
+
+                        <span class="resultados__card-note">
+                            Em análise
+                        </span>
+
                     </div>
+
+
                     <div class="resultados__card resultados__card--pending">
-                        <span class="resultados__card-number">—</span>
-                        <span class="resultados__card-label">Falsos positivos</span>
-                        <span class="resultados__card-note">Em desenvolvimento</span>
+
+                        <span class="resultados__card-number">
+                            —
+                        </span>
+
+                        <span class="resultados__card-label">
+                            Falsos positivos
+                        </span>
+
+                        <span class="resultados__card-note">
+                            Em desenvolvimento
+                        </span>
+
                     </div>
+
+
                     <div class="resultados__card">
-                        <span class="resultados__card-number">0.1.0</span>
-                        <span class="resultados__card-label">Versão atual</span>
-                        <span class="resultados__card-note">Em desenvolvimento</span>
+
+                        <span class="resultados__card-number">
+                            0.1.0
+                        </span>
+
+                        <span class="resultados__card-label">
+                            Versão atual
+                        </span>
+
+                        <span class="resultados__card-note">
+                            Em desenvolvimento
+                        </span>
+
                     </div>
+
                 </div>
+
 
                 <div class="resultados__note">
+
                     <p>
-                        <strong>Dados preliminares de desenvolvimento.</strong>
-                        As métricas de precisão, MAE, RMSE, R² e falsos positivos estão em fase de coleta e análise.
-                        Os números apresentados são referentes aos testes iniciais realizados pela equipe.
+
+                        <strong>
+                            Dados preliminares de desenvolvimento.
+                        </strong>
+
+                        As métricas de precisão, MAE, RMSE, R² e
+                        falsos positivos estão em fase de coleta
+                        e análise. Os números apresentados são
+                        referentes aos testes iniciais realizados
+                        pela equipe.
+
                     </p>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- ===== ROADMAP ===== -->
-        <section id="roadmap" class="section roadmap" aria-labelledby="roadmap-title">
+
+        <!-- =====================================================
+             ROADMAP
+        ====================================================== -->
+
+        <section
+            id="roadmap"
+            class="section roadmap"
+            aria-labelledby="roadmap-title"
+        >
+
             <div class="container">
+
                 <div class="section__header">
-                    <span class="section__label">Roadmap</span>
-                    <h2 id="roadmap-title" class="section__title">Próximos passos do desenvolvimento</h2>
+
+                    <span class="section__label">
+                        Roadmap
+                    </span>
+
+                    <h2
+                        id="roadmap-title"
+                        class="section__title"
+                    >
+                        Próximos passos do desenvolvimento
+                    </h2>
+
                     <p class="section__sub">
-                        O projeto continua em evolução. As áreas abaixo estão sendo trabalhadas prioritariamente.
+
+                        O projeto continua em evolução. As áreas
+                        abaixo estão sendo trabalhadas prioritariamente.
+
                     </p>
+
                 </div>
 
-                <div class="roadmap__grid" id="roadmapGrid">
-                    <!-- Renderizado via JS a partir do JSON -->
-                </div>
+
+                <div
+                    class="roadmap__grid"
+                    id="roadmapGrid"
+                ></div>
+
             </div>
+
         </section>
 
-        <!-- ===== EQUIPE ===== -->
-        <section id="equipe" class="section equipe" aria-labelledby="equipe-title">
+
+        <!-- =====================================================
+             EQUIPE
+        ====================================================== -->
+
+        <section
+            id="equipe"
+            class="section equipe"
+            aria-labelledby="equipe-title"
+        >
+
             <div class="container">
+
                 <div class="section__header">
-                    <span class="section__label">Equipe</span>
-                    <h2 id="equipe-title" class="section__title">Quem está desenvolvendo o projeto</h2>
+
+                    <span class="section__label">
+                        Equipe
+                    </span>
+
+                    <h2
+                        id="equipe-title"
+                        class="section__title"
+                    >
+                        Quem está desenvolvendo o projeto
+                    </h2>
+
                     <p class="section__sub">
-                        O Eye Tracker CK² é desenvolvido por uma equipe de três estudantes do CEFET-MG,
-                        com orientação acadêmica.
+
+                        O Eye Tracker CK² é desenvolvido por uma equipe
+                        de três estudantes do CEFET-MG, com orientação
+                        acadêmica.
+
                     </p>
+
                 </div>
 
-                <div class="equipe__grid" id="equipeGrid">
-                    <!-- Renderizado via JS a partir do JSON -->
-                </div>
 
-                <div class="equipe__orientadores" id="orientadoresContainer">
-                    <!-- Renderizado via JS a partir do JSON -->
-                </div>
+                <div
+                    class="equipe__grid"
+                    id="equipeGrid"
+                ></div>
+
+
+                <div
+                    class="equipe__orientadores"
+                    id="orientadoresContainer"
+                ></div>
+
             </div>
+
         </section>
 
-        <!-- ===== CONTEXTO ACADÊMICO ===== -->
-        <section id="contexto" class="section contexto" aria-labelledby="contexto-title">
+
+        <!-- =====================================================
+             CONTEXTO ACADÊMICO
+        ====================================================== -->
+
+        <section
+            id="contexto"
+            class="section contexto"
+            aria-labelledby="contexto-title"
+        >
+
             <div class="container">
+
                 <div class="section__header">
-                    <span class="section__label">Contexto acadêmico</span>
-                    <h2 id="contexto-title" class="section__title">Desenvolvido no CEFET-MG</h2>
+
+                    <span class="section__label">
+                        Contexto acadêmico
+                    </span>
+
+                    <h2
+                        id="contexto-title"
+                        class="section__title"
+                    >
+                        Desenvolvido no CEFET-MG
+                    </h2>
+
                 </div>
+
 
                 <div class="contexto__content">
+
                     <div class="contexto__item">
-                        <span class="contexto__item-label">Instituição</span>
-                        <span class="contexto__item-value">CEFET-MG — Centro Federal de Educação Tecnológica de Minas Gerais</span>
+
+                        <span class="contexto__item-label">
+                            Instituição
+                        </span>
+
+                        <span class="contexto__item-value">
+                            CEFET-MG — Centro Federal de Educação
+                            Tecnológica de Minas Gerais
+                        </span>
+
                     </div>
+
+
                     <div class="contexto__item">
-                        <span class="contexto__item-label">Campus</span>
-                        <span class="contexto__item-value">Nova Gameleira, Belo Horizonte</span>
+
+                        <span class="contexto__item-label">
+                            Campus
+                        </span>
+
+                        <span class="contexto__item-value">
+                            Nova Gameleira, Belo Horizonte
+                        </span>
+
                     </div>
+
+
                     <div class="contexto__item">
-                        <span class="contexto__item-label">Curso</span>
-                        <span class="contexto__item-value">Ensino Médio Técnico em Equipamentos Biomédicos</span>
+
+                        <span class="contexto__item-label">
+                            Curso
+                        </span>
+
+                        <span class="contexto__item-value">
+                            Ensino Médio Técnico em Equipamentos Biomédicos
+                        </span>
+
                     </div>
+
+
                     <div class="contexto__item">
-                        <span class="contexto__item-label">Turma</span>
-                        <span class="contexto__item-value">EBM-3A, 2026</span>
+
+                        <span class="contexto__item-label">
+                            Turma
+                        </span>
+
+                        <span class="contexto__item-value">
+                            EBM-3A, 2026
+                        </span>
+
                     </div>
+
+
                     <div class="contexto__item">
-                        <span class="contexto__item-label">Departamento</span>
-                        <span class="contexto__item-value">Departamento de Eletrônica e Biomédica — NG</span>
+
+                        <span class="contexto__item-label">
+                            Departamento
+                        </span>
+
+                        <span class="contexto__item-value">
+                            Departamento de Eletrônica e Biomédica — NG
+                        </span>
+
                     </div>
+
+
                     <div class="contexto__item">
-                        <span class="contexto__item-label">Evento</span>
-                        <span class="contexto__item-value">35ª META</span>
+
+                        <span class="contexto__item-label">
+                            Evento
+                        </span>
+
+                        <span class="contexto__item-value">
+                            35ª META
+                        </span>
+
                     </div>
+
+
                     <div class="contexto__item">
-                        <span class="contexto__item-label">Status</span>
-                        <span class="contexto__item-value">Em desenvolvimento</span>
+
+                        <span class="contexto__item-label">
+                            Status
+                        </span>
+
+                        <span class="contexto__item-value">
+                            Em desenvolvimento
+                        </span>
+
                     </div>
+
+
                     <div class="contexto__item">
-                        <span class="contexto__item-label">Licença</span>
-                        <span class="contexto__item-value">MIT</span>
+
+                        <span class="contexto__item-label">
+                            Licença
+                        </span>
+
+                        <span class="contexto__item-value">
+                            MIT
+                        </span>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- ===== REFERÊNCIAS ===== -->
-        <section id="referencias" class="section referencias" aria-labelledby="referencias-title">
+
+        <!-- =====================================================
+             REFERÊNCIAS
+        ====================================================== -->
+
+        <section
+            id="referencias"
+            class="section referencias"
+            aria-labelledby="referencias-title"
+        >
+
             <div class="container">
+
                 <div class="section__header">
-                    <span class="section__label">Referências</span>
-                    <h2 id="referencias-title" class="section__title">Inspirações e trabalhos relacionados</h2>
+
+                    <span class="section__label">
+                        Referências
+                    </span>
+
+                    <h2
+                        id="referencias-title"
+                        class="section__title"
+                    >
+                        Inspirações e trabalhos relacionados
+                    </h2>
+
                     <p class="section__sub">
-                        Projetos e pesquisas que influenciaram o desenvolvimento do Eye Tracker CK².
+
+                        Projetos e pesquisas que influenciaram
+                        o desenvolvimento do Eye Tracker CK².
+
                     </p>
+
                 </div>
 
-                <div class="referencias__list" id="referenciasList">
-                    <!-- Renderizado via JS a partir do JSON -->
-                </div>
+
+                <div
+                    class="referencias__list"
+                    id="referenciasList"
+                ></div>
+
             </div>
+
         </section>
 
-        <!-- ===== ACOMPANHE / CONTATO ===== -->
-        <section id="acompanhar" class="section acompanhar" aria-labelledby="acompanhar-title">
+
+        <!-- =====================================================
+             ACOMPANHE
+        ====================================================== -->
+
+        <section
+            id="acompanhar"
+            class="section acompanhar"
+            aria-labelledby="acompanhar-title"
+        >
+
             <div class="container">
+
                 <div class="acompanhar__inner">
+
+
                     <div class="acompanhar__content">
-                        <span class="section__label">Acompanhe o projeto</span>
-                        <h2 id="acompanhar-title" class="section__title">Quer acompanhar o desenvolvimento?</h2>
+
+                        <span class="section__label">
+                            Acompanhe o projeto
+                        </span>
+
+                        <h2
+                            id="acompanhar-title"
+                            class="section__title"
+                        >
+                            Quer acompanhar o desenvolvimento?
+                        </h2>
+
                         <p class="acompanhar__desc">
-                            Entre em contato com a equipe ou acompanhe os próximos passos do Eye Tracker CK².
-                            O projeto será disponibilizado publicamente após conclusão e revisão da equipe.
+
+                            Entre em contato com a equipe ou acompanhe
+                            os próximos passos do Eye Tracker CK².
+                            O projeto será disponibilizado publicamente
+                            após conclusão e revisão da equipe.
+
                         </p>
+
+
                         <div class="acompanhar__status">
-                            <span class="acompanhar__status-badge">Em desenvolvimento</span>
-                            <span class="acompanhar__status-text">Versão 0.1.0 · Primeira versão pública em preparação</span>
+
+                            <span class="acompanhar__status-badge">
+                                Em desenvolvimento
+                            </span>
+
+                            <span class="acompanhar__status-text">
+                                Versão 0.1.0 · Primeira versão pública em preparação
+                            </span>
+
                         </div>
+
+
                         <div class="acompanhar__links">
-                            <a href="mailto:kelvinsaldanhaa@gmail.com" class="btn btn--primary">Enviar e-mail</a>
-                            <a href="https://github.com/kelvinsaldanha" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">GitHub (em breve)</a>
+
+                            <a
+                                href="mailto:kelvinsaldanhaa@gmail.com"
+                                class="btn btn--primary"
+                            >
+                                Enviar e-mail
+                            </a>
+
+                            <a
+                                href="https://github.com/kelvinsaldanha"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn btn--secondary"
+                            >
+                                GitHub
+                            </a>
+
                         </div>
+
                     </div>
+
+
                     <div class="acompanhar__info">
-                        <h3 class="acompanhar__info-title">Requisitos previstos</h3>
+
+                        <h3 class="acompanhar__info-title">
+                            Requisitos previstos
+                        </h3>
+
+
                         <ul class="acompanhar__info-list">
-                            <li><span class="acompanhar__info-dot"></span> Windows 10 ou superior</li>
-                            <li><span class="acompanhar__info-dot"></span> Webcam 720p</li>
-                            <li><span class="acompanhar__info-dot"></span> 8 GB de RAM recomendados</li>
-                            <li><span class="acompanhar__info-dot"></span> Intel Core i3 8ª geração ou Ryzen 3</li>
-                            <li><span class="acompanhar__info-dot"></span> Licença MIT</li>
+
+                            <li>
+                                <span class="acompanhar__info-dot"></span>
+                                Windows 10 ou superior
+                            </li>
+
+                            <li>
+                                <span class="acompanhar__info-dot"></span>
+                                Webcam 720p
+                            </li>
+
+                            <li>
+                                <span class="acompanhar__info-dot"></span>
+                                8 GB de RAM recomendados
+                            </li>
+
+                            <li>
+                                <span class="acompanhar__info-dot"></span>
+                                Intel Core i3 8ª geração ou Ryzen 3
+                            </li>
+
+                            <li>
+                                <span class="acompanhar__info-dot"></span>
+                                Licença MIT
+                            </li>
+
                         </ul>
+
+
                         <p class="acompanhar__info-note">
-                            <strong>Download ainda não disponível.</strong> A primeira versão pública está em preparação.
+
+                            <strong>
+                                Download ainda não disponível.
+                            </strong>
+
+                            A primeira versão pública está em preparação.
+
                         </p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" role="contentinfo">
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer
+        class="footer"
+        role="contentinfo"
+    >
+
         <div class="container">
+
             <div class="footer__inner">
+
+
                 <div class="footer__brand">
-                    <span class="footer__brand-name">Eye Tracker <span class="footer__brand-sup">CK²</span></span>
-                    <span class="footer__brand-meta">35ª META · CEFET-MG · 2026</span>
-                    <span class="footer__brand-desc">Projeto acadêmico de tecnologia assistiva.</span>
+
+                    <span class="footer__brand-name">
+
+                        Eye Tracker
+
+                        <span class="footer__brand-sup">
+                            CK²
+                        </span>
+
+                    </span>
+
+
+                    <span class="footer__brand-meta">
+                        35ª META · CEFET-MG · 2026
+                    </span>
+
+
+                    <span class="footer__brand-desc">
+                        Projeto acadêmico de tecnologia assistiva.
+                    </span>
+
                 </div>
-                <nav class="footer__nav" aria-label="Navegação do rodapé">
-                    <a href="#equipe">Equipe</a>
-                    <a href="#referencias">Referências</a>
-                    <a href="#acompanhar">Contato</a>
+
+
+                <nav
+                    class="footer__nav"
+                    aria-label="Navegação do rodapé"
+                >
+
+                    <a href="#projeto">
+                        Projeto
+                    </a>
+
+                    <a href="#equipe">
+                        Equipe
+                    </a>
+
+                    <a href="#referencias">
+                        Referências
+                    </a>
+
+                    <a href="#acompanhar">
+                        Contato
+                    </a>
+
                 </nav>
+
+
                 <div class="footer__copy">
-                    <span>&copy; <span id="footerYear">2026</span> Eye Tracker CK². Todos os direitos reservados.</span>
+
+                    <span>
+                        &copy;
+                        <span id="footerYear">2026</span>
+                        Eye Tracker CK².
+                        Todos os direitos reservados.
+                    </span>
+
                 </div>
+
             </div>
+
         </div>
+
     </footer>
 
-    <script src="site-data.json" type="application/json" id="siteData"></script>
-    <script src="main.js"></script>
+
+    <!-- =========================================================
+         DADOS DO SITE
+         
+         IMPORTANTE:
+         O main.js atual procura #siteData e lê seu textContent.
+         Por isso o JSON precisa estar EMBUTIDO aqui.
+    ========================================================== -->
+
+    <script
+        type="application/json"
+        id="siteData"
+    >
+{
+    "tecnologias": [
+        {
+            "nome": "Python",
+            "icon": "🐍",
+            "descricao": "Linguagem principal"
+        },
+        {
+            "nome": "OpenCV",
+            "icon": "📷",
+            "descricao": "Processamento de imagem"
+        },
+        {
+            "nome": "MediaPipe",
+            "icon": "👤",
+            "descricao": "Detecção facial e pontos"
+        },
+        {
+            "nome": "NumPy",
+            "icon": "🔢",
+            "descricao": "Cálculos numéricos"
+        },
+        {
+            "nome": "PyAutoGUI",
+            "icon": "🖱",
+            "descricao": "Controle de mouse e teclado"
+        },
+        {
+            "nome": "Tkinter",
+            "icon": "🖥",
+            "descricao": "Interface local"
+        }
+    ],
+
+    "funcionalidades": [
+        {
+            "titulo": "Funcionando",
+            "tipo": "funcionando",
+            "itens": [
+                "Movimentação do cursor",
+                "IA para previsão do cursor",
+                "Calibração",
+                "Duplo clique"
+            ]
+        },
+        {
+            "titulo": "Em refinamento / desenvolvimento",
+            "tipo": "refinamento",
+            "itens": [
+                "Clique esquerdo",
+                "Clique direito",
+                "Drag",
+                "Scroll",
+                "Menu overlay",
+                "Congelar cursor",
+                "Pausar rastreamento",
+                "Ctrl+C",
+                "Ctrl+V"
+            ]
+        },
+        {
+            "titulo": "Planejado",
+            "tipo": "planejado",
+            "itens": [
+                "Perfis de usuário",
+                "Estatísticas"
+            ]
+        }
+    ],
+
+    "gestos": [
+        {
+            "gesto": "Piscada do olho direito",
+            "acao": "Clique esquerdo",
+            "status": "Funciona"
+        },
+        {
+            "gesto": "Piscada do olho esquerdo",
+            "acao": "Clique direito",
+            "status": "Funciona"
+        },
+        {
+            "gesto": "Duas piscadas",
+            "acao": "Duplo clique",
+            "status": "Funciona"
+        },
+        {
+            "gesto": "Sobrancelhas",
+            "acao": "Drag",
+            "status": "Em desenvolvimento"
+        },
+        {
+            "gesto": "Boca aberta",
+            "acao": "Scroll",
+            "status": "Em desenvolvimento"
+        },
+        {
+            "gesto": "Sorriso",
+            "acao": "Menu",
+            "status": "Em desenvolvimento"
+        },
+        {
+            "gesto": "Sorriso + sobrancelhas",
+            "acao": "Congelar cursor",
+            "status": "Em desenvolvimento"
+        },
+        {
+            "gesto": "Dois olhos fechados",
+            "acao": "Pausar",
+            "status": "Em desenvolvimento"
+        },
+        {
+            "gesto": "Sobrancelhas + olho direito",
+            "acao": "Ctrl+C",
+            "status": "Em desenvolvimento"
+        },
+        {
+            "gesto": "Sobrancelhas + olho esquerdo",
+            "acao": "Ctrl+V",
+            "status": "Em desenvolvimento"
+        }
+    ],
+
+    "roadmap": [
+        {
+            "categoria": "Precisão",
+            "itens": [
+                "Melhorar rastreamento ocular",
+                "Reduzir falsos positivos",
+                "Melhorar detecção de piscadas"
+            ]
+        },
+        {
+            "categoria": "Interação",
+            "itens": [
+                "Corrigir Drag",
+                "Reestruturar Scroll",
+                "Aperfeiçoar gestos compostos"
+            ]
+        },
+        {
+            "categoria": "Personalização",
+            "itens": [
+                "Perfis individuais",
+                "Banco de calibração"
+            ]
+        },
+        {
+            "categoria": "Interface",
+            "itens": [
+                "Melhorar interface gráfica",
+                "Expandir menu overlay"
+            ]
+        },
+        {
+            "categoria": "Pesquisa",
+            "itens": [
+                "Coletar novas métricas",
+                "Realizar novos testes de usabilidade"
+            ]
+        },
+        {
+            "categoria": "Futuro",
+            "itens": [
+                "Integração com IoT",
+                "Teclado virtual adaptativo",
+                "Compatibilidade com outros SO"
+            ]
+        }
+    ],
+
+    "equipe": [
+        {
+            "nome": "Carlos Eduardo Ferreira da Silva",
+            "funcao": "Desenvolvedor",
+            "descricao": "Testes · Documentação",
+            "foto": "assets/images/team/carlos.jpg",
+            "links": [
+                {
+                    "label": "E-mail",
+                    "url": "mailto:carloseduardoferreira3108@gmail.com"
+                },
+                {
+                    "label": "LinkedIn",
+                    "url": "https://www.linkedin.com/in/carlos-eduardo-ferreira-9695983b9/"
+                }
+            ]
+        },
+        {
+            "nome": "Kauan Kerlon Costa de Jesus",
+            "funcao": "Desenvolvedor",
+            "descricao": "Pesquisa em IA · Testes · Documentação",
+            "foto": "assets/images/team/kauan.jpg",
+            "links": [
+                {
+                    "label": "E-mail",
+                    "url": "mailto:kauankerloncostadejesus@gmail.com"
+                },
+                {
+                    "label": "LinkedIn",
+                    "url": "https://www.linkedin.com/in/kauan-kerlon-costa-de-jesus-64b0963ba/"
+                }
+            ]
+        },
+        {
+            "nome": "Kelvin Saldanha Mateus",
+            "funcao": "Desenvolvedor de software e site web",
+            "descricao": "Pesquisa bibliográfica · IA · Arquitetura · Documentação · Testes · Integração",
+            "foto": "assets/images/team/kelvin.jpg",
+            "links": [
+                {
+                    "label": "E-mail",
+                    "url": "mailto:kelvinsaldanhaa@gmail.com"
+                },
+                {
+                    "label": "GitHub",
+                    "url": "https://github.com/kelvinsaldanha"
+                },
+                {
+                    "label": "LinkedIn",
+                    "url": "https://www.linkedin.com/in/kelvin-saldanha-mateus/"
+                }
+            ]
+        }
+    ],
+
+    "orientadores": [
+        {
+            "nome": "Prof. Alexandre Rodrigues Farias",
+            "papel": "Orientador",
+            "descricao": "Doutor em Engenharia Elétrica · Instrumentação biomédica · Eletrônica · Processamento de sinais",
+            "email": "alexandrefarias@cefetmg.br",
+            "linkedin": "https://www.linkedin.com/in/alexandre-farias-861930b5/"
+        },
+        {
+            "nome": "Prof.ª Tálita Saemi Payossim Sono",
+            "papel": "Coorientadora",
+            "descricao": "Doutora em Engenharia Mecânica (Bioengenharia) · Sistemas embarcados · Tecnologias assistivas",
+            "email": "talitasono@cefetmg.br",
+            "linkedin": ""
+        }
+    ],
+
+    "referencias": [
+        {
+            "titulo": "Shamilka Perera",
+            "descricao": "Projeto de interface controlada por olhos que influenciou a pesquisa e a direção técnica.",
+            "url": "https://shamilkaperera.github.io/?post=biometric-hci-real-time-ocular-controlled-interface"
+        },
+        {
+            "titulo": "Metin Amedi",
+            "descricao": "Projeto open source de controle de mouse pelos olhos utilizado como referência de estudo.",
+            "url": "https://github.com/metinmeki/Eye-Controll-Mouse/commits?author=metinmeki"
+        }
+    ]
+}
+    </script>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script
+        src="assets/js/main.js"
+        defer
+    ></script>
+
 </body>
 </html>
