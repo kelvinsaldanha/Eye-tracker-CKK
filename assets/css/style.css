@@ -1134,22 +1134,3 @@ img {
     outline: 3px solid var(--color-primary);
     outline-offset: 2px;
 }
-
-/* ============================================================
-   FOTO DAS REFERÊNCIAS
-   ============================================================ */
-.reference-photo {
-    width: 180px;
-    height: 180px;
-    margin: 0 auto var(--spacing-md);
-    overflow: hidden;
-    border-radius: var(--border-radius-lg);
-    background: var(--color-border);
-}
-
-.reference-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
