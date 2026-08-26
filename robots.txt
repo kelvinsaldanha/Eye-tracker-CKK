@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seu-usuario.github.io/eye-tracker-ck2/sitemap.xml
+Sitemap: https://kelvinsaldanha.github.io/eye-tracker-ckk/sitemap.xml
