@@ -247,10 +247,10 @@
     }
   ],
   "project": {
-    "name": "MouseOcular",
+    "name": "Mouse Ocular",
     "subtitle": "Eye Tracker CK²",
     "version": "0.1.2",
-    "stage": "Beta 2",
+    "stage": "CKK",
     "updated": "19 de outubro de 2026",
     "repository": "https://github.com/kelvinsaldanha/Eye-tracker-CKK",
     "siteUrl": "https://kelvinsaldanha.github.io/Eye-tracker-CKK/"
@@ -271,7 +271,7 @@
   "type": "mp4",
   "url": "assets/videos/demonstracao.mp4",
   "poster": "assets/images/video-poster.svg",
-  "title": "MouseOcular em funcionamento",
+  "title": "Mouse Ocular em funcionamento",
   "captionsUrl": ""
   },
   "history": [
@@ -292,7 +292,7 @@
     },
     {
       "date": "19 OUT",
-      "title": "MouseOcular Beta 2",
+      "title": "Mouse Ocular CKK",
       "text": "Hub de início, perfis pessoais, menu revisado e instalador Windows 0.1.2 com correção do MediaPipe."
     }
   ]
