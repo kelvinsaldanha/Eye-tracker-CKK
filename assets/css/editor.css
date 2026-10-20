@@ -1,0 +1,172 @@
+.editor-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-block:30px;
+  border-bottom:1px solid var(--line)
+}
+
+.editor-main {
+  max-width:850px;
+  padding-block:60px
+}
+
+.editor-main h1 {
+  font-size:3.4rem;
+  font-weight:500;
+  margin-bottom:26px
+}
+
+.editor-intro {
+  max-width:700px;
+  font-size:.94rem
+}
+
+.editor-notice {
+  padding:20px 24px;
+  border:1px solid var(--line);
+  border-left:3px solid var(--accent);
+  border-radius:5px;
+  margin:30px 0;
+  font-size:.82rem;
+  color:var(--muted)
+}
+
+fieldset {
+  border:1px solid var(--line);
+  padding:30px;
+  border-radius:8px;
+  margin:32px 0
+}
+
+legend {
+  padding:0 12px;
+  color:var(--accent);
+  font-size:.9rem
+}
+
+label {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  font-size:.82rem;
+  margin:0 0 24px
+}
+
+label:last-child {
+  margin-bottom:0
+}
+
+input,select {
+  background:var(--bg);
+  color:var(--ink);
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-radius:5px;
+  width:100%;
+  font-size:.84rem;
+  min-width:0
+}
+
+input[type=file] {
+  padding:18px;
+  border-style:dashed;
+  background:var(--soft)
+}
+
+input::file-selector-button {
+  background:var(--accent);
+  color:var(--accent-ink);
+  border:0;
+  border-radius:3px;
+  padding:8px 12px;
+  margin-right:12px;
+  cursor:pointer
+}
+
+label small {
+  color:var(--muted);
+  font-size:.72rem;
+  font-weight:400
+}
+
+.editor-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px
+}
+
+.or-divider {
+  font-size:.6rem;
+  color:var(--muted);
+  text-align:center;
+  letter-spacing:.12em;
+  margin:15px 0 25px
+}
+
+.editor-actions {
+  display:flex;
+  align-items:center;
+  gap:25px;
+  flex-wrap:wrap
+}
+
+.editor-feedback {
+  min-height:30px;
+  font-size:.85rem;
+  margin:20px 0
+}
+
+.editor-help {
+  border-top:1px solid var(--line);
+  padding-top:35px;
+  margin-top:40px
+}
+
+.editor-help h2 {
+  font-size:1.6rem
+}
+
+.editor-help ol {
+  padding-left:20px;
+  color:var(--muted);
+  font-size:.85rem
+}
+
+.editor-help li {
+  padding:8px
+}
+
+.editor-help p {
+  font-size:.8rem
+}
+
+@media(max-width:620px) {
+  .editor-main {
+    padding-block:40px
+  }
+
+  .editor-main h1 {
+    font-size:2.5rem
+  }
+
+  .editor-grid {
+    grid-template-columns:1fr;
+    gap:0
+  }
+
+  fieldset {
+    padding:23px 18px
+  }
+
+  .editor-header>.text-link {
+    font-size:.7rem
+  }
+
+  .editor-actions .button {
+    width:100%;
+    gap:18px;
+    font-size:.8rem
+  }
+
+}

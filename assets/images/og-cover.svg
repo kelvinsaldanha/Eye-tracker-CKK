@@ -1,10 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0b1120"/>
-  <circle cx="940" cy="160" r="220" fill="#2563eb" opacity=".18"/>
-  <rect x="90" y="90" width="1020" height="450" rx="36" fill="#111827" stroke="#1e293b"/>
-  <text x="150" y="235" fill="#f8fafc" font-family="Inter, Segoe UI, Arial" font-size="64" font-weight="800">Projeto META Mouse Ocular</text>
-  <text x="150" y="315" fill="#cbd5e1" font-family="Inter, Segoe UI, Arial" font-size="34">Controle o computador com olhos e gestos faciais.</text>
-  <path d="M150 410s58-86 170-86 170 86 170 86-58 86-170 86-170-86-170-86Z" fill="#fff"/>
-  <circle cx="320" cy="410" r="54" fill="#2563eb"/>
-  <circle cx="340" cy="390" r="15" fill="#fff"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#101713"/><text x="80" y="95" font-family="Arial,sans-serif" font-size="18" fill="#d1edaa" letter-spacing="4">MOUSEOCULAR · EYE TRACKER CK²</text><text x="80" y="265" font-family="Arial,sans-serif" font-size="78" fill="#f1f3e9">Seu olhar.</text><text x="80" y="360" font-family="Arial,sans-serif" font-size="78" fill="#d1edaa">Novas possibilidades.</text><text x="80" y="520" font-family="Arial,sans-serif" font-size="22" fill="#a8b5a9">Tecnologia assistiva · CEFET-MG · Beta 2</text><circle cx="1050" cy="125" r="40" fill="none" stroke="#d1edaa" stroke-width="2"/><circle cx="1050" cy="125" r="15" fill="#d1edaa"/></svg>

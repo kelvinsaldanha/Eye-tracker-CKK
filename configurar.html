@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Preparar publicação · MouseOcular</title>
+<link rel="icon" href="assets/icons/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/editor.css">
+<script src="assets/js/sha256.js" defer></script><script src="assets/js/editor.js" defer></script>
+</head>
+<body>
+<header class="editor-header container"><a class="brand" href="index.html"><span class="footer-eye" aria-hidden="true">◎</span><span>MouseOcular<small>PREPARAR PUBLICAÇÃO</small></span></a><a class="text-link" href="index.html">Voltar ao site ↗</a></header><main class="container editor-main"><span class="eyebrow">ARQUIVOS E MÍDIA DO PROJETO</span><h1>Do arquivo ao site.<br>Sem editar código.</h1>
+<p class="editor-intro">Escolha o instalador e o vídeo, ou informe links já hospedados. Este editor gera um ZIP do site atualizado no seu computador. Para publicar, extraia o ZIP e envie o conteúdo ao repositório do GitHub Pages.</p>
+<div class="editor-notice">As mudanças ficam no pacote baixado. Este formulário não altera automaticamente o site publicado nem envia seus arquivos a um servidor.</div>
+<form id="publishForm">
+<fieldset>
+<legend>01 / Instalador Windows</legend>
+<div class="editor-grid">
+<label>Versão<input id="version" required maxlength="40" value="0.1.2"></label><label>Data de lançamento<input id="releaseDate" required maxlength="40" value="19/10/2026"></label>
+</div>
+<label>Escolher arquivo .exe ou .zip<input id="installerFile" type="file" accept=".exe,.zip"><small>O arquivo será incluído em downloads/. O SHA-256 é calculado automaticamente. Um ZIP deve conter o instalador.</small></label><div class="or-divider">OU INFORME UM LINK</div>
+<label>URL do instalador .exe<input id="installerUrl" type="text" placeholder="https://github.com/…/releases/download/…/Setup.exe"><small>Para arquivos grandes, use um link de GitHub Releases.</small></label><div class="editor-grid">
+<label>Tamanho exibido<input id="size" placeholder="70,4 MB" maxlength="40"></label><label>Nome do arquivo<input id="filename" maxlength="120"></label>
+</div>
+<label>SHA-256 do instalador<input id="sha256" pattern="[a-fA-F0-9]{64}|" placeholder="64 caracteres hexadecimais"><small>Use o hash do arquivo exato vinculado. Ao trocar a URL, o hash anterior é removido.</small></label><label>URL alternativa do pacote ZIP<input id="zipUrl" type="text" placeholder="https://…/mouseocular.zip"></label>
+</fieldset>
+<fieldset>
+<legend>02 / Vídeo demonstrativo</legend>
+<label>Escolher vídeo MP4<input id="videoFile" type="file" accept="video/mp4,.mp4"><small>O arquivo será incluído em assets/videos/. Para vídeos grandes, prefira YouTube ou um arquivo hospedado externamente.</small></label><div class="or-divider">OU INFORME UM LINK</div>
+<div class="editor-grid">
+<label>Origem<select id="videoType"><option value="mp4">Arquivo MP4</option>
+<option value="youtube">YouTube</option></select></label><label>Título acessível<input id="videoTitle" value="MouseOcular em funcionamento" maxlength="140"></label>
+</div>
+<label>URL do vídeo<input id="videoUrl" type="text" placeholder="https://www.youtube.com/watch?v=…"></label><label>URL das legendas em português (.vtt), opcional<input id="captionsUrl" type="text" placeholder="https://…/legendas.vtt"><small>Aplicável ao player MP4. Vídeos do YouTube usam as legendas da plataforma.</small></label>
+</fieldset>
+<div class="editor-actions">
+<button class="button" id="exportButton" type="submit">Gerar ZIP do site atualizado <span aria-hidden="true">↓</span></button><button class="text-link" id="jsonButton" type="button">Baixar somente site-data.json</button>
+</div>
+<div id="preparedDownloadSlot" style="margin-top:22px"></div>
+<p class="editor-feedback" role="status" aria-live="polite" id="editorFeedback">Carregando a configuração atual…</p>
+</form>
+<div class="editor-help">
+<h2>Como colocar no ar</h2>
+<ol>
+<li>Baixe e extraia o pacote gerado.</li>
+<li>Envie o conteúdo da pasta para a raiz do repositório <strong>Eye-tracker-CKK</strong>.</li>
+<li>Confirme as alterações na branch usada pelo GitHub Pages e aguarde a publicação.</li>
+</ol>
+<p>Arquivos individuais acima de 95 MB não são incluídos pelo editor. Hospede-os no GitHub Releases (instalador) ou no YouTube (vídeo) e cole os links. Abra este editor por um servidor local ou pela hospedagem do site, para permitir a leitura dos arquivos.</p>
+</div></main>
+</body>
+</html>

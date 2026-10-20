@@ -1,165 +1,299 @@
 {
-    "tecnologias": [
-        { "nome": "Python", "icon": "🐍", "descricao": "Linguagem principal" },
-        { "nome": "OpenCV", "icon": "📷", "descricao": "Processamento de imagem" },
-        { "nome": "MediaPipe", "icon": "👤", "descricao": "Detecção facial e pontos" },
-        { "nome": "NumPy", "icon": "🔢", "descricao": "Cálculos numéricos" },
-        { "nome": "PyAutoGUI", "icon": "🖱", "descricao": "Controle de mouse e teclado" },
-        { "nome": "Tkinter", "icon": "🖥", "descricao": "Interface local" }
-    ],
-    "funcionalidades": [
+  "tecnologias": [
+    {
+      "nome": "Python",
+      "icon": "🐍",
+      "descricao": "Linguagem principal"
+    },
+    {
+      "nome": "OpenCV",
+      "icon": "📷",
+      "descricao": "Processamento de imagem"
+    },
+    {
+      "nome": "MediaPipe",
+      "icon": "👤",
+      "descricao": "Detecção facial e pontos"
+    },
+    {
+      "nome": "NumPy",
+      "icon": "🔢",
+      "descricao": "Cálculos numéricos"
+    },
+    {
+      "nome": "PyAutoGUI",
+      "icon": "🖱",
+      "descricao": "Controle de mouse e teclado"
+    },
+    {
+      "nome": "Tkinter",
+      "icon": "🖥",
+      "descricao": "Interface local"
+    }
+  ],
+  "funcionalidades": [
+    {
+      "titulo": "Disponível na Beta 2",
+      "tipo": "funcionando",
+      "itens": [
+        "Hub de inicialização",
+        "Menu flutuante com páginas e submenus",
+        "Perfis pessoais e Pré-determinado protegido",
+        "Recentralização e calibração da sobrancelha pelo menu",
+        "Métricas de FPS, tempo por quadro e gestos",
+        "Instalador Windows com MediaPipe empacotado"
+      ]
+    },
+    {
+      "titulo": "Em refinamento contínuo",
+      "tipo": "refinamento",
+      "itens": [
+        "Precisão do rastreamento em diferentes condições",
+        "Detecção de piscadas e gestos compostos",
+        "Conforto e confiabilidade no uso prolongado"
+      ]
+    },
+    {
+      "titulo": "Próximas entregas",
+      "tipo": "planejado",
+      "itens": [
+        "Otimizar a inicialização da câmera",
+        "Traduzir o instalador para português brasileiro",
+        "Ampliar testes de usabilidade"
+      ]
+    }
+  ],
+  "gestos": [
+    {
+      "gesto": "Piscada do olho direito",
+      "acao": "Clique esquerdo",
+      "contexto": "Fora do menu",
+      "detalhe": "Executa a seleção principal."
+    },
+    {
+      "gesto": "Piscada do olho esquerdo",
+      "acao": "Clique direito",
+      "contexto": "Fora do menu",
+      "detalhe": "Abre o menu de contexto do aplicativo."
+    },
+    {
+      "gesto": "Duas piscadas do olho direito",
+      "acao": "Duplo clique",
+      "contexto": "Fora do menu",
+      "detalhe": "Ativa itens que exigem dois cliques."
+    },
+    {
+      "gesto": "Elevar as duas sobrancelhas",
+      "acao": "Arrastar",
+      "contexto": "Fora do menu",
+      "detalhe": "Alterna o estado de arrasto. Ao abrir o menu, o botão é liberado com segurança."
+    },
+    {
+      "gesto": "Boca aberta",
+      "acao": "Rolagem",
+      "contexto": "Fora do menu",
+      "detalhe": "Permite rolar o conteúdo. A boca não navega dentro do menu."
+    },
+    {
+      "gesto": "Sorriso por 1,5 segundo",
+      "acao": "Abrir o menu",
+      "contexto": "Fora do menu",
+      "detalhe": "A confirmação temporal reduz ativações acidentais; perder o rosto cancela a preparação."
+    },
+    {
+      "gesto": "Manter o sorriso",
+      "acao": "Avançar a seleção",
+      "contexto": "Dentro do menu",
+      "detalhe": "A navegação se repete enquanto o sorriso permanece. O gesto de clique confirma a opção."
+    },
+    {
+      "gesto": "Sorriso + sobrancelhas",
+      "acao": "Congelar o cursor",
+      "contexto": "Fora do menu",
+      "detalhe": "A proteção impede congelar enquanto o sorriso que abriu o menu continua mantido."
+    },
+    {
+      "gesto": "Fechar os dois olhos",
+      "acao": "Pausar o rastreamento",
+      "contexto": "Fora do menu",
+      "detalhe": "Comando de pausa por fechamento sustentado."
+    },
+    {
+      "gesto": "Sobrancelhas + olho direito",
+      "acao": "Copiar · Ctrl+C",
+      "contexto": "Fora do menu",
+      "detalhe": "Atalho por gesto composto; sujeito aos ajustes de reconhecimento."
+    },
+    {
+      "gesto": "Sobrancelhas + olho esquerdo",
+      "acao": "Colar · Ctrl+V",
+      "contexto": "Fora do menu",
+      "detalhe": "Atalho por gesto composto; sujeito aos ajustes de reconhecimento."
+    },
+    {
+      "gesto": "Setas do teclado",
+      "acao": "Navegar pelo menu",
+      "contexto": "Dentro do menu",
+      "detalhe": "Alternativa de navegação para apoio e testes."
+    }
+  ],
+  "roadmap": [
+    {
+      "categoria": "Inicialização da câmera",
+      "status": "Próximo passo",
+      "itens": [
+        "Pré-carregar bibliotecas no hub",
+        "Testar DirectShow com fallback",
+        "Medir o tempo de cada etapa"
+      ]
+    },
+    {
+      "categoria": "Instalador em português",
+      "status": "Próximo passo",
+      "itens": [
+        "Aplicar BrazilianPortuguese.isl",
+        "Revisar os textos da instalação"
+      ]
+    },
+    {
+      "categoria": "Validação com usuários",
+      "status": "Pesquisa contínua",
+      "itens": [
+        "Variar iluminação, distância e posição",
+        "Avaliar precisão, conforto e usabilidade"
+      ]
+    }
+  ],
+  "equipe": [
+    {
+      "nome": "Carlos Eduardo Ferreira da Silva",
+      "funcao": "Desenvolvedor",
+      "descricao": "Testes · Documentação",
+      "foto": "assets/images/team/carlos.jpg",
+      "links": [
         {
-            "titulo": "Funcionando",
-            "tipo": "funcionando",
-            "itens": [
-                "Movimentação do cursor",
-                "IA para previsão do cursor",
-                "Calibração",
-                "Duplo clique"
-            ]
+          "label": "E-mail",
+          "url": "mailto:carloseduardoferreira3108@gmail.com"
         },
         {
-            "titulo": "Em refinamento / desenvolvimento",
-            "tipo": "refinamento",
-            "itens": [
-                "Clique esquerdo",
-                "Clique direito",
-                "Drag",
-                "Scroll",
-                "Menu overlay",
-                "Congelar cursor",
-                "Pausar rastreamento",
-                "Ctrl+C",
-                "Ctrl+V"
-            ]
-        },
-        {
-            "titulo": "Planejado",
-            "tipo": "planejado",
-            "itens": [
-                "Perfis de usuário",
-                "Estatísticas"
-            ]
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/carlos-eduardo-ferreira-9695983b9/"
         }
-    ],
-    "gestos": [
-        { "gesto": "Piscada do olho direito", "acao": "Clique esquerdo", "status": "Funciona" },
-        { "gesto": "Piscada do olho esquerdo", "acao": "Clique direito", "status": "Funciona" },
-        { "gesto": "Duas piscadas", "acao": "Duplo clique", "status": "Funciona" },
-        { "gesto": "Sobrancelhas", "acao": "Drag", "status": "Em desenvolvimento" },
-        { "gesto": "Boca aberta", "acao": "Scroll", "status": "Em desenvolvimento" },
-        { "gesto": "Sorriso", "acao": "Menu", "status": "Em desenvolvimento" },
-        { "gesto": "Sorriso + sobrancelhas", "acao": "Congelar cursor", "status": "Em desenvolvimento" },
-        { "gesto": "Dois olhos fechados", "acao": "Pausar", "status": "Em desenvolvimento" },
-        { "gesto": "Sobrancelhas + olho direito", "acao": "Ctrl+C", "status": "Em desenvolvimento" },
-        { "gesto": "Sobrancelhas + olho esquerdo", "acao": "Ctrl+V", "status": "Em desenvolvimento" }
-    ],
-    "roadmap": [
+      ]
+    },
+    {
+      "nome": "Kauan Kerlon Costa de Jesus",
+      "funcao": "Desenvolvedor",
+      "descricao": "Pesquisa em IA · Testes · Documentação",
+      "foto": "assets/images/team/kauan.jpg",
+      "links": [
         {
-            "categoria": "Precisão",
-            "itens": [
-                "Melhorar rastreamento ocular",
-                "Reduzir falsos positivos",
-                "Melhorar detecção de piscadas"
-            ]
+          "label": "E-mail",
+          "url": "mailto:kauankerloncostadejesus@gmail.com"
         },
         {
-            "categoria": "Interação",
-            "itens": [
-                "Corrigir Drag",
-                "Reestruturar Scroll",
-                "Aperfeiçoar gestos compostos"
-            ]
-        },
-        {
-            "categoria": "Personalização",
-            "itens": [
-                "Perfis individuais",
-                "Banco de calibração"
-            ]
-        },
-        {
-            "categoria": "Interface",
-            "itens": [
-                "Melhorar interface gráfica",
-                "Expandir menu overlay"
-            ]
-        },
-        {
-            "categoria": "Pesquisa",
-            "itens": [
-                "Coletar novas métricas",
-                "Realizar novos testes de usabilidade"
-            ]
-        },
-        {
-            "categoria": "Futuro",
-            "itens": [
-                "Integração com IoT",
-                "Teclado virtual adaptativo",
-                "Compatibilidade com outros SO"
-            ]
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/kauan-kerlon-costa-de-jesus-64b0963ba/"
         }
-    ],
-    "equipe": [
+      ]
+    },
+    {
+      "nome": "Kelvin Saldanha Mateus",
+      "funcao": "Desenvolvedor de software e site web",
+      "descricao": "Pesquisa bibliográfica · IA · Arquitetura · Documentação · Testes · Integração",
+      "foto": "assets/images/team/kelvin.jpg",
+      "links": [
         {
-            "nome": "Carlos Eduardo Ferreira da Silva",
-            "funcao": "Desenvolvedor",
-            "descricao": "Testes · Documentação",
-            "foto": "assets/images/team/carlos.jpg",
-            "links": [
-                { "label": "E-mail", "url": "mailto:carloseduardoferreira3108@gmail.com" },
-                { "label": "LinkedIn", "url": "https://www.linkedin.com/in/carlos-eduardo-ferreira-9695983b9/" }
-            ]
+          "label": "E-mail",
+          "url": "mailto:kelvinsaldanhaa@gmail.com"
         },
         {
-            "nome": "Kauan Kerlon Costa de Jesus",
-            "funcao": "Desenvolvedor",
-            "descricao": "Pesquisa em IA · Testes · Documentação",
-            "foto": "assets/images/team/kauan.jpg",
-            "links": [
-                { "label": "E-mail", "url": "mailto:kauankerloncostadejesus@gmail.com" },
-                { "label": "LinkedIn", "url": "https://www.linkedin.com/in/kauan-kerlon-costa-de-jesus-64b0963ba/" }
-            ]
+          "label": "GitHub",
+          "url": "https://github.com/kelvinsaldanha"
         },
         {
-            "nome": "Kelvin Saldanha Mateus",
-            "funcao": "Desenvolvedor de software e site web",
-            "descricao": "Pesquisa bibliográfica · IA · Arquitetura · Documentação · Testes · Integração",
-            "foto": "assets/images/team/kelvin.jpg",
-            "links": [
-                { "label": "E-mail", "url": "mailto:kelvinsaldanhaa@gmail.com" },
-                { "label": "GitHub", "url": "https://github.com/kelvinsaldanha" },
-                { "label": "LinkedIn", "url": "https://www.linkedin.com/in/kelvin-saldanha-mateus/" }
-            ]
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/kelvin-saldanha-mateus/"
         }
-    ],
-    "orientadores": [
-        {
-            "nome": "Prof. Alexandre Rodrigues Farias",
-            "papel": "Orientador",
-            "descricao": "Doutor em Engenharia Elétrica · Instrumentação biomédica · Eletrônica · Processamento de sinais",
-            "email": "alexandrefarias@cefetmg.br",
-            "linkedin": "https://www.linkedin.com/in/alexandre-farias-861930b5/"
-        },
-        {
-            "nome": "Prof.ª Tálita Saemi Payossim Sono",
-            "papel": "Coorientadora",
-            "descricao": "Doutora em Engenharia Mecânica (Bioengenharia) · Sistemas embarcados · Tecnologias assistivas",
-            "email": "talitasono@cefetmg.br",
-            "linkedin": ""
-        }
-    ],
-    "referencias": [
-        {
-            "titulo": "Shamilka Perera",
-            "descricao": "Projeto de interface controlada por olhos que influenciou a pesquisa e a direção técnica.",
-            "url": "https://shamilkaperera.github.io/?post=biometric-hci-real-time-ocular-controlled-interface"
-        },
-        {
-            "titulo": "Metin Amedi",
-            "descricao": "Projeto open source de controle de mouse pelos olhos utilizado como referência de estudo.",
-            "url": "https://github.com/metinmeki/Eye-Controll-Mouse/commits?author=metinmeki"
-        }
-    ]
+      ]
+    }
+  ],
+  "orientadores": [
+    {
+      "nome": "Prof. Alexandre Rodrigues Farias",
+      "papel": "Orientador",
+      "descricao": "Doutor em Engenharia Elétrica · Instrumentação biomédica · Eletrônica · Processamento de sinais",
+      "email": "alexandrefarias@cefetmg.br",
+      "linkedin": "https://www.linkedin.com/in/alexandre-farias-861930b5/"
+    },
+    {
+      "nome": "Prof.ª Tálita Saemi Payossim Sono",
+      "papel": "Coorientadora",
+      "descricao": "Doutora em Engenharia Mecânica (Bioengenharia) · Sistemas embarcados · Tecnologias assistivas",
+      "email": "talitasono@cefetmg.br",
+      "linkedin": ""
+    }
+  ],
+  "referencias": [
+    {
+      "titulo": "Shamilka Perera",
+      "descricao": "Projeto de interface controlada por olhos que influenciou a pesquisa e a direção técnica.",
+      "url": "https://shamilkaperera.github.io/?post=biometric-hci-real-time-ocular-controlled-interface"
+    },
+    {
+      "titulo": "Metin Amedi",
+      "descricao": "Projeto open source de controle de mouse pelos olhos utilizado como referência de estudo.",
+      "url": "https://github.com/metinmeki/Eye-Controll-Mouse/commits?author=metinmeki"
+    }
+  ],
+  "project": {
+    "name": "MouseOcular",
+    "subtitle": "Eye Tracker CK²",
+    "version": "0.1.2",
+    "stage": "Beta 2",
+    "updated": "19 de outubro de 2026",
+    "repository": "https://github.com/kelvinsaldanha/Eye-tracker-CKK",
+    "siteUrl": "https://kelvinsaldanha.github.io/Eye-tracker-CKK/"
+  },
+  "downloads": {
+    "url": "",
+    "filename": "MouseOcular-0.1.2-Setup.exe",
+    "version": "0.1.2",
+    "date": "19/10/2026",
+    "size": "70,4 MB",
+    "platform": "Windows · 64 bits",
+    "sha256": "CB2CF00E3002FF28534BCD9E39AF4046A55B813BEF6ECE66FDA07E5B544A85B6",
+    "zipUrl": "",
+    "zipSize": "69,9 MB",
+    "zipSha256": "FBF9DF5C5C0A5BE52E52BDFDE7786B1FF0D92B0457AF805908E35F666F92677D"
+  },
+  "video": {
+    "type": "mp4",
+    "url": "",
+    "poster": "assets/images/video-poster.svg",
+    "title": "MouseOcular em funcionamento",
+    "captionsUrl": ""
+  },
+  "history": [
+    {
+      "date": "12 ABR",
+      "title": "O início de uma ideia",
+      "text": "Escolha do mouse ocular como projeto de tecnologia assistiva no curso de Equipamentos Biomédicos."
+    },
+    {
+      "date": "MAI — JUL",
+      "title": "Do rastreamento à interação",
+      "text": "Estudos com webcam, visão computacional, calibração e comandos por gestos. Desenvolvimento do portal Eye Tracker CK²."
+    },
+    {
+      "date": "18 OUT",
+      "title": "Uma base mais protegida",
+      "text": "Regressão de teclas, perfil Pré-determinado protegido, confirmação do sorriso e calibrações pelo menu."
+    },
+    {
+      "date": "19 OUT",
+      "title": "MouseOcular Beta 2",
+      "text": "Hub de início, perfis pessoais, menu revisado e instalador Windows 0.1.2 com correção do MediaPipe."
+    }
+  ]
 }

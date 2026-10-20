@@ -1,0 +1,1 @@
+Coloque aqui o vídeo MP4 e preencha video.url em data/site-data.json. Para arquivos grandes, use YouTube ou MP4 hospedado externamente. configurar.html pode organizar esses arquivos e gerar o site atualizado.

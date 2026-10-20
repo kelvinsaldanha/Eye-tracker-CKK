@@ -1,0 +1,1 @@
+Coloque aqui o instalador EXE ou pacote ZIP e preencha a seção downloads em data/site-data.json. Também é possível usar configurar.html ou URLs diretas do GitHub Releases. Não renomeie um ZIP para EXE. Atualize o SHA-256 ao trocar de arquivo.
