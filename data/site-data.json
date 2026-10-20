@@ -256,7 +256,7 @@
     "siteUrl": "https://kelvinsaldanha.github.io/Eye-tracker-CKK/"
   },
   "downloads": {
-    "url": "",
+    "url": "https://github.com/kelvinsaldanha/Eye-tracker-CKK/releases/download/v0.1.2/MouseOcular-0.1.2-Setup.exe",
     "filename": "MouseOcular-0.1.2-Setup.exe",
     "version": "0.1.2",
     "date": "19/10/2026",
@@ -268,11 +268,11 @@
     "zipSha256": "FBF9DF5C5C0A5BE52E52BDFDE7786B1FF0D92B0457AF805908E35F666F92677D"
   },
   "video": {
-    "type": "mp4",
-    "url": "",
-    "poster": "assets/images/video-poster.svg",
-    "title": "MouseOcular em funcionamento",
-    "captionsUrl": ""
+  "type": "mp4",
+  "url": "assets/videos/demonstracao.mp4",
+  "poster": "assets/images/video-poster.svg",
+  "title": "MouseOcular em funcionamento",
+  "captionsUrl": ""
   },
   "history": [
     {
